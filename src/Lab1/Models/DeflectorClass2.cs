@@ -1,16 +1,16 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public class DeflectorClass1 : TemplateDeflector
+public class DeflectorClass2 : TemplateDeflector
 {
-    public DeflectorClass1(PhotonicDeflector photonicDeflector, PhotonicDeflector thisPhotonicDeflector)
-        : base(photonicDeflector)
+    public DeflectorClass2(PhotonicDeflector photonicDeflector)
+    : base(photonicDeflector)
     {
-        ThisPhotonicDeflector = thisPhotonicDeflector;
+        ThisPhotonicDeflector = photonicDeflector;
     }
 
     protected new PhotonicDeflector ThisPhotonicDeflector { get; private set; }
-    protected new int DamageAsteroids { get; private set; } = 50;
-    protected new int DamageMeteorites { get; private set; } = 100;
+    protected new int DamageAsteroids { get; private set; } = 10;
+    protected new int DamageMeteorites { get; private set; } = 34;
     protected new int DamageAntimaterFlares { get; private set; } = 100;
     protected new int DamageCosmoWhales { get; private set; } = 100;
 
