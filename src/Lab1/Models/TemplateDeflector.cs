@@ -3,51 +3,33 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public class TemplateDeflector
 {
-    private const int Death = 0;
-    protected TemplateDeflector(PhotonicDeflector thisPhotonicDeflector)
+    protected const int Death = 0;
+    protected const int InitialHitPoints = 100;
+    protected static void Damage(Obstacles obstacle, ref int health, int damageAsteroids, int damageMeteorites, int damageAntimaterFlares, int damageCosmoWhales, PhotonicDeflector? thisPhotonicDeflector)
     {
-        ThisPhotonicDeflector = thisPhotonicDeflector;
-    }
-
-    public int DamageAsteroids { get; protected set; }
-    public int DamageMeteorites { get; protected set; }
-    public int DamageAntimaterFlares { get; protected set; }
-    public int DamageCosmoWhales { get; protected set; }
-    public PhotonicDeflector ThisPhotonicDeflector { get; protected set; }
-    public int Health { get; set; }
-
-    protected bool IsAlive()
-    {
-        return Health > Death;
-    }
-
-    protected void Damage(Obstacles obstacle)
-    {
-        if (!IsAlive())
-            return;
         switch (obstacle)
         {
             case Obstacles.Asteroids:
             {
-                Health -= DamageAsteroids;
+                health -= damageAsteroids;
                 break;
             }
 
             case Obstacles.Meteorites:
             {
-                Health -= DamageMeteorites;
+                health -= damageMeteorites;
                 break;
             }
 
             case Obstacles.AntimaterFlares:
             {
-                if (ThisPhotonicDeflector.IsAlive())
+                if (thisPhotonicDeflector?.IsAlive() ?? false)
                 {
-                    ThisPhotonicDeflector.Damage(obstacle);
+                    thisPhotonicDeflector.Damage(obstacle);
                 }
                 else
                 {
-                    Health -= DamageAntimaterFlares;
+                    health -= damageAntimaterFlares;
                 }
 
                 break;
@@ -55,7 +37,7 @@ public class TemplateDeflector
 
             case Obstacles.CosmoWhales:
             {
-                Health = DamageCosmoWhales;
+                health = damageCosmoWhales;
                 break;
             }
 

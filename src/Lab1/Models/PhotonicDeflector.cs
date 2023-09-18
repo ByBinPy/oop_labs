@@ -5,7 +5,6 @@ public class PhotonicDeflector
     private const int Death = 0;
     private const int DamageAntimaterFlares = 34;
     private int _health = 100;
-
     public bool IsAlive()
     {
         return _health >= Death;

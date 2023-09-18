@@ -2,25 +2,31 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public class DeflectorClass2 : TemplateDeflector
 {
+    private int _hitPoints = TemplateDeflector.InitialHitPoints;
     public DeflectorClass2(PhotonicDeflector photonicDeflector)
-    : base(photonicDeflector)
     {
         ThisPhotonicDeflector = photonicDeflector;
     }
 
-    protected new PhotonicDeflector ThisPhotonicDeflector { get; private set; }
-    protected new int DamageAsteroids { get; private set; } = 10;
-    protected new int DamageMeteorites { get; private set; } = 34;
-    protected new int DamageAntimaterFlares { get; private set; } = 100;
-    protected new int DamageCosmoWhales { get; private set; } = 100;
-
-    public new void IsAlive()
+    protected PhotonicDeflector ThisPhotonicDeflector { get; private set; }
+    protected int DamageAsteroids { get; private set; } = 10;
+    protected int DamageMeteorites { get; private set; } = 34;
+    protected int DamageAntimaterFlares { get; private set; } = 100;
+    protected int DamageCosmoWhales { get; private set; } = 100;
+    protected int HitPoints
     {
-        base.IsAlive();
+        get => _hitPoints;
+        private set => _hitPoints = value;
     }
 
-    public new void Damage(Obstacles obstacle)
+    public bool IsAlive()
     {
-        base.Damage(obstacle);
+        return _hitPoints > TemplateDeflector.Death;
+    }
+
+    public void Damage(Obstacles obstacle)
+    {
+        if (IsAlive())
+            Damage(obstacle, ref _hitPoints, DamageAsteroids, DamageMeteorites, DamageAntimaterFlares, DamageCosmoWhales, ThisPhotonicDeflector);
     }
 }
