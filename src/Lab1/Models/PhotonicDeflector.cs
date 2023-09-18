@@ -10,6 +10,7 @@ public class PhotonicDeflector
         return _health >= Death;
     }
 
+    // Blocking only AntimatedFlares
     public void Damage(Obstacles obstacle)
     {
         switch (obstacle)

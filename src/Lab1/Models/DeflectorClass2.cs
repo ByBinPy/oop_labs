@@ -2,6 +2,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public class DeflectorClass2 : TemplateDeflector
 {
+    // max valid damage
     private int _hitPoints = TemplateDeflector.InitialHitPoints;
     public DeflectorClass2(PhotonicDeflector photonicDeflector)
     {
