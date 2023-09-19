@@ -1,21 +1,21 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class DeflectorClass2 : Deflector
+public sealed class Hull3 : Hull
 {
-    public DeflectorClass2(PhotonicDeflector photonicDeflector)
+    public Hull3()
     {
-        DamageAsteroids = 10 * Hp;
-        DamageMeteorites = 34 * Hp;
+        DamageAsteroids = 5 * Hp;
+        DamageMeteorites = 20 * Hp;
         DamageCosmoWhales = 100 * Hp;
         HitPoints = 100 * Hp;
-        InstalledPhotonicDeflector = photonicDeflector;
+        IntalledDiflector = Disable;
     }
 
     protected override int DamageAsteroids { get; set; }
     protected override int DamageMeteorites { get; set; }
-    protected override int DamageCosmoWhales { get;  set; }
-    protected override PhotonicDeflector? InstalledPhotonicDeflector { get; set; }
+    protected override int DamageCosmoWhales { get; set; }
     protected override int HitPoints { get; set; }
+    protected override Deflector? IntalledDiflector { get; set; }
     public override bool IsAlive()
     {
         return base.IsAlive();

@@ -1,32 +1,32 @@
 using System;
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public abstract class Deflector
+public abstract class Hull
 {
-    // null constant - show consist of Photonic diflector
-    protected const PhotonicDeflector? Disable = null;
     protected const int Hp = 1;
-    private const int DeathPoint = 0;
+    protected const int DeathPoints = 0;
+    protected const Deflector? Disable = null;
     protected virtual int DamageAsteroids { get; set; }
     protected virtual int DamageMeteorites { get; set; }
     protected virtual int DamageCosmoWhales { get; set; }
-    protected virtual PhotonicDeflector? InstalledPhotonicDeflector { get; set; }
     protected virtual int HitPoints { get; set; }
-
-    public virtual bool ExistencePhotonicDeflector()
-    {
-        return InstalledPhotonicDeflector?.IsAlive() ?? false;
-    }
+    protected virtual Deflector? IntalledDiflector { get; set; }
 
     public virtual bool IsAlive()
     {
-        return HitPoints > DeathPoint;
+        return HitPoints > DeathPoints;
     }
 
     public virtual void Damage(Obstacles obstacle)
     {
         if (!IsAlive())
-            throw new FormatException("Try damage unfunctional deflector");
+            throw new FormatException("Try damage unfunctional hull");
+        if (IntalledDiflector?.IsAlive() ?? false)
+        {
+            IntalledDiflector.Damage(obstacle);
+            return;
+        }
+
         switch (obstacle)
         {
             case Obstacles.Asteroids:
@@ -43,22 +43,12 @@ public abstract class Deflector
 
             case Obstacles.AntimaterFlares:
             {
-                if (InstalledPhotonicDeflector?.IsAlive() ?? false)
-                {
-                    InstalledPhotonicDeflector.Damage(obstacle);
-                }
-                else
-                {
-                    throw new AggregateException("Crew is died");
-                }
-
-                break;
+                throw new AggregateException("Crew has been died");
             }
 
             case Obstacles.CosmoWhales:
             {
-                HitPoints = DamageCosmoWhales;
-                break;
+                throw new AggregateException("Ship has been broken");
             }
 
             default:
