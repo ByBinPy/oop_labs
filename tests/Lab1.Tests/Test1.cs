@@ -10,7 +10,9 @@ public class Test1
     public static IEnumerable<object[]> GetData()
     {
         yield return new object[] { new Obstacles[] { Obstacles.Asteroids, Obstacles.Meteorites }, new PhotonicDeflector(), new bool[] { true, false } };
+
         yield return new object[] { new Obstacles[] { Obstacles.Asteroids, Obstacles.Asteroids }, new PhotonicDeflector(), new bool[] { true, false } };
+
         yield return new object[] { new Obstacles[] { Obstacles.Meteorites, Obstacles.Meteorites }, new PhotonicDeflector(), new bool[] { false, false } };
     }
 #pragma warning restore CA1024
@@ -31,15 +33,5 @@ public class Test1
         }
 
         Assert.Equal(result, waitingResult);
-    }
-
-    [Fact]
-    public void FactTestDeflector1()
-    {
-        var testingPhotonicDeflector = new PhotonicDeflector();
-        var testingDeflectorClass1 = new DeflectorClass1(testingPhotonicDeflector);
-        Obstacles testingObstacle = Obstacles.Asteroids;
-        testingDeflectorClass1.Damage(testingObstacle);
-        Assert.True(testingDeflectorClass1.IsAlive());
     }
 }
