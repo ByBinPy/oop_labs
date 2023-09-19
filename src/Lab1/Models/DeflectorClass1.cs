@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public class DeflectorClass1 : Deflector
+public sealed class DeflectorClass1 : Deflector
 {
     public DeflectorClass1()
     {
