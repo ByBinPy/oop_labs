@@ -10,6 +10,12 @@ public sealed class Hull1 : Hull
         IntalledDiflector = Disable;
     }
 
+    public Hull1(Deflector deflector)
+        : this()
+    {
+        IntalledDiflector = deflector;
+    }
+
     protected override int DamageAsteroids { get; set; }
     protected override int DamageMeteorites { get; set; }
     protected override int DamageCosmoWhales { get; set; }

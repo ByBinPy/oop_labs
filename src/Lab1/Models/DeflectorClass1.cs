@@ -10,7 +10,8 @@ public class DeflectorClass1 : Deflector
         InstalledPhotonicDeflector = Disable;
     }
 
-    public DeflectorClass1(PhotonicDeflector photonicDeflector)
+    public DeflectorClass1(PhotonicDeflector? photonicDeflector)
+        : this()
     {
         InstalledPhotonicDeflector = photonicDeflector;
     }
