@@ -7,6 +7,7 @@ public sealed class Hull2 : Hull
         DamageAsteroids = 20 * Hp;
         DamageMeteorites = 50 * Hp;
         DamageCosmoWhales = 100 * Hp;
+        HitPoints = 100 * Hp;
         IntalledDiflector = Disable;
     }
 

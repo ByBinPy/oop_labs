@@ -4,9 +4,10 @@ public sealed class Hull1 : Hull
 {
     public Hull1()
     {
-        DamageAsteroids = 100 * Hp;
+        DamageAsteroids = 50 * Hp;
         DamageMeteorites = 100 * Hp;
         DamageCosmoWhales = 100 * Hp;
+        HitPoints = 100 * Hp;
         IntalledDiflector = Disable;
     }
 

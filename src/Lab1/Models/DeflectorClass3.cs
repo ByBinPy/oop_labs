@@ -5,9 +5,9 @@ public sealed class DeflectorClass3 : Deflector
     public DeflectorClass3()
     {
         DamageAsteroids = 4 * Hp;
-        DamageMeteorites = 40 * Hp;
+        DamageMeteorites = 16 * Hp;
         DamageCosmoWhales = 160 * Hp;
-        HitPoints = 100 * Hp;
+        HitPoints = 160 * Hp;
         InstalledPhotonicDeflector = Disable;
     }
 
