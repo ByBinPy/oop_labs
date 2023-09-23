@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 
-public class JumpEngineGamma
+public class JumpEngineGamma : IEngine
 {
     private const double FirstSpeed = 1.0;
     private const double CfConsumption = 1.3;
