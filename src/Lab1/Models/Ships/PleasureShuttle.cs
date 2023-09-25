@@ -11,7 +11,7 @@ public class PleasureShuttle : IShip
         InstalledPulseEngine = new PulseEngineC();
         InstalledJumpEngine = null;
         IsAntinitrineEmitterInstalled = false;
-        Description = "Simple ship";
+        Description = "PleasureShuttle";
     }
 
     public Deflector? InstalledDeflector { get; private set; }

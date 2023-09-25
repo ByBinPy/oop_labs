@@ -1,18 +1,18 @@
-using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using System.Collections;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 public static class FuelConverter
 {
-    public int ConvertFuel(IShip ship, int distance)
+    public static int GetFuel(IShip ship, IEnvironment environment, int distance)
     {
-        switch (ship.WeightCharacteristic)
+        switch (ship?.Description)
         {
-            case WieghtDimensional.Tiny:
+            case "Avgur":
             {
-                distance *= distance;
-                break;l
+                return 
             }
         }
     }

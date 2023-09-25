@@ -11,7 +11,7 @@ public class Stella : IShip
         InstalledPulseEngine = new PulseEngineC();
         InstalledJumpEngine = new JumpEngineOmega();
         IsAntinitrineEmitterInstalled = false;
-        Description = "Diplomatic ship";
+        Description = "Stella";
     }
 
     public Stella(PhotonicDeflector photonicDeflector)

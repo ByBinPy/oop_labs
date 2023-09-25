@@ -11,7 +11,7 @@ public class Meridian : IShip
         InstalledPulseEngine = new PulseEngineE();
         InstalledJumpEngine = null;
         IsAntinitrineEmitterInstalled = true;
-        Description = "Mining ship";
+        Description = "Meridian";
     }
 
     public Meridian(PhotonicDeflector photonicDeflector)

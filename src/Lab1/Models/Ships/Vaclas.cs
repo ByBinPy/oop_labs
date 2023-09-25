@@ -11,7 +11,7 @@ public class Vaclas : IShip
         InstalledPulseEngine = new PulseEngineE();
         InstalledJumpEngine = new JumpEngineGamma();
         IsAntinitrineEmitterInstalled = false;
-        Description = "Research ship";
+        Description = "Vaclas";
     }
 
     public Vaclas(PhotonicDeflector photonicDeflector)

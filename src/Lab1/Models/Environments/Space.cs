@@ -5,7 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class Space : IEnvironment
 {
+   public Space()
+   {
+      Description = "Space";
+   }
+
    public Space(Collection<Obstacles>? environmentObstacles)
+   : this()
    {
       if (environmentObstacles == null) return;
 
@@ -16,7 +22,7 @@ public class Space : IEnvironment
    }
 
    public Collection<Obstacles>? EnvironmentObstacles { get; }
-
+   public string Description { get; }
    public void Add(Obstacles item)
    {
       switch (item)

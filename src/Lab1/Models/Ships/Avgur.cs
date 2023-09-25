@@ -11,7 +11,7 @@ public class Avgur : IShip
         InstalledPulseEngine = new PulseEngineE();
         InstalledJumpEngine = new JumpEngineAlpha();
         IsAntinitrineEmitterInstalled = false;
-        Description = "Research ship";
+        Description = "Avgur";
     }
 
     public Avgur(PhotonicDeflector photonicDeflector)

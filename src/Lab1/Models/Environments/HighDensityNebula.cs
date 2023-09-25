@@ -4,7 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class HighDensityNebula : IEnvironment
 {
+    public HighDensityNebula()
+    {
+        Description = "HighDensityNebula";
+    }
+
     public HighDensityNebula(Collection<Obstacles>? environmentObstacles)
+    : this()
     {
         if (environmentObstacles == null) return;
 
@@ -15,6 +21,7 @@ public class HighDensityNebula : IEnvironment
     }
 
     public Collection<Obstacles>? EnvironmentObstacles { get; }
+    public string Description { get; }
 
     public void Add(Obstacles item)
     {
