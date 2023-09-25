@@ -7,7 +7,6 @@ public interface IShip
     Hull? InstalledHull { get; }
     IEngine? InstalledPulseEngine { get; }
     IEngine? InstalledJumpEngine { get; }
-    WieghtDimensional WeightCharacteristic { get; }
     bool IsAntinitrineEmitterInstalled { get; }
     string? Description { get; }
 }

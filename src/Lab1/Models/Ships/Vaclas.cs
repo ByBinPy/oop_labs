@@ -10,7 +10,6 @@ public class Vaclas : IShip
         InstalledHull = new Hull2(InstalledDeflector);
         InstalledPulseEngine = new PulseEngineE();
         InstalledJumpEngine = new JumpEngineGamma();
-        WeightCharacteristic = WieghtDimensional.Medium;
         IsAntinitrineEmitterInstalled = false;
         Description = "Research ship";
     }
@@ -26,7 +25,6 @@ public class Vaclas : IShip
     public Hull? InstalledHull { get; private set; }
     public IEngine? InstalledPulseEngine { get; private set; }
     public IEngine? InstalledJumpEngine { get; private set; }
-    public WieghtDimensional WeightCharacteristic { get; private set; }
     public bool IsAntinitrineEmitterInstalled { get; private set; }
     public string? Description { get; private set; }
 }
