@@ -1,4 +1,3 @@
-using System.Collections;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
 
@@ -12,7 +11,10 @@ public static class FuelConverter
         {
             case "Avgur":
             {
-                return 
+                if (environment is NeutrinoPerticleNebula)
+                {
+                    
+                }
             }
         }
     }

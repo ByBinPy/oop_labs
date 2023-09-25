@@ -21,8 +21,8 @@ public class Avgur : IShip
         InstalledHull = new Hull3(InstalledDeflector);
     }
 
-    public Deflector? InstalledDeflector { get; private set; }
-    public Hull? InstalledHull { get; private set; }
+    public IDeflector? InstalledDeflector { get; private set; }
+    public IHull? InstalledHull { get; private set; }
     public IEngine? InstalledPulseEngine { get; private set; }
     public IEngine? InstalledJumpEngine { get; private set; }
     public bool IsAntinitrineEmitterInstalled { get; private set; }

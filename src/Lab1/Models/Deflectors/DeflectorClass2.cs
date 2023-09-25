@@ -1,14 +1,17 @@
+using System;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class DeflectorClass2 : Deflector
+public sealed class DeflectorClass2 : IDeflector
 {
+    private const int Hp = IDeflector.Hp;
     public DeflectorClass2()
     {
         DamageAsteroids = 10 * Hp;
         DamageMeteorites = 34 * Hp;
         DamageCosmoWhales = 100 * Hp;
         HitPoints = 100 * Hp;
-        InstalledPhotonicDeflector = Disable;
+        InstalledPhotonicDeflector = IDeflector.Disable;
     }
 
     public DeflectorClass2(PhotonicDeflector? photonicDeflector)
@@ -17,18 +20,62 @@ public sealed class DeflectorClass2 : Deflector
         InstalledPhotonicDeflector = photonicDeflector;
     }
 
-    protected override int DamageAsteroids { get; set; }
-    protected override int DamageMeteorites { get; set; }
-    protected override int DamageCosmoWhales { get;  set; }
-    protected override PhotonicDeflector? InstalledPhotonicDeflector { get; set; }
-    protected override int HitPoints { get; set; }
-    public override bool IsAlive()
+    public int DamageAsteroids { get; }
+    public int DamageMeteorites { get; }
+    public int DamageCosmoWhales { get; }
+    public PhotonicDeflector? InstalledPhotonicDeflector { get; }
+    public int HitPoints { get; private set; }
+
+    public bool ExistencePhotonicDeflector()
     {
-        return base.IsAlive();
+        return InstalledPhotonicDeflector?.IsAlive() ?? false;
     }
 
-    public override void Damage(Obstacles obstacle)
+    public bool IsAlive()
     {
-        base.Damage(obstacle);
+        return HitPoints > IDeflector.DeathPoint;
+    }
+
+    public void Damage(Obstacles obstacle)
+    {
+        if (!IsAlive())
+            throw new FormatException("Try damage unfunctional deflector");
+        switch (obstacle)
+        {
+            case Obstacles.Asteroids:
+            {
+                HitPoints -= DamageAsteroids;
+                break;
+            }
+
+            case Obstacles.Meteorites:
+            {
+                HitPoints -= DamageMeteorites;
+                break;
+            }
+
+            case Obstacles.AntimaterFlares:
+            {
+                if (InstalledPhotonicDeflector?.IsAlive() ?? false)
+                {
+                    InstalledPhotonicDeflector.Damage(obstacle);
+                }
+                else
+                {
+                    throw new AggregateException("Crew is died");
+                }
+
+                break;
+            }
+
+            case Obstacles.CosmoWhales:
+            {
+                HitPoints = DamageCosmoWhales;
+                break;
+            }
+
+            default:
+                throw new ArgumentException("Undefined Obstacles");
+        }
     }
 }

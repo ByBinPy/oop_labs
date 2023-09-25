@@ -1,34 +1,73 @@
+using System;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class Hull3 : Hull
+public sealed class Hull3 : IHull
 {
+    private const int Hp = IHull.Hp;
     public Hull3()
     {
         DamageAsteroids = 5 * Hp;
         DamageMeteorites = 20 * Hp;
         DamageCosmoWhales = 100 * Hp;
         HitPoints = 100 * Hp;
-        IntalledDiflector = Disable;
+        IntalledDiflector = IHull.Disable;
     }
 
-    public Hull3(Deflector deflector)
+    public Hull3(IDeflector deflector)
         : this()
     {
         IntalledDiflector = deflector;
     }
 
-    protected override int DamageAsteroids { get; set; }
-    protected override int DamageMeteorites { get; set; }
-    protected override int DamageCosmoWhales { get; set; }
-    protected override int HitPoints { get; set; }
-    protected override Deflector? IntalledDiflector { get; set; }
-    public override bool IsAlive()
+    public int DamageAsteroids { get; set; }
+    public int DamageMeteorites { get; set; }
+    public int DamageCosmoWhales { get; set; }
+    public int HitPoints { get; set; }
+    public IDeflector? IntalledDiflector { get; set; }
+    public bool IsAlive()
     {
-        return base.IsAlive();
+        return HitPoints > IHull.DeathPoints;
     }
 
-    public override void Damage(Obstacles obstacle)
+    public void Damage(Obstacles obstacle)
     {
-        base.Damage(obstacle);
+        {
+            if (!IsAlive())
+                throw new FormatException("Try damage unfunctional hull");
+            if (IntalledDiflector?.IsAlive() ?? false)
+            {
+                IntalledDiflector.Damage(obstacle);
+                return;
+            }
+
+            switch (obstacle)
+            {
+                case Obstacles.Asteroids:
+                {
+                    HitPoints -= DamageAsteroids;
+                    break;
+                }
+
+                case Obstacles.Meteorites:
+                {
+                    HitPoints -= DamageMeteorites;
+                    break;
+                }
+
+                case Obstacles.AntimaterFlares:
+                {
+                    throw new AggregateException("Crew has been died");
+                }
+
+                case Obstacles.CosmoWhales:
+                {
+                    throw new AggregateException("Ship has been broken");
+                }
+
+                default:
+                    throw new ArgumentException("Undefined Obstacles");
+            }
+        }
     }
 }
