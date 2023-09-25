@@ -17,6 +17,7 @@ public class PulseEngineC : IEngine
         private set => _speed = value;
     }
 
+    public double Range { get; }
     public double Consumption()
     {
         return (CfConsumption * Speed) + StartConsumption;
