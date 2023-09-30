@@ -17,12 +17,12 @@ public class PhotonicDeflector
         {
             case Obstacles.Asteroids:
             {
-                throw new ArgumentException("Damage cannot save from Asteroids");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from Asteroids");
             }
 
             case Obstacles.Meteorites:
             {
-                throw new ArgumentException("Damage cannot save from Meteorites");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from Meteorites");
             }
 
             case Obstacles.AntimaterFlares:
@@ -33,11 +33,11 @@ public class PhotonicDeflector
 
             case Obstacles.CosmoWhales:
             {
-                throw new ArgumentException("Damage cannot save from CosmoWhales");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from CosmoWhales");
             }
 
             default:
-                throw new ArgumentException("Undefined Obstacles");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefined Obstacles");
         }
     }
 }

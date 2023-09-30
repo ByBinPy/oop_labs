@@ -2,7 +2,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 
 public class JumpEngineAlpha : IEngine
 {
-    private const double FirstSpeed = 1.0;
+    private const double FirstSpeed = 100.0;
     private const double CfConsumption = 1.3;
     private const double StartConsumption = 10.4;
     private const double MaxRange = 200.5;

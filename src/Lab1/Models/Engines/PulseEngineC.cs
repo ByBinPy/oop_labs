@@ -11,6 +11,11 @@ public class PulseEngineC : IEngine
         Speed = FirstSpeed;
     }
 
+    public PulseEngineC(int speed)
+    {
+        Speed = speed;
+    }
+
     public double Speed
     {
         get => _speed;

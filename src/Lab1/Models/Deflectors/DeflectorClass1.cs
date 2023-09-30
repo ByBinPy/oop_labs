@@ -11,6 +11,7 @@ public sealed class DeflectorClass1 : IDeflector
         DamageAsteroids = 50 * Hp;
         DamageMeteorites = 100 * Hp;
         DamageCosmoWhales = 100 * Hp;
+        HitPoints = 100 * Hp;
         InstalledPhotonicDeflector = IDeflector.Disable;
     }
 
@@ -62,7 +63,7 @@ public sealed class DeflectorClass1 : IDeflector
                 }
                 else
                 {
-                    throw new AggregateException("Crew is died");
+                    throw new AggregateException("Crew has been died");
                 }
 
                 break;
@@ -75,7 +76,7 @@ public sealed class DeflectorClass1 : IDeflector
             }
 
             default:
-                throw new ArgumentException("Undefined Obstacles");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefinded obstacle in switch");
         }
     }
 }

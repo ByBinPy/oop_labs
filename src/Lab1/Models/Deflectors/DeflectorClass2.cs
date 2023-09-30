@@ -62,7 +62,7 @@ public sealed class DeflectorClass2 : IDeflector
                 }
                 else
                 {
-                    throw new AggregateException("Crew is died");
+                    throw new AggregateException("Crew has been died");
                 }
 
                 break;
@@ -75,7 +75,7 @@ public sealed class DeflectorClass2 : IDeflector
             }
 
             default:
-                throw new ArgumentException("Undefined Obstacles");
+                throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefinded obstacle in switch");
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 public sealed class Hull2 : IHull
 {
     private const int Hp = IHull.Hp;
+
     public Hull2()
     {
         DamageAsteroids = 20 * Hp;
@@ -25,6 +26,7 @@ public sealed class Hull2 : IHull
     public int DamageCosmoWhales { get; private set; }
     public int HitPoints { get; private set; }
     public IDeflector? IntalledDiflector { get; private set; }
+
     public bool IsAlive()
     {
         return HitPoints > IHull.DeathPoints;
@@ -66,7 +68,7 @@ public sealed class Hull2 : IHull
                 }
 
                 default:
-                    throw new ArgumentException("Undefined Obstacles");
+                    throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefinded obstacle in switch");
             }
         }
     }

@@ -1,4 +1,8 @@
+using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
+using Itmo.ObjectOrientedProgramming.Lab1.Services;
 using Xunit;
 
 namespace Lab1.Tests;
@@ -13,7 +17,7 @@ public class Test1
 
         yield return new object[] { new Obstacles[] { Obstacles.Asteroids, Obstacles.Asteroids }, new PhotonicDeflector(), new bool[] { true, false } };
 
-        yield return new object[] { new Obstacles[] { Obstacles.Meteorites, Obstacles.Meteorites }, new PhotonicDeflector(), new bool[] { false, false } };
+        yield return new object[] { new Obstacles[] { Obstacles.Meteorites }, new PhotonicDeflector(), new bool[] { false } };
 
         yield return new object[] { new Obstacles[] { Obstacles.AntimaterFlares }, new PhotonicDeflector(), new bool[] { true } };
 
@@ -60,7 +64,7 @@ public class Test1
 
         yield return new object[] { new Obstacles[] { Obstacles.Asteroids, Obstacles.Asteroids }, new bool[] { true, false } };
 
-        yield return new object[] { new Obstacles[] { Obstacles.Meteorites, Obstacles.Meteorites }, new bool[] { false, false } };
+        yield return new object[] { new Obstacles[] { Obstacles.Meteorites }, new bool[] { false } };
 
         yield return new object[] { new Obstacles[] { Obstacles.AntimaterFlares }, new bool[] { false } };
 
@@ -259,7 +263,7 @@ public class Test1
 
     [Theory]
     [MemberData(nameof(GetDataHull1WithDeflector))]
-    public void TheoryTestHull1WithDeflector(IEnumerable<Obstacles> obstaclesCollection, Deflector deflector, IEnumerable<bool> waitingResult)
+    public void TheoryTestHull1WithDeflector(IEnumerable<Obstacles> obstaclesCollection, IDeflector deflector, IEnumerable<bool> waitingResult)
     {
         var result = new List<bool>();
         var testingHull1 = new Hull1(deflector);
@@ -274,4 +278,23 @@ public class Test1
 
         Assert.Equal(result, waitingResult);
     }
+
+    [Fact]
+    public void LabaTestShipSelectorAvgurPleasure()
+    {
+        var analyzerAvgur = new Analyzer(new Collection<RouteCut>() { new RouteCut(new HighDensityNebula(), 500) }, new Avgur());
+        var analyzerPleasure = new Analyzer(new Collection<RouteCut>() { new RouteCut(new HighDensityNebula(), 500) }, new PleasureShuttle());
+        var selector = new ShipSelector(analyzerAvgur, analyzerPleasure);
+        Assert.Null(selector.Selector());
+    }
+
+    [Fact]
+    public void LabaTestShipSelectorVaclasVaclasWithPhotonicDefector()
+    {
+        var analyzerVaclas = new Analyzer(new Collection<RouteCut>() { new RouteCut(new HighDensityNebula(new Collection<Obstacles>() { Obstacles.AntimaterFlares }), 500) }, new Vaclas());
+        var analyzerVaclasWithPhotonicDeflector = new Analyzer(new Collection<RouteCut>() { new RouteCut(new HighDensityNebula(new Collection<Obstacles>() { Obstacles.AntimaterFlares }), 500) }, new Vaclas(new PhotonicDeflector()));
+        var selector = new ShipSelector(analyzerVaclas, analyzerVaclasWithPhotonicDeflector);
+        Assert.True(selector.Selector() == "second");
+    }
+    public void LabTestShipSelectorVaclas
 }

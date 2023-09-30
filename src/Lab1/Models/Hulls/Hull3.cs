@@ -66,7 +66,7 @@ public sealed class Hull3 : IHull
                 }
 
                 default:
-                    throw new ArgumentException("Undefined Obstacles");
+                    throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefinded obstacle in switch");
             }
         }
     }
