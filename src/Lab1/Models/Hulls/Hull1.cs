@@ -43,24 +43,24 @@ public sealed class Hull1 : IHull
 
             switch (obstacle)
             {
-                case Obstacles.Asteroids:
+                case Obstacles.Asteroid:
                 {
                     HitPoints -= DamageAsteroids;
                     break;
                 }
 
-                case Obstacles.Meteorites:
+                case Obstacles.Meteorite:
                 {
                     HitPoints -= DamageMeteorites;
                     break;
                 }
 
-                case Obstacles.AntimaterFlares:
+                case Obstacles.AntimaterFlare:
                 {
                     throw new AggregateException("Crew has been died");
                 }
 
-                case Obstacles.CosmoWhales:
+                case Obstacles.CosmoWhale:
                 {
                     throw new AggregateException("Ship has been broken");
                 }

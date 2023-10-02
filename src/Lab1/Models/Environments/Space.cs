@@ -27,24 +27,24 @@ public class Space : IEnvironment
    {
       switch (item)
       {
-         case Obstacles.Asteroids:
+         case Obstacles.Asteroid:
          {
             EnvironmentObstacles?.Add(item);
             break;
          }
 
-         case Obstacles.Meteorites:
+         case Obstacles.Meteorite:
          {
             EnvironmentObstacles?.Add(item);
             break;
          }
 
-         case Obstacles.AntimaterFlares:
+         case Obstacles.AntimaterFlare:
          {
             throw new ArgumentException("Antimater flares does not add to simple space");
          }
 
-         case Obstacles.CosmoWhales:
+         case Obstacles.CosmoWhale:
          {
             throw new ArgumentException("Cosmo whales does not add to simple space");
          }

@@ -27,25 +27,25 @@ public class HighDensityNebula : IEnvironment
     {
         switch (item)
         {
-            case Obstacles.Asteroids:
+            case Obstacles.Asteroid:
             {
                 EnvironmentObstacles?.Add(item);
                 break;
             }
 
-            case Obstacles.Meteorites:
+            case Obstacles.Meteorite:
             {
                 EnvironmentObstacles?.Add(item);
                 break;
             }
 
-            case Obstacles.AntimaterFlares:
+            case Obstacles.AntimaterFlare:
             {
                 EnvironmentObstacles?.Add(item);
                 break;
             }
 
-            case Obstacles.CosmoWhales:
+            case Obstacles.CosmoWhale:
             {
                 throw new ArgumentException("Cosmo whales does not add to HighDensityNebula");
             }

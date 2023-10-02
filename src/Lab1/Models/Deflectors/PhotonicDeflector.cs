@@ -1,43 +1,33 @@
-using System;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
-public class PhotonicDeflector
+public sealed class PhotonicDeflector : IDeflector
 {
-    private const int Death = 0;
-    private const int DamageAntimaterFlares = 34;
-    private int _health = 100;
-    public bool IsAlive()
+    private const int DeathPoint = 0;
+
+    public PhotonicDeflector(int damageAntimaterFlare)
     {
-        return _health >= Death;
+        HitPoints = 3 * damageAntimaterFlare;
     }
 
-    // Blocking only AntimatedFlares
-    public void Damage(Obstacles obstacle)
+    public int HitPoints { get; private set; }
+
+    public bool IsAlive()
     {
-        switch (obstacle)
-        {
-            case Obstacles.Asteroids:
-            {
-                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from Asteroids");
-            }
+        return HitPoints > DeathPoint;
+    }
 
-            case Obstacles.Meteorites:
-            {
-                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from Meteorites");
-            }
+    public Message Damage(IObstacle obstacle)
+    {
+        if (obstacle != null) HitPoints -= obstacle.Damage;
+        else
 
-            case Obstacles.AntimaterFlares:
-            {
-                _health -= DamageAntimaterFlares;
-                break;
-            }
+            return new Message(IDeflector.NullObstacleMessage);
 
-            case Obstacles.CosmoWhales:
-            {
-                throw new ArgumentOutOfRangeException(nameof(obstacle), "Damage cannot save from CosmoWhales");
-            }
+        if (!IsAlive())
 
-            default:
-                throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefined Obstacles");
-        }
+            return new Message(IDeflector.UnfunctionalMessage);
+
+        return new Message();
     }
 }
