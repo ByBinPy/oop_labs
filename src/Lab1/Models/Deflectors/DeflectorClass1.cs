@@ -6,10 +6,14 @@ public sealed class DeflectorClass1 : IDeflector
 {
     private const PhotonicDeflector? Disable = null;
     private const int DeathPoint = 0;
+    private const int CountMeteor = 1;
+    private const int CountAsteroid = 2;
 
     public DeflectorClass1()
     {
         InstalledPhotonicDeflector = Disable;
+        (DamageMeteor, DamageAsteroid, HitPoints, DamageCosmoWhale) = (CountAsteroid, CountMeteor,
+            CountAsteroid * CountMeteor, DamageCosmoWhale);
     }
 
     public DeflectorClass1(PhotonicDeflector? photonicDeflector)
@@ -20,11 +24,9 @@ public sealed class DeflectorClass1 : IDeflector
 
     public PhotonicDeflector? InstalledPhotonicDeflector { get; }
     public int HitPoints { get; private set; }
-
-    public bool ExistencePhotonicDeflector()
-    {
-        return InstalledPhotonicDeflector?.IsAlive() ?? false;
-    }
+    public int DamageCosmoWhale { get; private init; }
+    public int DamageMeteor { get; private init; }
+    public int DamageAsteroid { get; private init; }
 
     public bool IsAlive()
     {
@@ -33,21 +35,46 @@ public sealed class DeflectorClass1 : IDeflector
 
     public Message Damage(IObstacle obstacle)
     {
-        if ((obstacle is AntimaterFlare) && ExistencePhotonicDeflector())
-            InstalledPhotonicDeflector?.Damage(obstacle);
-        else if (obstacle is AntimaterFlare)
+        if (obstacle == null)
+            return new Message(Message.NullObstacleMessage);
 
-            return new Message(IDeflector.DiedMessage);
+        switch (obstacle)
+        {
+            case Asteroid:
+            {
+                HitPoints -= obstacle.CountObstacles * DamageAsteroid;
+                break;
+            }
 
-        if (obstacle != null) HitPoints -= obstacle.Damage;
-        else
+            case Meteor:
+            {
+                HitPoints -= obstacle.CountObstacles * DamageMeteor;
+                break;
+            }
 
-            return new Message(IDeflector.NullObstacleMessage);
+            case CosmoWhale:
+            {
+                HitPoints -= obstacle.CountObstacles * DamageCosmoWhale;
+                break;
+            }
+
+            case AntimaterFlare:
+            {
+                if (InstalledPhotonicDeflector?.IsAlive() ?? false)
+                    return InstalledPhotonicDeflector.Damage(obstacle);
+
+                return new Message(Message.DiedMessage);
+            }
+
+            default:
+            {
+                return new Message(Message.UnknownTypeMessage);
+            }
+        }
 
         if (!IsAlive())
+            return new Message(Message.UnfunctionalMessage);
 
-            return new Message(IDeflector.UnfunctionalMessage);
-
-        return new Message();
+        return new Message(Message.NullObstacleMessage);
     }
 }

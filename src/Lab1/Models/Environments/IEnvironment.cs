@@ -1,10 +1,10 @@
 using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public interface IEnvironment
 {
-    string Description { get; }
-    Collection<Obstacles>? EnvironmentObstacles { get; }
-    void Add(Obstacles item);
+    Collection<IObstacle>? EnvironmentObstacles { get; }
+    Message Add(IObstacle item);
 }

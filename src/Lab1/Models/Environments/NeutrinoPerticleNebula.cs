@@ -1,29 +1,23 @@
-using System;
 using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class NeutrinoPerticleNebula : IEnvironment
 {
-    public NeutrinoPerticleNebula()
-    {
-        Description = "NeutrinoPerticleNebula";
-    }
-
-    public NeutrinoPerticleNebula(Collection<Obstacles>? environmentObstacles)
-    : this()
+    public NeutrinoPerticleNebula(Collection<IObstacle>? environmentObstacles)
     {
         if (environmentObstacles == null) return;
 
-        foreach (Obstacles i in environmentObstacles)
+        foreach (IObstacle i in environmentObstacles)
         {
             EnvironmentObstacles?.Add(i);
         }
     }
 
-    public Collection<Obstacles>? EnvironmentObstacles { get; }
-    public string Description { get; }
-    public void Add(Obstacles item)
+    public Collection<IObstacle>? EnvironmentObstacles { get; }
+
+    public Message Add(IObstacle item)
     {
         switch (item)
         {
@@ -33,7 +27,7 @@ public class NeutrinoPerticleNebula : IEnvironment
                 break;
             }
 
-            case Obstacles.Meteorite:
+            case Obstacles.Meteor:
             {
                 EnvironmentObstacles?.Add(item);
                 break;
@@ -41,7 +35,8 @@ public class NeutrinoPerticleNebula : IEnvironment
 
             case Obstacles.AntimaterFlare:
             {
-                throw new ArgumentException("Antimater flares does not add to neutrino perticle nebula");
+                EnvironmentObstacles?.Add(item);
+                break;
             }
 
             case Obstacles.CosmoWhale:
@@ -52,8 +47,10 @@ public class NeutrinoPerticleNebula : IEnvironment
 
             default:
             {
-                throw new ArgumentException("Unexpected obstacle");
+                return new Message(Message.UnknownTypeMessage);
             }
         }
+
+        return new Message();
     }
 }

@@ -1,29 +1,23 @@
-using System;
 using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class HighDensityNebula : IEnvironment
 {
-    public HighDensityNebula()
-    {
-        Description = "HighDensityNebula";
-    }
-
-    public HighDensityNebula(Collection<Obstacles>? environmentObstacles)
-    : this()
+    public HighDensityNebula(Collection<IObstacle>? environmentObstacles)
     {
         if (environmentObstacles == null) return;
 
-        foreach (Obstacles i in environmentObstacles)
+        foreach (IObstacle i in environmentObstacles)
         {
             EnvironmentObstacles?.Add(i);
         }
     }
 
-    public Collection<Obstacles>? EnvironmentObstacles { get; }
-    public string Description { get; }
+    public Collection<IObstacle>? EnvironmentObstacles { get; }
 
-    public void Add(Obstacles item)
+    public Message Add(IObstacle item)
     {
         switch (item)
         {
@@ -33,7 +27,7 @@ public class HighDensityNebula : IEnvironment
                 break;
             }
 
-            case Obstacles.Meteorite:
+            case Obstacles.Meteor:
             {
                 EnvironmentObstacles?.Add(item);
                 break;
@@ -47,13 +41,15 @@ public class HighDensityNebula : IEnvironment
 
             case Obstacles.CosmoWhale:
             {
-                throw new ArgumentException("Cosmo whales does not add to HighDensityNebula");
+                return new Message(Message.InvalidTypeMessage);
             }
 
             default:
             {
-                throw new ArgumentException("Unexpected obstacle");
+                return new Message(Message.UnknownTypeMessage);
             }
         }
+
+        return new Message();
     }
 }

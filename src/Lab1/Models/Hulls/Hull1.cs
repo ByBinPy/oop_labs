@@ -1,73 +1,74 @@
-using System;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public sealed class Hull1 : IHull
 {
-    private const int Hp = IHull.Hp;
+    private const int DeathPoints = 0;
+    private const IDeflector? Disable = null;
+    private const int CountMeteor = 1;
+    private const int CountAsteroid = 1;
     public Hull1()
     {
-        DamageAsteroids = 50 * Hp;
-        DamageMeteorites = 100 * Hp;
-        DamageCosmoWhales = 100 * Hp;
-        HitPoints = 100 * Hp;
-        IntalledDiflector = IHull.Disable;
+        (DamageMeteors, DamageAsteroids, HitPoints, DamageCosmoWhales) = () 
     }
 
     public Hull1(IDeflector deflector)
         : this()
     {
-        IntalledDiflector = deflector;
+        InstalledDiflector = deflector;
     }
 
     public int DamageAsteroids { get; private set; }
-    public int DamageMeteorites { get; private set; }
+    public int DamageMeteors { get; private set; }
     public int DamageCosmoWhales { get; private set; }
     public int HitPoints { get; private set; }
-    public IDeflector? IntalledDiflector { get; private set; }
+    public IDeflector? InstalledDiflector { get; private set; }
+
     public bool IsAlive()
     {
-        return HitPoints > IHull.DeathPoints;
+        return HitPoints > DeathPoints;
     }
 
-    public void Damage(Obstacles obstacle)
+    public Message Damage(IObstacle obstacle)
     {
+        if (InstalledDiflector?.IsAlive() ?? false)
+
+            return InstalledDiflector.Damage(obstacle);
+
+        if (obstacle == null)
         {
-            if (!IsAlive())
-                throw new FormatException("Try damage unfunctional hull");
-            if (IntalledDiflector?.IsAlive() ?? false)
-            {
-                IntalledDiflector.Damage(obstacle);
-                return;
-            }
-
-            switch (obstacle)
-            {
-                case Obstacles.Asteroid:
-                {
-                    HitPoints -= DamageAsteroids;
-                    break;
-                }
-
-                case Obstacles.Meteorite:
-                {
-                    HitPoints -= DamageMeteorites;
-                    break;
-                }
-
-                case Obstacles.AntimaterFlare:
-                {
-                    throw new AggregateException("Crew has been died");
-                }
-
-                case Obstacles.CosmoWhale:
-                {
-                    throw new AggregateException("Ship has been broken");
-                }
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(obstacle), "Undefinded obstacle in switch");
-            }
+            return new Message(Message.NullObstacleMessage);
         }
+
+        switch (obstacle)
+        {
+            case Asteroid:
+            {
+                HitPoints -= DamageAsteroids;
+                break;
+            }
+
+            case Meteor:
+            {
+                HitPoints -= DamageMeteors;
+                break;
+            }
+
+            case AntimaterFlare:
+            {
+                return new Message(Message.DiedMessage);
+            }
+
+            case CosmoWhale:
+            {
+                return new Message(Message.CrashMessage);
+            }
+
+            default:
+                return new Message(Message.UnknownTypeMessage);
+        }
+
+        return new Message();
     }
 }

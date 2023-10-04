@@ -5,9 +5,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 public interface IDeflector
 {
     // null constant Disable - show consist of Photonic diflector;
-    const string UnfunctionalMessage = "Is not functional";
-    const string DiedMessage = "Crew is died";
-    const string NullObstacleMessage = "Null obstacle";
+    public int DamageCosmoWhale { get; }
+    public int DamageMeteor { get; }
+    public int DamageAsteroid { get; }
     int HitPoints { get; }
 
     public bool IsAlive();

@@ -2,8 +2,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public record Message
 {
-    private const string DefaultMessage = "Success";
-
+    public const string DiedMessage = "Crew is died";
+    public const string NullObstacleMessage = "Null obstacle";
+    public const string UnknownTypeMessage = "Unknown Type";
+    public const string InvalidTypeMessage = "Invalid Type";
+    public const string CrashMessage = "Shis was crashed";
+    public const string UnfunctionalMessage = "Unfuctional element";
+    public const string DefaultMessage = "Success";
     public Message()
     {
         Text = DefaultMessage;
@@ -14,5 +19,5 @@ public record Message
         Text = text;
     }
 
-    public string? Text { get; initZ; }
+    public string? Text { get; init; }
 }

@@ -1,58 +1,54 @@
-using System;
 using System.Collections.ObjectModel;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class Space : IEnvironment
 {
-   public Space()
-   {
-      Description = "Space";
-   }
+    public Space(Collection<IObstacle>? environmentObstacles)
+    {
+        if (environmentObstacles == null) return;
 
-   public Space(Collection<Obstacles>? environmentObstacles)
-   : this()
-   {
-      if (environmentObstacles == null) return;
+        foreach (IObstacle i in environmentObstacles)
+        {
+            EnvironmentObstacles?.Add(i);
+        }
+    }
 
-      foreach (Obstacles i in environmentObstacles)
-      {
-         EnvironmentObstacles?.Add(i);
-      }
-   }
+    public Collection<IObstacle>? EnvironmentObstacles { get; }
 
-   public Collection<Obstacles>? EnvironmentObstacles { get; }
-   public string Description { get; }
-   public void Add(Obstacles item)
-   {
-      switch (item)
-      {
-         case Obstacles.Asteroid:
-         {
-            EnvironmentObstacles?.Add(item);
-            break;
-         }
+    public Message Add(IObstacle item)
+    {
+        switch (item)
+        {
+            case Obstacles.Asteroid:
+            {
+                EnvironmentObstacles?.Add(item);
+                break;
+            }
 
-         case Obstacles.Meteorite:
-         {
-            EnvironmentObstacles?.Add(item);
-            break;
-         }
+            case Obstacles.Meteor:
+            {
+                EnvironmentObstacles?.Add(item);
+                break;
+            }
 
-         case Obstacles.AntimaterFlare:
-         {
-            throw new ArgumentException("Antimater flares does not add to simple space");
-         }
+            case Obstacles.AntimaterFlare:
+            {
+                return new Message(Message.InvalidTypeMessage);
+            }
 
-         case Obstacles.CosmoWhale:
-         {
-            throw new ArgumentException("Cosmo whales does not add to simple space");
-         }
+            case Obstacles.CosmoWhale:
+            {
+                return new Message(Message.InvalidTypeMessage);
+            }
 
-         default:
-         {
-            throw new ArgumentException("Unexpected obstacle");
-         }
-      }
-   }
+            default:
+            {
+                return new Message(Message.UnknownTypeMessage);
+            }
+        }
+
+        return new Message();
+    }
 }
