@@ -2,11 +2,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class AntimaterFlare : IObstacle
 {
-    private const int DefaultCount = 1;
+    private const double DefaultDamage = 1;
     public AntimaterFlare()
     {
-        CountObstacles = DefaultCount;
+        Damage = DefaultDamage;
     }
 
-    public int CountObstacles { get; private init; }
+    public double Damage { get; private init; }
 }

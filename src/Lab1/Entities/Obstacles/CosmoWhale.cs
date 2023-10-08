@@ -2,11 +2,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class CosmoWhale : IObstacle
 {
-    private const int DefaultCount = 1;
+    private const double DefaultDamage = 100;
     public CosmoWhale()
     {
-        CountObstacles = DefaultCount;
+        Damage = DefaultDamage;
     }
 
-    public int CountObstacles { get; private init; }
+    public double Damage { get; private init; }
 }
