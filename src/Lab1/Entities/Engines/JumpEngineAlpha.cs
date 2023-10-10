@@ -14,7 +14,7 @@ public class JumpEngineAlpha : IEngine
     }
 
     public double Range { get; }
-    public double Speed { get; private set; }
+    public double Speed { get; }
 
     public double Consumption()
     {

@@ -6,19 +6,18 @@ public class Avgur : IShip
 {
     public Avgur()
     {
-        InstalledDeflector = new DeflectorClass3();
-        InstalledHull = new Hull3(InstalledDeflector);
+        InstalledDeflector = new DeflectorClassThree();
+        InstalledHull = new HullThree(InstalledDeflector);
         InstalledPulseEngine = new PulseEngineE();
         InstalledJumpEngine = new JumpEngineAlpha();
         IsAntinitrineEmitterInstalled = false;
-        Description = "Avgur";
     }
 
     public Avgur(PhotonicDeflector photonicDeflector)
         : this()
     {
-        InstalledDeflector = new DeflectorClass3(photonicDeflector);
-        InstalledHull = new Hull3(InstalledDeflector);
+        InstalledDeflector = new DeflectorClassThree(photonicDeflector);
+        InstalledHull = new HullThree(InstalledDeflector);
     }
 
     public IDeflector? InstalledDeflector { get; private set; }
@@ -26,5 +25,4 @@ public class Avgur : IShip
     public IEngine InstalledPulseEngine { get; private set; }
     public IEngine? InstalledJumpEngine { get; private set; }
     public bool IsAntinitrineEmitterInstalled { get; private set; }
-    public string? Description { get; private set; }
 }

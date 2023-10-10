@@ -5,49 +5,51 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
 public class HighDensityNebula : IEnvironment
 {
-    public HighDensityNebula(Collection<IObstacle>? environmentObstacles)
+    public HighDensityNebula()
     {
-        if (environmentObstacles == null) return;
+        EnvironmentObstacles = new Collection<IObstacle>();
+    }
 
-        foreach (IObstacle i in environmentObstacles)
+    public HighDensityNebula(Collection<IObstacle> environmentObstacles)
+    : this()
+    {
+        if (environmentObstacles != null)
         {
-            EnvironmentObstacles?.Add(i);
+            foreach (IObstacle i in environmentObstacles)
+            {
+                EnvironmentObstacles.Add(i);
+            }
         }
     }
 
-    public Collection<IObstacle>? EnvironmentObstacles { get; }
+    public Collection<IObstacle> EnvironmentObstacles { get; }
 
-    public Message Add(IObstacle item)
+    public Message Add(IObstacle? item)
     {
-        switch (item)
+        if (item == null)
+
+            return new Message(Message.NullObstacleMessage);
+        if (item is CosmoWhale)
+
+            return new Message(Message.InvalidTypeMessage);
+
+        EnvironmentObstacles?.Add(item);
+
+        return new Message();
+    }
+
+    public Message Add(IObstacle item, int count)
+    {
+        for (int i = 0; i < count; i++)
         {
-            case Obstacles.Asteroid:
-            {
-                EnvironmentObstacles?.Add(item);
-                break;
-            }
+            if (item == null)
 
-            case Obstacles.Meteor:
-            {
-                EnvironmentObstacles?.Add(item);
-                break;
-            }
+                return new Message(Message.NullObstacleMessage);
+            if (item is CosmoWhale)
 
-            case Obstacles.AntimaterFlare:
-            {
-                EnvironmentObstacles?.Add(item);
-                break;
-            }
-
-            case Obstacles.CosmoWhale:
-            {
                 return new Message(Message.InvalidTypeMessage);
-            }
 
-            default:
-            {
-                return new Message(Message.UnknownTypeMessage);
-            }
+            EnvironmentObstacles?.Add(item);
         }
 
         return new Message();

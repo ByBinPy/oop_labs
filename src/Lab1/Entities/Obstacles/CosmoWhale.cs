@@ -2,7 +2,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class CosmoWhale : IObstacle
 {
-    private const double DefaultDamage = 100;
+    private const double DefaultDamage = 31.5;
     public CosmoWhale()
     {
         Damage = DefaultDamage;

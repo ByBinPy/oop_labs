@@ -1,7 +1,8 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
@@ -9,95 +10,71 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 public class Analyzer
 {
     private const int Start = 0;
+
     public Analyzer()
     {
         Fuel = Start;
+        Answer = new Message();
         SpecialFuel = Start;
-        Answer = "Nothing";
     }
 
     public Analyzer(IEnumerable<RouteCut> route, IShip ship)
-    : this()
+        : this()
     {
         Route = route;
         Ship = ship;
-        MoveProcessing();
+        Answer = MoveProcessing();
     }
-
-    public string Answer { get; private set; }
 
     // the fuel was used
     public double? Fuel { get; private set; }
     public double? SpecialFuel { get; private set; }
+    public Message Answer { get; }
     public IShip? Ship { get; init; }
     private IEnumerable<RouteCut>? Route { get; init; }
 
-    private void MoveProcessing()
+    public Message MoveProcessing()
     {
-        if (Route == null) throw new ArgumentException("Null Route in MoveProcessing");
+        if (Route == null)
+
+            return new Message(Message.NullRouteMessage);
+
         foreach (RouteCut cut in Route)
         {
-            if (Answer != "Nothing") return;
-
-            switch (cut.Environment?.Description)
+            if (cut.Environment is HighDensityNebula)
             {
-                case "HighDensityNebula":
-                {
-                    if (Ship?.Description == "PleasureShuttle" || Ship?.Description == "Meridian" || Ship?.InstalledJumpEngine?.Range < cut.Len)
-                        Answer = "Impossible";
-                    else if (Ship?.InstalledJumpEngine != null)
-                        SpecialFuel += Ship?.InstalledJumpEngine.Consumption();
-
-                    DamageProcessing(cut.Environment?.EnvironmentObstacles, Ship?.IsAntinitrineEmitterInstalled ?? false);
-                    break;
+                if (Ship?.InstalledJumpEngine == null || Ship?.InstalledJumpEngine.Range < cut.LengthWay)
+                    return new Message(Message.LackRangeMessage);
+                else if (Ship?.InstalledJumpEngine.Range > cut.LengthWay)
+                    SpecialFuel += Ship?.InstalledJumpEngine.Consumption();
             }
 
-                case "NeutrinoPerticleNebula":
-                {
-                    Fuel += Ship?.InstalledPulseEngine.Consumption();
-                    DamageProcessing(cut.Environment?.EnvironmentObstacles);
-                    break;
-                }
+            Fuel += Ship?.InstalledPulseEngine.Consumption();
+            Message answer = DamageProcessing(cut.Environment?.EnvironmentObstacles, Ship?.IsAntinitrineEmitterInstalled ?? false);
+            if (answer.Text is Message.DiedMessage or Message.CrashMessage or Message.LackRangeMessage)
 
-                case "Space":
-                {
-                    Fuel += Ship?.InstalledPulseEngine.Consumption();
-                    DamageProcessing(cut.Environment?.EnvironmentObstacles);
-                    break;
-                }
-
-                default:
-                {
-                    Answer = "Incorrect data";
-                    break;
-                }
-            }
+                return answer;
         }
+
+        return new Message();
     }
 
-    private void DamageProcessing(Collection<Obstacles>? obstacles, bool installedAntinitrineEmitter = false)
+    private Message DamageProcessing(Collection<IObstacle>? obstacles, bool installedAntinitrineEmitter)
     {
-        if (obstacles != null)
+        if (obstacles == null)
+            return new Message(Message.NullObstacleMessage);
+
+        foreach (IObstacle obstacle in obstacles)
         {
-            foreach (Obstacles obstacle in obstacles)
-            {
-                try
-                {
-                    if (obstacle == Obstacles.CosmoWhales && installedAntinitrineEmitter)
-                        continue;
-                    Ship?.InstalledHull?.Damage(obstacle);
-                }
-                catch (AggregateException e)
-                {
-                    Answer = e.Message;
-                    break;
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                    Answer = "Incorrect data";
-                    break;
-                }
-            }
+            if (obstacle is CosmoWhale && installedAntinitrineEmitter)
+                continue;
+            Message? answer = Ship?.InstalledHull?.Damage(obstacle);
+            if (answer?.Text == Message.DefaultMessage || answer?.Text == Message.UnfunctionalMessage) continue;
+            if (answer != null)
+
+                return answer;
         }
+
+        return new Message();
     }
 }

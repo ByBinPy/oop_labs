@@ -8,5 +8,4 @@ public interface IShip
     IEngine InstalledPulseEngine { get; }
     IEngine? InstalledJumpEngine { get; }
     bool IsAntinitrineEmitterInstalled { get; }
-    string? Description { get; }
 }

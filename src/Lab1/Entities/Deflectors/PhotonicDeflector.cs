@@ -1,7 +1,7 @@
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
-public sealed class PhotonicDeflector : IDeflector, IDamager
+public sealed class PhotonicDeflector : IDeflector
 {
     private const int DeathPoint = 0;
     private const double DefaultHealth = 3;
@@ -19,6 +19,10 @@ public sealed class PhotonicDeflector : IDeflector, IDamager
 
     public Message Damage(IObstacle obstacle)
     {
+        if (!IsAlive())
+
+            return new Message(Message.DiedMessage);
+
         if (obstacle != null)
         {
             if (obstacle is AntimaterFlare)
@@ -29,6 +33,6 @@ public sealed class PhotonicDeflector : IDeflector, IDamager
             return new Message(Message.NullObstacleMessage);
         }
 
-        return !IsAlive() ? new Message(Message.DiedMessage) : new Message(Message.NullObstacleMessage);
+        return new Message();
     }
 }

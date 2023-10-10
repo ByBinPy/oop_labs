@@ -7,11 +7,10 @@ public class PleasureShuttle : IShip
     public PleasureShuttle()
     {
         InstalledDeflector = null;
-        InstalledHull = new Hull1();
+        InstalledHull = new HullFirst();
         InstalledPulseEngine = new PulseEngineC();
         InstalledJumpEngine = null;
         IsAntinitrineEmitterInstalled = false;
-        Description = "PleasureShuttle";
     }
 
     public IDeflector? InstalledDeflector { get; private set; }

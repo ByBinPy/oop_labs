@@ -4,19 +4,19 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 public class RouteCut
 {
-    private const double BaseLenCut = 200;
+    private const double SmallLengthCut = 200;
     public RouteCut(IEnvironment environment)
     {
         Environment = environment;
-        Len = BaseLenCut;
+        LengthWay = SmallLengthCut;
     }
 
-    public RouteCut(IEnvironment environment, int len)
+    public RouteCut(IEnvironment environment, int length)
     : this(environment)
     {
-        Len = len;
+        LengthWay = length;
     }
 
-    public double Len { get; init; }
-    public IEnvironment? Environment { get; init; }
+    public double LengthWay { get; }
+    public IEnvironment? Environment { get; }
 }

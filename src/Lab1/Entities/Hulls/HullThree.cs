@@ -2,17 +2,17 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class Hull1 : IHull, IDamager
+public sealed class HullThree : IHull
 {
     private const double DeathPoints = 0;
     private const double DefaultHealth = 100;
-    private const double DamageCf = 110;
-    public Hull1()
+    private const double DamageCf = 6.4;
+    public HullThree()
     {
         HealthPoints = DefaultHealth;
     }
 
-    public Hull1(IDeflector deflector)
+    public HullThree(IDeflector deflector)
         : this()
     {
         InstalledDiflector = deflector;
@@ -28,18 +28,22 @@ public sealed class Hull1 : IHull, IDamager
 
     public Message Damage(IObstacle obstacle)
     {
-        if (InstalledDiflector?.IsAlive() ?? false)
-
-            return InstalledDiflector.Damage(obstacle);
-
         if (obstacle == null) return new Message(Message.NullObstacleMessage);
 
-        if (obstacle is AntimaterFlare)
+        var deflectorMessage = new Message();
+        if (InstalledDiflector?.IsAlive() ?? false)
+        {
+            deflectorMessage = InstalledDiflector.Damage(obstacle);
+        }
+        else
+        {
+            if (obstacle is AntimaterFlare)
 
-            return new Message(Message.DiedMessage);
+                return new Message(Message.DiedMessage);
 
-        HealthPoints -= obstacle.Damage * DamageCf;
+            HealthPoints -= obstacle.Damage * DamageCf;
+        }
 
-        return !IsAlive() ? new Message(Message.CrashMessage) : new Message(Message.NullObstacleMessage);
+        return !IsAlive() ? new Message(Message.CrashMessage) : deflectorMessage;
     }
 }

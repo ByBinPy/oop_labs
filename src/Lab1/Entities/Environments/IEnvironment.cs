@@ -7,4 +7,5 @@ public interface IEnvironment
 {
     Collection<IObstacle>? EnvironmentObstacles { get; }
     Message Add(IObstacle item);
+    Message Add(IObstacle item, int count);
 }
