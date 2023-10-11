@@ -21,5 +21,5 @@ public record Message
         Text = text;
     }
 
-    public string? Text { get; init; }
+    public string? Text { get; }
 }

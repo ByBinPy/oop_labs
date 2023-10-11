@@ -3,15 +3,16 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
-public class NeutrinoPerticleNebula : IEnvironment
+public class NeutrinoPerticleNebula : Environment
 {
+    private readonly Collection<IObstacle> _environmentObstacles;
     public NeutrinoPerticleNebula()
     {
-        EnvironmentObstacles = new Collection<IObstacle>();
+        _environmentObstacles = new Collection<IObstacle>();
     }
 
     public NeutrinoPerticleNebula(Collection<IObstacle>? environmentObstacles)
-    : this()
+        : this()
     {
         if (environmentObstacles != null)
         {
@@ -22,35 +23,8 @@ public class NeutrinoPerticleNebula : IEnvironment
         }
     }
 
-    public Collection<IObstacle>? EnvironmentObstacles { get; }
-
-    public Message Add(IObstacle item)
+    public override Collection<IObstacle> EnvironmentObstacles
     {
-        if (item == null)
-
-            return new Message(Message.NullObstacleMessage);
-        if (item is AntimaterFlare)
-
-            return new Message(Message.InvalidTypeMessage);
-
-        EnvironmentObstacles?.Add(item);
-        return new Message();
-    }
-
-    public Message Add(IObstacle item, int count)
-    {
-        for (int i = 0; i < count; i++)
-        {
-            if (item == null)
-
-                return new Message(Message.NullObstacleMessage);
-            if (item is AntimaterFlare)
-
-                return new Message(Message.InvalidTypeMessage);
-
-            EnvironmentObstacles?.Add(item);
-        }
-
-        return new Message();
+        get => _environmentObstacles;
     }
 }

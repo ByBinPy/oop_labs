@@ -1,12 +1,11 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class AntimaterFlare : IObstacle
 {
-    private const double DefaultDamage = 1;
-    public AntimaterFlare()
+    public bool IsValidEnvironment(IEnvironment environment)
     {
-        Damage = DefaultDamage;
+        return environment is HighDensityNebula;
     }
-
-    public double Damage { get; private init; }
 }

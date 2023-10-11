@@ -1,49 +1,38 @@
-using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
-
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class HullFirst : IHull
+public sealed class HullFirst : Hull
 {
-    private const double DeathPoints = 0;
-    private const double DefaultHealth = 100;
-    private const double DamageCf = 110;
+    private const PhotonicDeflector? Disable = null;
+    private const int DeathPoint = 0;
+    private const int DefaultHealth = 100;
+    private const double AsteroidDamage = 99;
+    private const double MeteorDamage = 100;
+    private const double CosmoWhaleDamage = 100;
     public HullFirst()
     {
+        InstalledDeflector = Disable;
         HealthPoints = DefaultHealth;
+        DamageAsteroid = AsteroidDamage;
+        DamageMeteor = MeteorDamage;
+        DamageCosmoWhale = CosmoWhaleDamage;
+        DamageAntimaterFlare = DeathPoint;
     }
 
-    public HullFirst(IDeflector deflector)
+    public HullFirst(Deflector deflector)
         : this()
     {
-        InstalledDiflector = deflector;
+        InstalledDeflector = deflector;
     }
 
-    public double HealthPoints { get; private set; }
-    public IDeflector? InstalledDiflector { get; private set; }
+    public override double HealthPoints { get; protected set; }
+    public override Deflector? InstalledDeflector { get; }
+    public override double DamageAsteroid { get; }
+    public override double DamageMeteor { get; }
+    public override double DamageCosmoWhale { get; }
+    public override double DamageAntimaterFlare { get; }
 
-    public bool IsAlive()
+    public override bool IsAlive()
     {
-        return HealthPoints > DeathPoints;
-    }
-
-    public Message Damage(IObstacle obstacle)
-    {
-        if (obstacle == null) return new Message(Message.NullObstacleMessage);
-
-        var deflectorMessage = new Message();
-        if (InstalledDiflector?.IsAlive() ?? false)
-        {
-            deflectorMessage = InstalledDiflector.Damage(obstacle);
-        }
-        else
-        {
-            if (obstacle is AntimaterFlare)
-
-                return new Message(Message.DiedMessage);
-
-            HealthPoints -= obstacle.Damage * DamageCf;
-        }
-
-        return !IsAlive() ? new Message(Message.CrashMessage) : deflectorMessage;
+        return HealthPoints > DeathPoint;
     }
 }

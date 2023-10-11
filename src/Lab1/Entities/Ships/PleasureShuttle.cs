@@ -13,10 +13,10 @@ public class PleasureShuttle : IShip
         IsAntinitrineEmitterInstalled = false;
     }
 
-    public IDeflector? InstalledDeflector { get; private set; }
-    public IHull? InstalledHull { get; private set; }
-    public IEngine InstalledPulseEngine { get; private set; }
-    public IEngine? InstalledJumpEngine { get; private set; }
-    public bool IsAntinitrineEmitterInstalled { get; private set; }
-    public string? Description { get; private set; }
+    public Deflector? InstalledDeflector { get;  }
+    public IHull? InstalledHull { get;  }
+    public IEngine InstalledPulseEngine { get;  }
+    public IEngine? InstalledJumpEngine { get;  }
+    public bool IsAntinitrineEmitterInstalled { get;  }
+    public string? Description { get;  }
 }

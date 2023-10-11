@@ -9,47 +9,54 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 public class Analyzer
 {
-    private const int Start = 0;
-
+    private readonly IEnumerable<RouteCut>? _route;
     public Analyzer()
     {
-        Fuel = Start;
         Answer = new Message();
-        SpecialFuel = Start;
     }
 
     public Analyzer(IEnumerable<RouteCut> route, IShip ship)
         : this()
     {
-        Route = route;
+        this._route = route;
         Ship = ship;
         Answer = MoveProcessing();
     }
 
     // the fuel was used
-    public double? Fuel { get; private set; }
-    public double? SpecialFuel { get; private set; }
     public Message Answer { get; }
-    public IShip? Ship { get; init; }
-    private IEnumerable<RouteCut>? Route { get; init; }
+    public IShip? Ship { get; }
+
+    public IEnumerable<RouteCut>? Route
+    {
+        get => _route;
+    }
 
     public Message MoveProcessing()
     {
-        if (Route == null)
+        if (_route == null)
 
             return new Message(Message.NullRouteMessage);
 
-        foreach (RouteCut cut in Route)
+        foreach (RouteCut cut in _route)
         {
             if (cut.Environment is HighDensityNebula)
             {
-                if (Ship?.InstalledJumpEngine == null || Ship?.InstalledJumpEngine.Range < cut.LengthWay)
+                if (Ship?.InstalledJumpEngine == null || !Ship.InstalledJumpEngine.IsValidRange(cut.LengthWay))
+                {
                     return new Message(Message.LackRangeMessage);
-                else if (Ship?.InstalledJumpEngine.Range > cut.LengthWay)
-                    SpecialFuel += Ship?.InstalledJumpEngine.Consumption();
+                }
+                else if (Ship.InstalledJumpEngine.IsValidRange(cut.LengthWay))
+                {
+                    Ship.InstalledJumpEngine.Range += cut.LengthWay;
+                }
             }
 
-            Fuel += Ship?.InstalledPulseEngine.Consumption();
+            if (Ship?.InstalledPulseEngine != null)
+            {
+                Ship.InstalledPulseEngine.Range += cut.LengthWay;
+            }
+
             Message answer = DamageProcessing(cut.Environment?.EnvironmentObstacles, Ship?.IsAntinitrineEmitterInstalled ?? false);
             if (answer.Text is Message.DiedMessage or Message.CrashMessage or Message.LackRangeMessage)
 
@@ -69,7 +76,9 @@ public class Analyzer
             if (obstacle is CosmoWhale && installedAntinitrineEmitter)
                 continue;
             Message? answer = Ship?.InstalledHull?.Damage(obstacle);
-            if (answer?.Text == Message.DefaultMessage || answer?.Text == Message.UnfunctionalMessage) continue;
+
+            if (answer?.Text is Message.DefaultMessage or Message.UnfunctionalMessage) continue;
+
             if (answer != null)
 
                 return answer;

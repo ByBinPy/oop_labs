@@ -1,15 +1,15 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class HullSecond : Hull
+public sealed class HullThird : Hull
 {
     private const PhotonicDeflector? Disable = null;
     private const int DeathPoint = 0;
     private const int DefaultHealth = 100;
-    private const double AsteroidDamage = 20;
-    private const double MeteorDamage = 50;
+    private const double AsteroidDamage = 5;
+    private const double MeteorDamage = 20;
     private const double CosmoWhaleDamage = 100;
 
-    public HullSecond()
+    public HullThird()
     {
         InstalledDeflector = Disable;
         HealthPoints = DefaultHealth;
@@ -19,7 +19,7 @@ public sealed class HullSecond : Hull
         DamageAntimaterFlare = DeathPoint;
     }
 
-    public HullSecond(Deflector? deflector)
+    public HullThird(Deflector? deflector)
         : this()
     {
         InstalledDeflector = deflector;

@@ -1,6 +1,8 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public interface IObstacle
 {
-    double Damage { get; }
+    bool IsValidEnvironment(IEnvironment environment);
 }

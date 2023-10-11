@@ -1,12 +1,11 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class Meteor : IObstacle
 {
-    private const double DefaultDamage = 3.4;
-    public Meteor()
+    public bool IsValidEnvironment(IEnvironment environment)
     {
-        Damage = DefaultDamage;
+        return true;
     }
-
-    public double Damage { get; private init; }
 }

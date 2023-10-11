@@ -5,8 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 public interface IDeflector
 {
     double HealthPoints { get; }
-    public PhotonicDeflector? InstalledPhotonicDeflector { get; }
-    public bool IsAlive();
+    PhotonicDeflector? InstalledPhotonicDeflector { get; }
+    double DamageAsteroid { get; }
+    double DamageMeteor { get; }
+    double DamageCosmoWhale { get; }
+    double DamageAntimaterFlare { get; }
+    Message GetDamage(IObstacle obstacle, out double damage);
+    bool IsAlive();
 
-    public Message Damage(IObstacle obstacle);
+    Message Damage(IObstacle obstacle);
 }

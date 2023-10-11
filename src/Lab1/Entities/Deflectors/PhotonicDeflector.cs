@@ -1,38 +1,40 @@
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
-public sealed class PhotonicDeflector : IDeflector
+public sealed class PhotonicDeflector : Deflector
 {
+    private const PhotonicDeflector? Disable = null;
     private const int DeathPoint = 0;
-    private const double DefaultHealth = 3;
+    private const int DefaultHealth = 100;
+    private const double AsteroidDamage = 50;
+    private const double MeteorDamage = 100;
+    private const double CosmoWhaleDamage = 100;
     public PhotonicDeflector()
     {
+        InstalledPhotonicDeflector = Disable;
         HealthPoints = DefaultHealth;
+        DamageAsteroid = AsteroidDamage;
+        DamageMeteor = MeteorDamage;
+        DamageCosmoWhale = CosmoWhaleDamage;
+        DamageAntimaterFlare = DeathPoint;
     }
 
-    public double HealthPoints { get; private set; }
-    public PhotonicDeflector? InstalledPhotonicDeflector { get; }
-    public bool IsAlive()
+    public override double HealthPoints { get; protected set; }
+    public override PhotonicDeflector? InstalledPhotonicDeflector { get; }
+    public override double DamageAsteroid { get; }
+    public override double DamageMeteor { get; }
+    public override double DamageCosmoWhale { get; }
+    public override double DamageAntimaterFlare { get; }
+
+    public override bool IsAlive()
     {
         return HealthPoints > DeathPoint;
     }
 
-    public Message Damage(IObstacle obstacle)
+    public override Message Damage(IObstacle obstacle)
     {
-        if (!IsAlive())
-
-            return new Message(Message.DiedMessage);
-
-        if (obstacle != null)
-        {
-            if (obstacle is AntimaterFlare)
-                HealthPoints -= obstacle.Damage;
-        }
-        else
-        {
-            return new Message(Message.NullObstacleMessage);
-        }
-
-        return new Message();
+        if (obstacle is AntimaterFlare)
+            HealthPoints -= DamageAntimaterFlare;
+        return IsAlive() ? new Message() : new Message(Message.DiedMessage);
     }
 }

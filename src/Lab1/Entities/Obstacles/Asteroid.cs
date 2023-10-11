@@ -1,12 +1,11 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class Asteroid : IObstacle
 {
-    private const double DefaultDamage = 0.8;
-    public Asteroid()
+    public bool IsValidEnvironment(IEnvironment environment)
     {
-        Damage = DefaultDamage;
+        return true;
     }
-
-    public double Damage { get; private init; }
 }

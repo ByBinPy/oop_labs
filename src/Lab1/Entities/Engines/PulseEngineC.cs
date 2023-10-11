@@ -1,25 +1,42 @@
+using System;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 
 public class PulseEngineC : IEngine
 {
     private const double FirstSpeed = 1.0;
     private const double CfConsumption = 1.5;
+    private const double CfSpeed = 3;
     private const double StartConsumption = 300.4;
-    public PulseEngineC()
+    private double _range = 100;
+    private double _speed = FirstSpeed;
+
+    public double Speed { get; private set; }
+    public double Range
     {
-        Speed = FirstSpeed;
+        get => _range;
+        set
+        {
+            // range validation (speed proportional to range)
+            if (IsValidRange(value))
+            {
+                _range += value;
+                _speed = (value * CfSpeed) + FirstSpeed;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid data in property");
+            }
+        }
     }
 
-    public PulseEngineC(int speed)
-    {
-        Speed = speed;
-    }
-
-    public double Speed { get; set; }
-
-    public double Range { get; }
     public double Consumption()
     {
-        return (CfConsumption * Speed) + StartConsumption;
+        return (CfConsumption * Range) + StartConsumption;
+    }
+
+    public bool IsValidRange(double range)
+    {
+        return range > 0;
     }
 }

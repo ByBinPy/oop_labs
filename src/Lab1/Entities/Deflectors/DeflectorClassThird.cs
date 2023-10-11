@@ -1,17 +1,16 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-public sealed class HullSecond : Hull
+public sealed class DeflectorClassThird : Deflector
 {
     private const PhotonicDeflector? Disable = null;
     private const int DeathPoint = 0;
     private const int DefaultHealth = 100;
-    private const double AsteroidDamage = 20;
-    private const double MeteorDamage = 50;
-    private const double CosmoWhaleDamage = 100;
-
-    public HullSecond()
+    private const double AsteroidDamage = 2.5;
+    private const double MeteorDamage = 10;
+    private const double CosmoWhaleDamage = 90;
+    public DeflectorClassThird()
     {
-        InstalledDeflector = Disable;
+        InstalledPhotonicDeflector = Disable;
         HealthPoints = DefaultHealth;
         DamageAsteroid = AsteroidDamage;
         DamageMeteor = MeteorDamage;
@@ -19,14 +18,14 @@ public sealed class HullSecond : Hull
         DamageAntimaterFlare = DeathPoint;
     }
 
-    public HullSecond(Deflector? deflector)
+    public DeflectorClassThird(PhotonicDeflector? photonicDeflector)
         : this()
     {
-        InstalledDeflector = deflector;
+        InstalledPhotonicDeflector = photonicDeflector;
     }
 
     public override double HealthPoints { get; protected set; }
-    public override Deflector? InstalledDeflector { get; }
+    public override PhotonicDeflector? InstalledPhotonicDeflector { get; }
     public override double DamageAsteroid { get; }
     public override double DamageMeteor { get; }
     public override double DamageCosmoWhale { get; }

@@ -1,12 +1,11 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
+
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 public class CosmoWhale : IObstacle
 {
-    private const double DefaultDamage = 31.5;
-    public CosmoWhale()
+    public bool IsValidEnvironment(IEnvironment environment)
     {
-        Damage = DefaultDamage;
+        return environment is NeutrinoPerticleNebula;
     }
-
-    public double Damage { get; private init; }
 }

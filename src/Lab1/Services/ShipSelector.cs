@@ -14,7 +14,7 @@ public class ShipSelector
         _successShips = new Collection<IShip>();
     }
 
-    public IEnumerable<Analyzer> ShipsAnalyzers { get; init; }
+    private IEnumerable<Analyzer> ShipsAnalyzers { get; }
     public IShip? Selector()
     {
         SetAnswers();
@@ -53,7 +53,9 @@ public class ShipSelector
             if (analyzerShip.Answer.Text == Message.DefaultMessage)
             {
                 if (analyzerShip?.Ship != null)
+                {
                     _successShips.Add(analyzerShip.Ship);
+                }
             }
         }
     }

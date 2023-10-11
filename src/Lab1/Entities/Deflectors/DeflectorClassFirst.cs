@@ -1,20 +1,21 @@
-using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
-
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models;
 
-// 1 c = 10
-// 2 c = 1.55
-// 3 c = 0.37;
-public sealed class DeflectorClassFirst : IDeflector
+public sealed class DeflectorClassFirst : Deflector
 {
     private const PhotonicDeflector? Disable = null;
     private const int DeathPoint = 0;
     private const int DefaultHealth = 100;
-    private const double DamageCf = 100;
+    private const double AsteroidDamage = 10;
+    private const double MeteorDamage = 34;
+    private const double CosmoWhaleDamage = 100;
     public DeflectorClassFirst()
     {
         InstalledPhotonicDeflector = Disable;
         HealthPoints = DefaultHealth;
+        DamageAsteroid = AsteroidDamage;
+        DamageMeteor = MeteorDamage;
+        DamageCosmoWhale = CosmoWhaleDamage;
+        DamageAntimaterFlare = DeathPoint;
     }
 
     public DeflectorClassFirst(PhotonicDeflector? photonicDeflector)
@@ -23,31 +24,15 @@ public sealed class DeflectorClassFirst : IDeflector
         InstalledPhotonicDeflector = photonicDeflector;
     }
 
-    public double HealthPoints { get; private set; }
+    public override double HealthPoints { get; protected set; }
+    public override PhotonicDeflector? InstalledPhotonicDeflector { get; }
+    public override double DamageAsteroid { get; }
+    public override double DamageMeteor { get; }
+    public override double DamageCosmoWhale { get; }
+    public override double DamageAntimaterFlare { get; }
 
-    public PhotonicDeflector? InstalledPhotonicDeflector { get; }
-    public bool IsAlive()
+    public override bool IsAlive()
     {
         return HealthPoints > DeathPoint;
-    }
-
-    public Message Damage(IObstacle obstacle)
-    {
-        if (obstacle != null)
-        {
-            if (obstacle is AntimaterFlare && InstalledPhotonicDeflector != null)
-
-                return InstalledPhotonicDeflector.Damage(obstacle);
-
-            if (obstacle is AntimaterFlare)
-
-                return new Message(Message.DiedMessage);
-
-            HealthPoints -= obstacle.Damage * DamageCf;
-
-            return IsAlive() ? new Message() : new Message(Message.UnfunctionalMessage);
-        }
-
-        return new Message(Message.NullObstacleMessage);
     }
 }
