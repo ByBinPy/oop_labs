@@ -6,11 +6,9 @@ public interface IDeflector
 {
     double HealthPoints { get; }
     PhotonicDeflector? InstalledPhotonicDeflector { get; }
-    double DamageAsteroid { get; }
-    double DamageMeteor { get; }
-    double DamageCosmoWhale { get; }
-    double DamageAntimaterFlare { get; }
-    Message GetDamage(IObstacle obstacle, out double damage);
+    double DamageCfAsteroid { get; }
+    double DamageCfMeteor { get; }
+    double GetCoefficientDamage(IObstacle obstacle);
     bool IsAlive();
 
     Message Damage(IObstacle obstacle);

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
@@ -9,7 +11,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 public class Analyzer
 {
-    private readonly IEnumerable<RouteCut>? _route;
     public Analyzer()
     {
         Answer = new Message();
@@ -18,7 +19,7 @@ public class Analyzer
     public Analyzer(IEnumerable<RouteCut> route, IShip ship)
         : this()
     {
-        this._route = route;
+        Route = new ReadOnlyCollection<RouteCut>(route.ToList());
         Ship = ship;
         Answer = MoveProcessing();
     }
@@ -27,18 +28,15 @@ public class Analyzer
     public Message Answer { get; }
     public IShip? Ship { get; }
 
-    public IEnumerable<RouteCut>? Route
-    {
-        get => _route;
-    }
+    public ReadOnlyCollection<RouteCut>? Route { get; }
 
     public Message MoveProcessing()
     {
-        if (_route == null)
+        if (Route == null)
 
             return new Message(Message.NullRouteMessage);
 
-        foreach (RouteCut cut in _route)
+        foreach (RouteCut cut in Route)
         {
             if (cut.Environment is HighDensityNebula)
             {
@@ -48,13 +46,20 @@ public class Analyzer
                 }
                 else if (Ship.InstalledJumpEngine.IsValidRange(cut.LengthWay))
                 {
-                    Ship.InstalledJumpEngine.Range += cut.LengthWay;
+                    Ship.InstalledJumpEngine.Move(cut.LengthWay);
                 }
             }
 
             if (Ship?.InstalledPulseEngine != null)
             {
-                Ship.InstalledPulseEngine.Range += cut.LengthWay;
+                if (cut.Environment is NeutrinoPerticleNebula && Ship.InstalledPulseEngine is PulseEngineC)
+                {
+                    Ship.InstalledPulseEngine.Move(7 * cut.LengthWay);
+                }
+                else
+                {
+                    Ship.InstalledPulseEngine.Move(cut.LengthWay);
+                }
             }
 
             Message answer = DamageProcessing(cut.Environment?.EnvironmentObstacles, Ship?.IsAntinitrineEmitterInstalled ?? false);
@@ -66,7 +71,7 @@ public class Analyzer
         return new Message();
     }
 
-    private Message DamageProcessing(Collection<IObstacle>? obstacles, bool installedAntinitrineEmitter)
+    private Message DamageProcessing(ReadOnlyCollection<IObstacle>? obstacles, bool installedAntinitrineEmitter)
     {
         if (obstacles == null)
             return new Message(Message.NullObstacleMessage);

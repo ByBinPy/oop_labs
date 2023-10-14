@@ -20,7 +20,7 @@ public class Vaclas : IShip
         InstalledHull = new HullSecond(InstalledDeflector);
     }
 
-    public Deflector? InstalledDeflector { get;  }
+    public IDeflector? InstalledDeflector { get;  }
     public IHull? InstalledHull { get;  }
     public IEngine InstalledPulseEngine { get;  }
     public IEngine? InstalledJumpEngine { get;  }

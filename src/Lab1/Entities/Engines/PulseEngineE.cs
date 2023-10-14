@@ -5,34 +5,29 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 public class PulseEngineE : IEngine
 {
     private const double FirstSpeed = 1.0;
-    private const double CfConsumption = 26.6;
+    private const double DefaultLengthWay = 0;
+    private const double StartFuel = 0;
+    private const double CfConsumption = 25;
     private const double StartConsumption = 200.5;
-    private double _speed;
-    private double _range;
 
-    public double Speed { get; private set; }
+    public double Speed { get; private set; } = FirstSpeed;
+    public double LengthWay { get; private set; } = DefaultLengthWay;
+    public double Fuel { get; private set; } = StartFuel;
+    public double Time { get; private set; }
 
-    public double Range
+    public void Move(double range)
     {
-        get => _range;
-        set
+        if (IsValidRange(range))
         {
-            // range validation (speed proportional to range)
-            if (IsValidRange(value))
-            {
-                _range = value;
-                _speed = Math.Exp(value) + FirstSpeed;
-            }
-            else
-            {
-                throw new ArgumentException("Invalid data in property");
-            }
+            LengthWay += range;
+            Speed = Math.Exp(range);
+            Time += Math.Log(range);
         }
     }
 
     public double Consumption()
     {
-        return (CfConsumption * Range) + StartConsumption;
+        return (CfConsumption * LengthWay) + StartConsumption;
     }
 
     public bool IsValidRange(double range)

@@ -3,28 +3,27 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
 
-public class NeutrinoPerticleNebula : Environment
+public class NeutrinoPerticleNebula : IEnvironment
 {
-    private readonly Collection<IObstacle> _environmentObstacles;
     public NeutrinoPerticleNebula()
     {
-        _environmentObstacles = new Collection<IObstacle>();
+        EnvironmentObstacles = new ReadOnlyCollection<IObstacle>(new Collection<IObstacle>());
     }
 
-    public NeutrinoPerticleNebula(Collection<IObstacle>? environmentObstacles)
-        : this()
+    public NeutrinoPerticleNebula(int countCosmoWhale)
     {
-        if (environmentObstacles != null)
+        EnvironmentObstacles = new ReadOnlyCollection<IObstacle>(CreateCollection(new CosmoWhale(), countCosmoWhale));
+    }
+
+    public ReadOnlyCollection<IObstacle> EnvironmentObstacles { get; }
+    protected static Collection<IObstacle> CreateCollection(IObstacle obstacle, int count)
+    {
+        var outCollection = new Collection<IObstacle>();
+        for (int i = 0; i < count; i++)
         {
-            foreach (IObstacle i in environmentObstacles)
-            {
-                EnvironmentObstacles?.Add(i);
-            }
+            outCollection.Add(obstacle);
         }
-    }
 
-    public override Collection<IObstacle> EnvironmentObstacles
-    {
-        get => _environmentObstacles;
+        return outCollection;
     }
 }

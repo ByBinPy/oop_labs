@@ -5,31 +5,29 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Engines;
 public class JumpEngineAlpha : IEngine
 {
     private const double FirstSpeed = 1000.0;
+    private const double DefaultLengthWay = 0;
+    private const double StartFuel = 100000;
     private const double CfConsumption = 1.3;
     private const double StartConsumption = 10.4;
     private const double MaxRange = 200.5;
-    private double _range = MaxRange;
 
-    public double Range
+    public double LengthWay { get; private set; } = DefaultLengthWay;
+    public double Fuel { get; private set; } = StartFuel;
+    public double Time { get; private set; }
+    public double Speed { get; } = FirstSpeed;
+
+    public void Move(double range)
     {
-        get => _range;
-        set
+        if (IsValidRange(range))
         {
-            if (IsValidRange(value - _range))
-            {
-                _range += value;
-            }
-            else
-            {
-                throw new ArgumentException($"Invalid data in property {value}");
-            }
+            LengthWay += range;
+            Time += Math.Log(range);
         }
     }
 
-    public double Speed { get; } = FirstSpeed;
     public double Consumption()
     {
-        return (CfConsumption * Range) + StartConsumption;
+        return (CfConsumption * LengthWay) + StartConsumption;
     }
 
     public bool IsValidRange(double range)

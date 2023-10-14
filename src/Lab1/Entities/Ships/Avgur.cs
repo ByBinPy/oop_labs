@@ -20,7 +20,7 @@ public class Avgur : IShip
         InstalledHull = new HullThird(InstalledDeflector);
     }
 
-    public Deflector? InstalledDeflector { get; }
+    public IDeflector? InstalledDeflector { get; }
     public IHull? InstalledHull { get; }
     public IEngine InstalledPulseEngine { get; }
     public IEngine? InstalledJumpEngine { get; }
