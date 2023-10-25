@@ -5,7 +5,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 
 public class CpuCoolingSystem
 {
-    public CpuCoolingSystem(int height, int width, int depth, IReadOnlyCollection<Socket> supportSockets, int tdp)
+    public CpuCoolingSystem(
+        int height,
+        int width,
+        int depth,
+        IReadOnlyCollection<Socket> supportSockets,
+        int tdp)
     {
         Height = height;
         Width = width;

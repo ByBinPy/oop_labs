@@ -6,7 +6,11 @@ public class Timings
 {
     private const int DefaultTiming = 0;
     private Collection<int> _timings;
-    public Timings(int firstTiming, int secondTiming = DefaultTiming, int thirdTiming = DefaultTiming, int fourthTiming = DefaultTiming)
+    public Timings(
+        int firstTiming,
+        int secondTiming = DefaultTiming,
+        int thirdTiming = DefaultTiming,
+        int fourthTiming = DefaultTiming)
     {
         _timings = new Collection<int> { firstTiming, secondTiming, thirdTiming, fourthTiming };
     }

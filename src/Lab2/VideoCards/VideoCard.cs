@@ -4,7 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
 
 public class VideoCard
 {
-    public VideoCard(int width, int height, int qtyMemory, PciE versionPciE, int chipFrequency, int power)
+    public VideoCard(
+        int width,
+        int height,
+        int qtyMemory,
+        PciE versionPciE,
+        int chipFrequency,
+        int power)
     {
         Width = width;
         Height = height;

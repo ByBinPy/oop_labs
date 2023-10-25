@@ -6,7 +6,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 
 public class Ddr
 {
-    public Ddr(int qtyMemory, Jedec jedec, int defaultVoltage, ReadOnlyCollection<IXmpProfile> xmpProfiles, FormFactors formFactor, DdrStandard standard, int power)
+    public Ddr(
+        int qtyMemory,
+        Jedec jedec,
+        int defaultVoltage,
+        ReadOnlyCollection<IXmpProfile> xmpProfiles,
+        FormFactors formFactor,
+        DdrStandard standard,
+        int power)
     {
         QtyMemory = qtyMemory;
         Jedec = jedec;

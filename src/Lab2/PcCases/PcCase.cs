@@ -1,8 +1,16 @@
+using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
+
 namespace Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 
 public class PcCase
 {
-    public PcCase(int lenghtVideoCard, int widthVideoCard, int motherBoardFormFactor, int length, int depth, int width)
+    public PcCase(
+        int lenghtVideoCard,
+        int widthVideoCard,
+        FormFactors motherBoardFormFactor,
+        int length,
+        int depth,
+        int width)
     {
         LenghtVideoCard = lenghtVideoCard;
         WidthVideoCard = widthVideoCard;
@@ -14,7 +22,7 @@ public class PcCase
 
     public int LenghtVideoCard { get; }
     public int WidthVideoCard { get; }
-    public int MotherBoardFormFactor { get; }
+    public FormFactors MotherBoardFormFactor { get; }
     public int Length { get; }
     public int Depth { get; }
     public int Width { get; }
