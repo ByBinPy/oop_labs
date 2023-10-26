@@ -6,12 +6,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 
 public class CpuBuilder : ICpuBuilder
 {
-   private int _coreFrequency;
+   private double _coreFrequency;
    private int _qtyCore;
    private Socket? _socket;
    private DdrStandard? _ddrStandard;
    private int _qtyRamSlots;
-   private int _ramFrequency;
+   private double _ramFrequency;
    private bool _graphicCore;
    private int _tdp;
    private int _power;
@@ -32,7 +32,7 @@ public class CpuBuilder : ICpuBuilder
        _power = cpu.Power;
    }
 
-   public ICpuBuilder WithCoreFrequency(int coreFrequency)
+   public ICpuBuilder WithCoreFrequency(double coreFrequency)
    {
        _coreFrequency = coreFrequency;
        return this;
@@ -50,7 +50,7 @@ public class CpuBuilder : ICpuBuilder
        return this;
    }
 
-   public ICpuBuilder WithDdtStandard(DdrStandard standard)
+   public ICpuBuilder WithDdrStandard(DdrStandard standard)
    {
        _ddrStandard = standard;
        return this;
@@ -62,7 +62,7 @@ public class CpuBuilder : ICpuBuilder
        return this;
    }
 
-   public ICpuBuilder WithRamFrequency(int ramFrequency)
+   public ICpuBuilder WithRamFrequency(double ramFrequency)
    {
        _ramFrequency = ramFrequency;
        return this;

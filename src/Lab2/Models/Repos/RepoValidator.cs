@@ -89,7 +89,7 @@ internal abstract class RepoValidator
         {
             Height: > 0,
             Width: > 0,
-            Depth: > 0,
+            Length: > 0,
             SupportSockets: not null,
             Tdp: > 0
         };

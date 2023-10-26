@@ -11,7 +11,7 @@ public class Ddr
         Jedec jedec,
         int defaultVoltage,
         ReadOnlyCollection<IXmpProfile> xmpProfiles,
-        FormFactors formFactor,
+        string formFactor,
         DdrStandard standard,
         int power)
     {
@@ -28,7 +28,7 @@ public class Ddr
     public Jedec Jedec { get; }
     public int DefaultVoltage { get; }
     public ReadOnlyCollection<IXmpProfile> XmpProfiles { get; }
-    public FormFactors FormFactor { get; }
+    public string FormFactor { get; }
     public DdrStandard Standard { get; }
     public int Power { get; }
 }

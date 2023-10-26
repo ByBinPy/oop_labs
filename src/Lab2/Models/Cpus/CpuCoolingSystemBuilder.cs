@@ -9,7 +9,7 @@ public class CpuCoolingSystemBuilder : ICpuCoolingSystemBuilder
 {
     private int _height;
     private int _width;
-    private int _depth;
+    private int _legnth;
     private IReadOnlyCollection<Socket>? _supportSockets;
     private int _tdp;
 
@@ -23,7 +23,7 @@ public class CpuCoolingSystemBuilder : ICpuCoolingSystemBuilder
 
         _height = cpuCoolingSystem.Height;
         _width = cpuCoolingSystem.Width;
-        _depth = cpuCoolingSystem.Depth;
+        _legnth = cpuCoolingSystem.Length;
         _supportSockets = cpuCoolingSystem.SupportSockets;
         _tdp = cpuCoolingSystem.Tdp;
     }
@@ -42,9 +42,9 @@ public class CpuCoolingSystemBuilder : ICpuCoolingSystemBuilder
         return this;
     }
 
-    public ICpuCoolingSystemBuilder WithDepth(int depth)
+    public ICpuCoolingSystemBuilder WithLength(int length)
     {
-        _depth = depth;
+        _legnth = length;
 
         return this;
     }
@@ -68,7 +68,7 @@ public class CpuCoolingSystemBuilder : ICpuCoolingSystemBuilder
         return new CpuCoolingSystem(
             _height,
             _width,
-            _depth,
+            _legnth,
             _supportSockets ?? throw new ArgumentNullException(),
             _tdp);
     }

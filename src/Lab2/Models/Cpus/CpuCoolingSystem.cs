@@ -8,20 +8,20 @@ public class CpuCoolingSystem
     public CpuCoolingSystem(
         int height,
         int width,
-        int depth,
+        int length,
         IReadOnlyCollection<Socket> supportSockets,
         int tdp)
     {
         Height = height;
         Width = width;
-        Depth = depth;
+        Length = length;
         SupportSockets = supportSockets;
         Tdp = tdp;
     }
 
     public int Height { get; }
     public int Width { get; }
-    public int Depth { get; }
+    public int Length { get; }
     public IReadOnlyCollection<Socket> SupportSockets { get; }
     public int Tdp { get; }
 }

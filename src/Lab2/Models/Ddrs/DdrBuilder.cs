@@ -11,7 +11,7 @@ public class DdrBuilder : IDdrBuilder
     private Jedec? _jedec;
     private int _defaultVoltage;
     private ReadOnlyCollection<IXmpProfile>? _xmpProfiles;
-    private FormFactors _formFactor;
+    private string? _formFactor;
     private DdrStandard? _standard;
     private int _power;
     public DdrBuilder() { }
@@ -46,7 +46,7 @@ public class DdrBuilder : IDdrBuilder
         return this;
     }
 
-    public IDdrBuilder WithFormFactors(FormFactors formFactor)
+    public IDdrBuilder WithFormFactors(string formFactor)
     {
         _formFactor = formFactor;
         return this;
@@ -77,7 +77,7 @@ public class DdrBuilder : IDdrBuilder
             _jedec ?? throw new ArgumentNullException(),
             _defaultVoltage,
             _xmpProfiles ?? throw new ArgumentNullException(),
-            _formFactor,
+            _formFactor ?? throw new ArgumentNullException(),
             _standard ?? throw new ArgumentNullException(),
             _power);
     }

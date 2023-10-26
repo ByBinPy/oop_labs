@@ -4,6 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.XmpProfiles;
 
 public class Xmp : IXmpProfile
 {
+    private const int DefaultFirstTiming = 20;
+    public Xmp(int frequency)
+    {
+        Frequency = frequency;
+        Timing = new Timings(DefaultFirstTiming);
+    }
+
     public Xmp(Timings timing, int voltage, int frequency)
     {
         Timing = timing;
