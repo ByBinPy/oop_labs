@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
+using Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
@@ -10,7 +12,41 @@ public class VideoCardRepo
 
     public VideoCardRepo()
     {
-        _videoCards = new List<VideoCard>();
+        _videoCards = new List<VideoCard>()
+        {
+            new VideoCardBuilder()
+                .WithQtyMemory(4)
+                .WithHeight(105)
+                .WithWidth(40)
+                .WithChipFrequency(660)
+                .WithPower(60)
+                .WithVersionPciE(new PciE("3.0"))
+                .Build(),
+            new VideoCardBuilder()
+                .WithQtyMemory(8)
+                .WithHeight(114)
+                .WithWidth(53)
+                .WithChipFrequency(744)
+                .WithPower(74)
+                .WithVersionPciE(new PciE("5.0"))
+                .Build(),
+            new VideoCardBuilder()
+                .WithQtyMemory(8)
+                .WithHeight(115)
+                .WithWidth(43)
+                .WithChipFrequency(783)
+                .WithPower(75)
+                .WithVersionPciE(new PciE("4.0"))
+                .Build(),
+            new VideoCardBuilder()
+                .WithQtyMemory(6)
+                .WithHeight(109)
+                .WithWidth(51)
+                .WithChipFrequency(710)
+                .WithPower(66)
+                .WithVersionPciE(new PciE("4.0"))
+                .Build(),
+        };
     }
 
     public VideoCardRepo(IList<VideoCard> videoCards)

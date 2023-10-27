@@ -13,9 +13,27 @@ public class CpuCoolingSystemRepo
     {
         _cpuCoolingSystems = new List<CpuCoolingSystem>()
         {
-            new CpuCoolingSystemBuilder().WithHeight(152).WithWidth(132).WithLength(85).WithTdp(130).WithSupportSockets(new Collection<Socket> { new Socket("AM4"), new Socket("AM3"), new Socket("FM2"), new Socket("LGA 1151") }).Build(),
-            new CpuCoolingSystemBuilder().WithHeight(70).WithWidth(95).WithLength(95).WithTdp(110).WithSupportSockets(new Collection<Socket> { new Socket("LGA 1700") }).Build(),
-            new CpuCoolingSystemBuilder().WithHeight(123).WithWidth(100).WithLength(65).WithTdp(130).WithSupportSockets(new Collection<Socket> { new Socket("AM4"), new Socket("LGA 1150"), new Socket("LGA 1200"), new Socket("LGA 1700") }).Build(),
+            new CpuCoolingSystemBuilder()
+                .WithHeight(152)
+                .WithWidth(132)
+                .WithLength(85)
+                .WithTdp(130)
+                .WithSupportSockets(new Collection<Socket> { new Socket("AM4"), new Socket("AM3"), new Socket("FM2"), new Socket("LGA 1151") })
+                .Build(),
+            new CpuCoolingSystemBuilder()
+                .WithHeight(70)
+                .WithWidth(95)
+                .WithLength(95)
+                .WithTdp(110)
+                .WithSupportSockets(new Collection<Socket> { new Socket("LGA 1700") })
+                .Build(),
+            new CpuCoolingSystemBuilder()
+                .WithHeight(123)
+                .WithWidth(100)
+                .WithLength(65)
+                .WithTdp(130)
+                .WithSupportSockets(new Collection<Socket> { new Socket("AM4"), new Socket("LGA 1150"), new Socket("LGA 1200"), new Socket("LGA 1700") })
+                .Build(),
         };
     }
 

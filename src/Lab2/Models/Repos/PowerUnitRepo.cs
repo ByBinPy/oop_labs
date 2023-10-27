@@ -7,16 +7,27 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 public class PowerUnitRepo
 {
     private readonly List<PowerUnit> _powerUnits;
-
-    /*
-        Capacity = capacity;
-        SpedRotation = spedRotation;
-        Power = power;
-     */
     public PowerUnitRepo()
     {
         _powerUnits = new List<PowerUnit>()
         {
+            new PowerUnit(100),
+            new PowerUnit(150),
+            new PowerUnit(160),
+            new PowerUnit(170),
+            new PowerUnit(180),
+            new PowerUnit(190),
+            new PowerUnit(200),
+            new PowerUnit(350),
+            new PowerUnit(400),
+            new PowerUnit(450),
+            new PowerUnit(500),
+            new PowerUnit(550),
+            new PowerUnit(600),
+            new PowerUnit(650),
+            new PowerUnit(700),
+            new PowerUnit(750),
+            new PowerUnit(800),
         };
     }
 

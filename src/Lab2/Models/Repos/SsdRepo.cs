@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
 using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
@@ -10,7 +11,33 @@ public class SsdRepo
 
     public SsdRepo()
     {
-        _ssds = new List<Ssd>();
+        _ssds = new List<Ssd>()
+        {
+            new SsdBuilder()
+                .WithCapacity(128)
+                .WithConnection(new Connector("SATA"))
+                .WithPower(50)
+                .WithMaxSpeed(2900)
+                .Build(),
+            new SsdBuilder()
+                .WithCapacity(256)
+                .WithConnection(new Connector("SATA"))
+                .WithPower(55)
+                .WithMaxSpeed(3000)
+                .Build(),
+            new SsdBuilder()
+                .WithCapacity(512)
+                .WithConnection(new Connector("SATA"))
+                .WithPower(60)
+                .WithMaxSpeed(3100)
+                .Build(),
+            new SsdBuilder()
+                .WithCapacity(1024)
+                .WithConnection(new Connector("SATA"))
+                .WithPower(75)
+                .WithMaxSpeed(3150)
+                .Build(),
+        };
     }
 
     public SsdRepo(IList<Ssd> ssds)

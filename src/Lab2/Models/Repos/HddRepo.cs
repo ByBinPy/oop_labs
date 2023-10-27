@@ -7,50 +7,56 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 public class HddRepo
 {
     private readonly List<Hdd> _hdds;
-
-    /*
-        Capacity = capacity;
-        SpedRotation = spedRotation;
-        Power = power;
-     */
     public HddRepo()
     {
         _hdds = new List<Hdd>()
         {
-            new HddBuilder().WithCapacity(512).WithSpeedRotation(7200).WithPower(7).Build(),
-            new HddBuilder().WithCapacity(256).WithSpeedRotation(5400).WithPower(5).Build(),
-            new HddBuilder().WithCapacity(128).WithSpeedRotation(5400).WithPower(6).Build(),
+            new HddBuilder()
+                .WithCapacity(512)
+                .WithSpeedRotation(7200)
+                .WithPower(7)
+                .Build(),
+            new HddBuilder()
+                .WithCapacity(256)
+                .WithSpeedRotation(5400)
+                .WithPower(5)
+                .Build(),
+            new HddBuilder()
+                .WithCapacity(128)
+                .WithSpeedRotation(5400)
+                .WithPower(6)
+                .Build(),
         };
     }
 
-    public HddRepo(IList<Hdd> dds)
+    public HddRepo(IList<Hdd> hdds)
     {
-        _hdds = new List<Hdd>(dds);
+        _hdds = new List<Hdd>(hdds);
     }
 
-    public HddRepo Add(Hdd dd)
+    public HddRepo Add(Hdd hdd)
     {
-        if (!RepoValidator.IsValidHdd(dd))
+        if (!RepoValidator.IsValidHdd(hdd))
             return new HddRepo();
 
-        _hdds.Add(dd);
+        _hdds.Add(hdd);
 
         return this;
     }
 
-    public bool Update(Hdd dd, Hdd newHdd)
+    public bool Update(Hdd hdd, Hdd newHdd)
     {
-        if (_hdds.IndexOf(dd) == -1)
+        if (_hdds.IndexOf(hdd) == -1)
             return false;
 
-        _hdds[_hdds.IndexOf(dd)] = newHdd;
+        _hdds[_hdds.IndexOf(hdd)] = newHdd;
 
         return true;
     }
 
-    public bool Delete(Hdd dd)
+    public bool Delete(Hdd hdd)
     {
-        return _hdds.Remove(dd);
+        return _hdds.Remove(hdd);
     }
 
     public IList<Hdd>? FindAll(Predicate<Hdd> predicate) => _hdds.FindAll(predicate);

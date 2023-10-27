@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
 using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
@@ -10,7 +11,30 @@ public class PcCaseRepo
 
     public PcCaseRepo()
     {
-        _pcCases = new List<PcCase>();
+        _pcCases = new List<PcCase>()
+        {
+            new PcCaseBuilder()
+                .WithLength(321)
+                .WithWidth(250)
+                .WithDepth(441)
+                .WithWidthVideoCard(33)
+                .WithLengthVideoCard(101)
+                .WithMotherBoardFormFactor(FormFactors.StandardAtx).Build(),
+            new PcCaseBuilder()
+                .WithLength(244)
+                .WithWidth(215)
+                .WithDepth(320)
+                .WithWidthVideoCard(39)
+                .WithLengthVideoCard(92)
+                .WithMotherBoardFormFactor(FormFactors.MicroAtx).Build(),
+            new PcCaseBuilder()
+                .WithLength(115)
+                .WithWidth(99)
+                .WithDepth(190)
+                .WithWidthVideoCard(25)
+                .WithLengthVideoCard(69)
+                .WithMotherBoardFormFactor(FormFactors.MiniItx).Build(),
+        };
     }
 
     public PcCaseRepo(IList<PcCase> pcCases)

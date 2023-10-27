@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.WiFiAdapters;
 using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapters;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
@@ -12,6 +13,36 @@ public class WiFiAdapterRepo
     {
         _wiFiAdapters = new List<WiFiAdapter>()
         {
+            new WiFiAdapterBuilder()
+                .WithWiFiStandard(new WiFiStandard("5.0"))
+                .WithBluetoothUnit(true)
+                .WithPciEVersion("4.0")
+                .WithPower(15)
+                .Build(),
+            new WiFiAdapterBuilder()
+                .WithWiFiStandard(new WiFiStandard("4.0"))
+                .WithBluetoothUnit(true)
+                .WithPciEVersion("3.0")
+                .WithPower(11)
+                .Build(),
+            new WiFiAdapterBuilder()
+                .WithWiFiStandard(new WiFiStandard("6.0"))
+                .WithBluetoothUnit(true)
+                .WithPciEVersion("6.0")
+                .WithPower(16)
+                .Build(),
+            new WiFiAdapterBuilder()
+                .WithWiFiStandard(new WiFiStandard("3.0"))
+                .WithBluetoothUnit(false)
+                .WithPciEVersion("2.0")
+                .WithPower(10)
+                .Build(),
+            new WiFiAdapterBuilder()
+                .WithWiFiStandard(new WiFiStandard("4.0"))
+                .WithBluetoothUnit(false)
+                .WithPciEVersion("5.0")
+                .WithPower(13)
+                .Build(),
         };
     }
 
