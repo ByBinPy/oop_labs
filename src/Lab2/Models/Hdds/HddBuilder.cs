@@ -6,6 +6,8 @@ public class HddBuilder : IHddBuilder
     private int _speedRotation;
     private int _power;
 
+    public HddBuilder() { }
+
     public HddBuilder(Hdd hdd)
     {
         if (hdd == null)
@@ -36,5 +38,13 @@ public class HddBuilder : IHddBuilder
         _power = power;
 
         return this;
+    }
+
+    public Hdd Build()
+    {
+        return new Hdd(
+            _capacity,
+            _speedRotation,
+            _power);
     }
 }

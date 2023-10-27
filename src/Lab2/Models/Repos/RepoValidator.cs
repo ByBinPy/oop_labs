@@ -1,11 +1,14 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
 using Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
+using Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
 using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
-using Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
+using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapters;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 internal abstract class RepoValidator
 {
@@ -24,13 +27,42 @@ internal abstract class RepoValidator
         };
     }
 
+    public static bool IsValidDdr(Ddr ddr)
+    {
+        return ddr is
+        {
+            QtyMemory: > 0,
+            Jedec: not null,
+            DefaultVoltage: > 0,
+            XmpProfiles: not null,
+            FormFactor: not null,
+            Standard: not null,
+            Power: > 0
+        };
+    }
+
+    public static bool IsValidPowerUnit(PowerUnit powerUnit)
+    {
+        return powerUnit.PeakLoad > 0;
+    }
+
+    public static bool IsValidWiFiAdapter(WiFiAdapter wiFiAdapter)
+    {
+        return wiFiAdapter is
+        {
+            WiFiStandard: not null,
+            PciEVersion: not null,
+            Power: > 0
+        };
+    }
+
     public static bool IsValidMotherBoard(MotherBoard motherBoard)
     {
         return motherBoard is
         {
             Socket: not null,
             QtyPcieLine: > 0,
-            QtySataPort: > 0,
+            QtySataPort: >= 0,
             Chipset: not null,
             QtyRamSlot: > 0,
             Bios: not null

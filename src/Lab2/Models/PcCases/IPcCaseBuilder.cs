@@ -4,11 +4,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 
 public interface IPcCaseBuilder
 {
-    IPcCaseBuilder WithLengthVideoCard(int length);
-    IPcCaseBuilder WithWidthVideoCard(int width);
+    IPcCaseBuilder WithLengthVideoCard(double length);
+    IPcCaseBuilder WithWidthVideoCard(double width);
     IPcCaseBuilder WithMotherBoardFormFactor(FormFactors formFactor);
-    IPcCaseBuilder WithLength(int length);
-    IPcCaseBuilder WithDepth(int depth);
-    IPcCaseBuilder WithWidth(int width);
+    IPcCaseBuilder WithLength(double length);
+    IPcCaseBuilder WithDepth(double depth);
+    IPcCaseBuilder WithWidth(double width);
     PcCase Build();
 }

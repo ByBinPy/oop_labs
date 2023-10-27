@@ -1,21 +1,21 @@
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class SsdRepo
 {
-    private Collection<Ssd> _ssds;
+    private readonly List<Ssd> _ssds;
 
     public SsdRepo()
     {
-        _ssds = new Collection<Ssd>();
+        _ssds = new List<Ssd>();
     }
 
     public SsdRepo(IList<Ssd> ssds)
     {
-        _ssds = new Collection<Ssd>(ssds);
+        _ssds = new List<Ssd>(ssds);
     }
 
     public SsdRepo Add(Ssd ssd)
@@ -42,4 +42,6 @@ public class SsdRepo
     {
         return _ssds.Remove(ssd);
     }
+
+    public IList<Ssd>? FindAll(Predicate<Ssd> predicate) => _ssds.FindAll(predicate);
 }

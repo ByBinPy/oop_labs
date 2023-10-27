@@ -1,17 +1,17 @@
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class CpuRepo
 {
-    private readonly Collection<Cpu> _cpus;
+    private readonly List<Cpu> _cpus;
     public CpuRepo()
     {
-        _cpus = new Collection<Cpu>
+        _cpus = new List<Cpu>
         {
             new CpuBuilder().WithCoreFrequency(3.1).WithQtyCore(4).WithSocket(new Socket("AM4"))
                 .WithDdrStandard(new DdrStandard("DDR4")).WithQtyRamSlots(2).WithRamFrequency(2667)
@@ -65,7 +65,7 @@ public class CpuRepo
 
     public CpuRepo(IList<Cpu> cpus)
     {
-        _cpus = new Collection<Cpu>(cpus);
+        _cpus = new List<Cpu>(cpus);
     }
 
     public CpuRepo Add(Cpu cpu)
@@ -92,4 +92,6 @@ public class CpuRepo
     {
         return _cpus.Remove(cpu);
     }
+
+    public IList<Cpu>? FindAll(Predicate<Cpu> predicate) => _cpus.FindAll(predicate);
 }

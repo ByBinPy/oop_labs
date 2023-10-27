@@ -1,22 +1,27 @@
 using System;
 using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
+using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
 using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
 
 public class MotherBoardBuilder : IMotherBoardBuilder
 {
     private Socket? _socket;
     private int _qtyPcieLine;
     private int _qtySataPort;
+    private DdrStandard? _ddrStandard;
     private Chipset? _chipset;
     private int _qtyRamSlot;
+    private PciE? _pciE;
     private FormFactors _formFactor;
     private IBios? _bios;
-    public MotherBoardBuilder() { }
 
+    public MotherBoardBuilder() { }
     public MotherBoardBuilder(MotherBoard motherBoard)
     {
         if (motherBoard == null) return;
@@ -27,6 +32,7 @@ public class MotherBoardBuilder : IMotherBoardBuilder
         _qtyRamSlot = motherBoard.QtyRamSlot;
         _formFactor = motherBoard.FormFactor;
         _bios = motherBoard.Bios;
+        _pciE = motherBoard.PciE;
     }
 
     public IMotherBoardBuilder WithSocket(Socket socket)
@@ -59,6 +65,18 @@ public class MotherBoardBuilder : IMotherBoardBuilder
         return this;
     }
 
+    public IMotherBoardBuilder WithDdrStandard(DdrStandard ddrStandard)
+    {
+        _ddrStandard = ddrStandard;
+        return this;
+    }
+
+    public IMotherBoardBuilder WithPciE(PciE pciE)
+    {
+        _pciE = pciE;
+        return this;
+    }
+
     public IMotherBoardBuilder WithFormFactor(FormFactors formFactor)
     {
         _formFactor = formFactor;
@@ -78,8 +96,10 @@ public class MotherBoardBuilder : IMotherBoardBuilder
             _qtyPcieLine,
             _qtySataPort,
             _chipset ?? throw new ArgumentNullException(),
+            _ddrStandard ?? throw new ArgumentNullException(),
             _qtyRamSlot,
             _formFactor,
-            _bios ?? throw new ArgumentNullException());
+            _bios ?? throw new ArgumentNullException(),
+            _pciE ?? throw new ArgumentNullException());
     }
 }

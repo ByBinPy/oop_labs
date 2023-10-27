@@ -1,21 +1,21 @@
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class PcCaseRepo
 {
-    private Collection<PcCase> _pcCases;
+    private readonly List<PcCase> _pcCases;
 
     public PcCaseRepo()
     {
-        _pcCases = new Collection<PcCase>();
+        _pcCases = new List<PcCase>();
     }
 
     public PcCaseRepo(IList<PcCase> pcCases)
     {
-        _pcCases = new Collection<PcCase>(pcCases);
+        _pcCases = new List<PcCase>(pcCases);
     }
 
     public PcCaseRepo Add(PcCase pcCase)
@@ -42,4 +42,6 @@ public class PcCaseRepo
     {
         return _pcCases.Remove(pcCase);
     }
+
+    public IList<PcCase>? FindAll(Predicate<PcCase> predicate) => _pcCases.FindAll(predicate);
 }

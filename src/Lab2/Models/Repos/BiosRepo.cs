@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Repos;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class BiosRepo<T> : IBiosRepos<T>
     where T : IBios

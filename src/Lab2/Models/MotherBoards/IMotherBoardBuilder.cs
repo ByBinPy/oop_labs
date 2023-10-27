@@ -1,5 +1,7 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
+using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
 using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
 
@@ -14,5 +16,7 @@ public interface IMotherBoardBuilder
     IMotherBoardBuilder WithQtyRamSlot(int qtyRamSlot);
     IMotherBoardBuilder WithFormFactor(FormFactors formFactor);
     IMotherBoardBuilder WithBios(IBios bios);
+    IMotherBoardBuilder WithDdrStandard(DdrStandard ddrStandard);
+    IMotherBoardBuilder WithPciE(PciE pciE);
     MotherBoard Build();
 }

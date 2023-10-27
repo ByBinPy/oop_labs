@@ -1,21 +1,21 @@
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class VideoCardRepo
 {
-    private Collection<VideoCard> _videoCards;
+    private readonly List<VideoCard> _videoCards;
 
     public VideoCardRepo()
     {
-        _videoCards = new Collection<VideoCard>();
+        _videoCards = new List<VideoCard>();
     }
 
     public VideoCardRepo(IList<VideoCard> videoCards)
     {
-        _videoCards = new Collection<VideoCard>(videoCards);
+        _videoCards = new List<VideoCard>(videoCards);
     }
 
     public VideoCardRepo Add(VideoCard videoCard)
@@ -37,4 +37,6 @@ public class VideoCardRepo
 
         return true;
     }
+
+    public IList<VideoCard> FindAll(Predicate<VideoCard> predicate) => _videoCards.FindAll(predicate);
 }

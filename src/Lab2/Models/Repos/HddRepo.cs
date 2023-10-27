@@ -1,21 +1,31 @@
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Repos;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 public class HddRepo
 {
-    private Collection<Hdd> _dds;
+    private readonly List<Hdd> _hdds;
 
+    /*
+        Capacity = capacity;
+        SpedRotation = spedRotation;
+        Power = power;
+     */
     public HddRepo()
     {
-        _dds = new Collection<Hdd>();
+        _hdds = new List<Hdd>()
+        {
+            new HddBuilder().WithCapacity(512).WithSpeedRotation(7200).WithPower(7).Build(),
+            new HddBuilder().WithCapacity(256).WithSpeedRotation(5400).WithPower(5).Build(),
+            new HddBuilder().WithCapacity(128).WithSpeedRotation(5400).WithPower(6).Build(),
+        };
     }
 
     public HddRepo(IList<Hdd> dds)
     {
-        _dds = new Collection<Hdd>(dds);
+        _hdds = new List<Hdd>(dds);
     }
 
     public HddRepo Add(Hdd dd)
@@ -23,23 +33,25 @@ public class HddRepo
         if (!RepoValidator.IsValidHdd(dd))
             return new HddRepo();
 
-        _dds.Add(dd);
+        _hdds.Add(dd);
 
         return this;
     }
 
     public bool Update(Hdd dd, Hdd newHdd)
     {
-        if (_dds.IndexOf(dd) == -1)
+        if (_hdds.IndexOf(dd) == -1)
             return false;
 
-        _dds[_dds.IndexOf(dd)] = newHdd;
+        _hdds[_hdds.IndexOf(dd)] = newHdd;
 
         return true;
     }
 
     public bool Delete(Hdd dd)
     {
-        return _dds.Remove(dd);
+        return _hdds.Remove(dd);
     }
+
+    public IList<Hdd>? FindAll(Predicate<Hdd> predicate) => _hdds.FindAll(predicate);
 }

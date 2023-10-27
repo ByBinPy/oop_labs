@@ -4,12 +4,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 
 public class PcCaseBuilder : IPcCaseBuilder
 {
-    private int _lenghtVideoCard;
-    private int _widthVideoCard;
+    private double _lenghtVideoCard;
+    private double _widthVideoCard;
     private FormFactors _motherBoardFormFactor;
-    private int _length;
-    private int _depth;
-    private int _width;
+    private double _length;
+    private double _depth;
+    private double _width;
 
     public PcCaseBuilder() { }
 
@@ -25,13 +25,13 @@ public class PcCaseBuilder : IPcCaseBuilder
         _width = pcCase.Width;
     }
 
-    public IPcCaseBuilder WithLengthVideoCard(int length)
+    public IPcCaseBuilder WithLengthVideoCard(double length)
     {
         _lenghtVideoCard = length;
         return this;
     }
 
-    public IPcCaseBuilder WithWidthVideoCard(int width)
+    public IPcCaseBuilder WithWidthVideoCard(double width)
     {
         _widthVideoCard = width;
         return this;
@@ -43,19 +43,19 @@ public class PcCaseBuilder : IPcCaseBuilder
         return this;
     }
 
-    public IPcCaseBuilder WithLength(int length)
+    public IPcCaseBuilder WithLength(double length)
     {
         _length = length;
         return this;
     }
 
-    public IPcCaseBuilder WithDepth(int depth)
+    public IPcCaseBuilder WithDepth(double depth)
     {
         _depth = depth;
         return this;
     }
 
-    public IPcCaseBuilder WithWidth(int width)
+    public IPcCaseBuilder WithWidth(double width)
     {
         _width = width;
         return this;

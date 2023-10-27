@@ -1,6 +1,6 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
 
 public class VideoCard
 {
