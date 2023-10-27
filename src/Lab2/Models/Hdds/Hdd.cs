@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Hdds;
 
 public class Hdd
 {

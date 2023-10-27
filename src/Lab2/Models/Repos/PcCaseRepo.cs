@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PcCases;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 

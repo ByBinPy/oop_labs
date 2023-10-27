@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
 
 public class DdrStandard
 {

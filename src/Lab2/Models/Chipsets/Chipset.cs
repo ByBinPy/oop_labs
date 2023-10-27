@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Chipsets;
 
 public class Chipset
 {

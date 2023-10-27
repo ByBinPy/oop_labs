@@ -1,4 +1,4 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
 

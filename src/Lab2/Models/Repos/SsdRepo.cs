@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
-using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ssds;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 

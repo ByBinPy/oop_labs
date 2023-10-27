@@ -1,13 +1,13 @@
 using System;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
-using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Hdds;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PcCases;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PowerUnits;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ssds;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
-using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
-using Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
-using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
-using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapters;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.WiFiAdapters;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Computer;
 

@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
-using Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Chipsets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
@@ -24,6 +23,16 @@ public class MotherBoardRepo
                                     .WithChipset(new Chipset(false, 3200))
                                     .WithQtyRamSlot(2)
                                     .WithDdrStandard(new DdrStandard("DDR5"))
+                                    .WithFormFactor(FormFactors.MicroAtx)
+                                    .WithBios(new AmiFabric().Create("2.0"))
+                                    .WithPciE(new PciE("4.0")).Build(),
+
+            new MotherBoardBuilder().WithSocket(new Socket("LGA 1700"))
+                                    .WithQtyPcieLine(1)
+                                    .WithQtySataPort(4)
+                                    .WithChipset(new Chipset(true, 3200))
+                                    .WithQtyRamSlot(2)
+                                    .WithDdrStandard(new DdrStandard("DDR4"))
                                     .WithFormFactor(FormFactors.MicroAtx)
                                     .WithBios(new AmiFabric().Create("2.0"))
                                     .WithPciE(new PciE("4.0")).Build(),

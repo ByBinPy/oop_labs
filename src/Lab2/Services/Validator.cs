@@ -1,12 +1,13 @@
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Computer;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PcCases;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PowerUnits;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
-using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
-using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapters;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.WiFiAdapters;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
@@ -38,12 +39,12 @@ public abstract class Validator
 
     private static Message CheckCpu(MotherBoard motherBoard, Cpu cpu)
     {
-        return motherBoard.Socket == cpu.Socket ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(cpu));
+        return motherBoard.Socket.Version == cpu.Socket.Version ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(Cpu));
     }
 
     private static Message CheckDdr(MotherBoard motherBoard, Ddr ddr)
     {
-        return motherBoard.DdrStandard == ddr.Standard ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(ddr));
+        return motherBoard.DdrStandard.Version == ddr.Standard.Version ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(Ddr));
     }
 
     private static Message CheckGraphicCoreOrVideoCard(MotherBoard motherBoard, Cpu cpu, VideoCard? videoCard)
@@ -54,12 +55,12 @@ public abstract class Validator
         if (videoCard == null)
             return new Message(Message.ConditionalComponent + nameof(videoCard));
 
-        return motherBoard.PciE != videoCard.VersionPciE ? new Message(Message.Incompatible + nameof(videoCard)) : new Message(Message.Success);
+        return motherBoard.PciE.Version != videoCard.VersionPciE.Version ? new Message(Message.Incompatible + nameof(VideoCard)) : new Message(Message.Success);
     }
 
     private static Message CheckWiFiAdapter(MotherBoard motherBoard, WiFiAdapter wiFiAdapter)
     {
-        return wiFiAdapter.PciEVersion != motherBoard.PciE.Version ? new Message(Message.Incompatible + nameof(wiFiAdapter)) : new Message(Message.Success);
+        return wiFiAdapter.PciEVersion != motherBoard.PciE.Version ? new Message(Message.Incompatible + nameof(WiFiAdapter)) : new Message(Message.Success);
     }
 
     private static bool IsValidDispersionPower(int unitPower, int systemPower)
@@ -80,21 +81,21 @@ public abstract class Validator
 
     private static Message CheckPcCase(MotherBoard motherBoard, PcCase pcCase)
     {
-        return motherBoard.FormFactor != pcCase.MotherBoardFormFactor ? new Message(Message.Incompatible + nameof(pcCase)) : new Message(Message.Success);
+        return motherBoard.FormFactor != pcCase.MotherBoardFormFactor ? new Message(Message.Incompatible + nameof(PcCase)) : new Message(Message.Success);
     }
 
     private static Message CheckPowerUnit(Pc pc)
     {
         if (pc.PowerUnitPc.PeakLoad < GetSystemPower(pc) && IsValidDispersionPower(pc.PowerUnitPc.PeakLoad, GetSystemPower(pc)))
         {
-            return new Message(Message.DisclaimerOfWarrantyDueTo + nameof(pc.PowerUnitPc));
+            return new Message(Message.DisclaimerOfWarrantyDueTo + nameof(PowerUnit));
         }
 
-        return pc.PowerUnitPc.PeakLoad >= GetSystemPower(pc) ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(pc.PowerUnitPc));
+        return pc.PowerUnitPc.PeakLoad >= GetSystemPower(pc) ? new Message(Message.Success) : new Message(Message.Incompatible + nameof(Pc.PowerUnitPc));
     }
 
     private static Message CheckCpuCooler(Cpu cpu, CpuCoolingSystem cpuCoolingSystem)
     {
-        return IsValidDispersionPower(cpu.Tdp, cpuCoolingSystem.Tdp) ? new Message(Message.DisclaimerOfWarrantyDueTo + nameof(CpuCoolingSystem)) : new Message(Message.Success);
+        return cpu.Tdp > cpuCoolingSystem.Tdp ? new Message(Message.DisclaimerOfWarrantyDueTo + nameof(CpuCoolingSystem)) : new Message(Message.Success);
     }
 }

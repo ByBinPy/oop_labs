@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Hdds;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 

@@ -1,7 +1,6 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Bioss;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 
 public class Phoenix : IBios
 {

@@ -1,4 +1,3 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;

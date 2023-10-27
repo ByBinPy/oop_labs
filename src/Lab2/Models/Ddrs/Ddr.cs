@@ -1,8 +1,10 @@
+using System;
 using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.XmpProfiles;
+using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.XmpProfiles;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
 
 public class Ddr
 {
@@ -31,4 +33,26 @@ public class Ddr
     public string FormFactor { get; }
     public DdrStandard Standard { get; }
     public int Power { get; }
+    public override bool Equals(object? obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        var other = (Ddr)obj;
+
+        return QtyMemory == other.QtyMemory &&
+               Jedec == other.Jedec &&
+               DefaultVoltage == other.DefaultVoltage &&
+               XmpProfiles.SequenceEqual(other.XmpProfiles) &&
+               FormFactor == other.FormFactor &&
+               Standard == other.Standard &&
+               Power == other.Power;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(QtyMemory, Jedec, DefaultVoltage, XmpProfiles, FormFactor, Standard, Power);
+    }
 }

@@ -1,6 +1,7 @@
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
+using System;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.XmpProfiles;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.XmpProfiles;
 
 public class Docp : IXmpProfile
 {
@@ -14,4 +15,22 @@ public class Docp : IXmpProfile
     public Timings Timing { get; }
     public int Voltage { get; }
     public int Frequency { get; }
+    public override bool Equals(object? obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        var other = (IXmpProfile)obj;
+
+        return Timing == other.Timing &&
+               Voltage == other.Voltage &&
+               Frequency == other.Frequency;
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Timing, Voltage, Frequency);
+    }
 }

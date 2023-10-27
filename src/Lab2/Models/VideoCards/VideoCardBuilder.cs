@@ -1,8 +1,7 @@
 using System;
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
-using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.VideoCards;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
 
 public class VideoCardBuilder : IVideoCardBuilder
 {

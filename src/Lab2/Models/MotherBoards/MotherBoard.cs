@@ -1,9 +1,9 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Chipsets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
 

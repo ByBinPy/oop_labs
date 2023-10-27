@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.XmpProfiles;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.XmpProfiles;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
 
 public interface IDdrBuilder
 {

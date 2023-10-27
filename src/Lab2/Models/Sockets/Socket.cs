@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
 public class Socket
 {

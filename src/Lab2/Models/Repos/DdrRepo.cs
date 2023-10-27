@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
-using Itmo.ObjectOrientedProgramming.Lab2.XmpProfiles;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.XmpProfiles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
@@ -14,28 +14,28 @@ public class DdrRepo
     {
         _ddrs = new List<Ddr>()
         {
-            new DdrBuilder().WithDdrStandard(new DdrStandard("3.0"))
+            new DdrBuilder().WithDdrStandard(new DdrStandard("DDR3.0"))
                             .WithJedec(new Jedec(2600, 30))
                             .WithFormFactors("DIMM")
                             .WithQtyMemory(8)
                             .WithXmpProfiles(new Collection<IXmpProfile> { new Docp(new Timings(10, 10, 10, 10), 8, 3900) })
                             .WithDefaultVoltage(6)
                             .Power(25).Build(),
-            new DdrBuilder().WithDdrStandard(new DdrStandard("4.0"))
+            new DdrBuilder().WithDdrStandard(new DdrStandard("DDR4"))
                             .WithJedec(new Jedec(3200, 21, 12, 12, 21))
                             .WithFormFactors("DIMM")
                             .WithQtyMemory(16)
                             .WithXmpProfiles(new Collection<IXmpProfile> { new Docp(new Timings(15), 6, 3200) })
                             .WithDefaultVoltage(4)
                             .Power(26).Build(),
-            new DdrBuilder().WithDdrStandard(new DdrStandard("3.0"))
+            new DdrBuilder().WithDdrStandard(new DdrStandard("DDR3"))
                             .WithJedec(new Jedec(3000, 7, 10, 11, 12))
                             .WithFormFactors("SO-DIMM")
                             .WithQtyMemory(4)
                             .WithXmpProfiles(new Collection<IXmpProfile> { new Docp(new Timings(10, 14, 12, 6), 7, 4000) })
                             .WithDefaultVoltage(5)
                             .Power(20).Build(),
-            new DdrBuilder().WithDdrStandard(new DdrStandard("5.0"))
+            new DdrBuilder().WithDdrStandard(new DdrStandard("DDR5"))
                             .WithJedec(new Jedec(4000, 5, 3, 4, 4))
                             .WithFormFactors("DIMM")
                             .WithQtyMemory(16)

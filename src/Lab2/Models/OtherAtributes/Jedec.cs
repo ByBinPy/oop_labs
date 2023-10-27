@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
 
 public class Jedec
 {

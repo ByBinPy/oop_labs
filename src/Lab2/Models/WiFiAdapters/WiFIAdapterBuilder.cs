@@ -1,5 +1,4 @@
 using System;
-using Itmo.ObjectOrientedProgramming.Lab2.WiFiAdapters;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.WiFiAdapters;
 

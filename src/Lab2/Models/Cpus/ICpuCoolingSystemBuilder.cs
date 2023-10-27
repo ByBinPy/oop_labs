@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Cpus;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Cpus;
 
 public interface ICpuCoolingSystemBuilder
 {

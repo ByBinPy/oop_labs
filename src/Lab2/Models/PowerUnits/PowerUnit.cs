@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.PowerUnits;
 
 public class PowerUnit
 {

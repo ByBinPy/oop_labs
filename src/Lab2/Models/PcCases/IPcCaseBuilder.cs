@@ -1,6 +1,6 @@
-using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.PcCases;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.PcCases;
 
 public interface IPcCaseBuilder
 {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.PowerUnits;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 

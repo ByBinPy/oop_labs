@@ -1,8 +1,7 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
-using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
-using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
@@ -20,15 +19,15 @@ public record BiosRepoContext
             .WithPower(70)
             .Build())
         .Add(new CpuBuilder()
-            .WithCoreFrequency(4.4)
-            .WithQtyCore(6)
-            .WithSocket(new Socket("LGA 1200"))
+            .WithCoreFrequency(4.9)
+            .WithQtyCore(10)
+            .WithSocket(new Socket("LGA 1700"))
             .WithDdrStandard(new DdrStandard("DDR4"))
-            .WithQtyRamSlots(2)
-            .WithRamFrequency(3202)
+            .WithQtyRamSlots(4)
+            .WithRamFrequency(3570)
             .WithGraphicCore(false)
-            .WithTdp(65)
-            .WithPower(75)
+            .WithTdp(150)
+            .WithPower(157)
             .Build())
         .Add(new CpuBuilder()
             .WithCoreFrequency(4)
@@ -90,15 +89,15 @@ public record BiosRepoContext
             .WithPower(180)
             .Build())
         .Add(new CpuBuilder()
-            .WithCoreFrequency(4.9)
-            .WithQtyCore(10)
-            .WithSocket(new Socket("LGA 1700"))
+            .WithCoreFrequency(4.4)
+            .WithQtyCore(6)
+            .WithSocket(new Socket("LGA 1200"))
             .WithDdrStandard(new DdrStandard("DDR4"))
-            .WithQtyRamSlots(4)
-            .WithRamFrequency(3570)
+            .WithQtyRamSlots(2)
+            .WithRamFrequency(3202)
             .WithGraphicCore(false)
-            .WithTdp(150)
-            .WithPower(157)
+            .WithTdp(65)
+            .WithPower(75)
             .Build())
         .Add(new CpuBuilder()
             .WithCoreFrequency(4.3)

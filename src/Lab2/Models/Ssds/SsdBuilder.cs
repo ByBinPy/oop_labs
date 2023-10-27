@@ -1,7 +1,7 @@
 using System;
-using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Connectors;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Ssds;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Ssds;
 
 public class SsdBuilder : ISsdBuilder
 {

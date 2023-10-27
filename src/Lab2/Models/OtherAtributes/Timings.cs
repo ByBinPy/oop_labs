@@ -1,6 +1,8 @@
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.OtherAtributes;
 
 public class Timings
 {
@@ -29,5 +31,22 @@ public class Timings
         _timings[serialNumber] = value;
 
         return true;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj == null || GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        var other = (Timings)obj;
+
+        return _timings.SequenceEqual(other._timings);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(_timings);
     }
 }

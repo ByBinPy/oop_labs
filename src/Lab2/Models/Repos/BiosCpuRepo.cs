@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
-using Itmo.ObjectOrientedProgramming.Lab2.Repos;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Cpus;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 

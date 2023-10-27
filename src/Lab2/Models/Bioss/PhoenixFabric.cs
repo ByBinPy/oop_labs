@@ -1,5 +1,3 @@
-using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
-
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 
 public class PhoenixFabric : BiosFabric

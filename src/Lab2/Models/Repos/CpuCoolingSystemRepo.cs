@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
-using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Sockets;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
@@ -31,7 +31,7 @@ public class CpuCoolingSystemRepo
                 .WithHeight(123)
                 .WithWidth(100)
                 .WithLength(65)
-                .WithTdp(130)
+                .WithTdp(160)
                 .WithSupportSockets(new Collection<Socket> { new Socket("AM4"), new Socket("LGA 1150"), new Socket("LGA 1200"), new Socket("LGA 1700") })
                 .Build(),
         };
