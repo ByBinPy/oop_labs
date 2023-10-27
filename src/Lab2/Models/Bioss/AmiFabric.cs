@@ -1,13 +1,11 @@
-using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Bioss;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 
 public class AmiFabric : BiosFabric
 {
     public override IBios Create(string version)
     {
-        var compatibleCpus = new List<Cpu> { /* add cpu */ };
-        return new Ami(version, compatibleCpus);
+        return new Ami(version);
     }
 }

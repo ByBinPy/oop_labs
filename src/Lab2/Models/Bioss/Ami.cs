@@ -1,23 +1,23 @@
-using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
-namespace Itmo.ObjectOrientedProgramming.Lab2.Bioss;
+using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
+
+namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 
 public class Ami : IBios
 {
     private const string DefaultVersion = "1.0";
-    private readonly List<Cpu> _compatibleCpu;
+    private readonly BiosCpuRepo<Ami> _compatibleCpus;
     public Ami()
     {
         Type = nameof(Phoenix);
         Version = DefaultVersion;
-        _compatibleCpu = new List<Cpu>();
+        _compatibleCpus = BiosRepoContext.Ami;
     }
 
-    public Ami(string version, IList<Cpu> compatibleCpus)
+    public Ami(string version)
         : this()
     {
         Version = version;
-        _compatibleCpu = (List<Cpu>)compatibleCpus;
     }
 
     public string Type { get; }

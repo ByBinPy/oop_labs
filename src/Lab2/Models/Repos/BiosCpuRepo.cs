@@ -1,19 +1,14 @@
 using System.Collections.Generic;
-using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Repos;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 
-public class BiosRepo<T> : IBiosRepos<T>
+public class BiosCpuRepo<T> : IBiosRepos<T>
     where T : IBios
 {
-    private readonly List<Cpu> _comparableCpus;
-
-    public BiosRepo()
-    {
-        _comparableCpus = new List<Cpu>();
-    }
+    private readonly List<Cpu> _comparableCpus = new List<Cpu>();
 
     public IEnumerable<Cpu> ComparableCpus => _comparableCpus;
 

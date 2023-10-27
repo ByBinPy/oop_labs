@@ -15,34 +15,34 @@ public class WiFiAdapterRepo
         };
     }
 
-    public WiFiAdapterRepo(IList<WiFiAdapter> dds)
+    public WiFiAdapterRepo(IList<WiFiAdapter> wifiAdapters)
     {
-        _wiFiAdapters = new List<WiFiAdapter>(dds);
+        _wiFiAdapters = new List<WiFiAdapter>(wifiAdapters);
     }
 
-    public WiFiAdapterRepo Add(WiFiAdapter dd)
+    public WiFiAdapterRepo AddAdapter(WiFiAdapter wifiAdapter)
     {
-        if (!RepoValidator.IsValidWiFiAdapter(dd))
+        if (!RepoValidator.IsValidWiFiAdapter(wifiAdapter))
             return new WiFiAdapterRepo();
 
-        _wiFiAdapters.Add(dd);
+        _wiFiAdapters.Add(wifiAdapter);
 
         return this;
     }
 
-    public bool Update(WiFiAdapter dd, WiFiAdapter newWiFiAdapter)
+    public bool Update(WiFiAdapter wifiAdapter, WiFiAdapter newWiFiAdapter)
     {
-        if (_wiFiAdapters.IndexOf(dd) == -1)
+        if (_wiFiAdapters.IndexOf(wifiAdapter) == -1)
             return false;
 
-        _wiFiAdapters[_wiFiAdapters.IndexOf(dd)] = newWiFiAdapter;
+        _wiFiAdapters[_wiFiAdapters.IndexOf(wifiAdapter)] = newWiFiAdapter;
 
         return true;
     }
 
-    public bool Delete(WiFiAdapter dd)
+    public bool Delete(WiFiAdapter wifiAdapter)
     {
-        return _wiFiAdapters.Remove(dd);
+        return _wiFiAdapters.Remove(wifiAdapter);
     }
 
     public IList<WiFiAdapter>? FindAll(Predicate<WiFiAdapter> predicate) => _wiFiAdapters.FindAll(predicate);

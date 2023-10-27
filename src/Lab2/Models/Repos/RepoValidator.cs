@@ -1,8 +1,9 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Computer;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
-using Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 using Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
 using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
@@ -53,6 +54,19 @@ internal abstract class RepoValidator
             WiFiStandard: not null,
             PciEVersion: not null,
             Power: > 0
+        };
+    }
+
+    public static bool IsValidPc(Pc pc)
+    {
+        return pc is
+        {
+            MotherBoardPc: not null,
+            CpuPc: not null,
+            DdrPc: not null,
+            CpuCoolingSystemPc: not null,
+            PcCasePc: not null,
+            PowerUnitPc: not null,
         };
     }
 

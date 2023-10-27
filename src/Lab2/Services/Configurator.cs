@@ -1,13 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Cpus;
 using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
 using Itmo.ObjectOrientedProgramming.Lab2.Hdds;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Computer;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.Repos;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.VideoCards;
-using Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.PcCases;
 using Itmo.ObjectOrientedProgramming.Lab2.PowerUnits;
 using Itmo.ObjectOrientedProgramming.Lab2.Ssds;
@@ -48,6 +50,22 @@ public class Configurator
     private Configurator SelectCpus()
     {
         _cpus = (List<Cpu>?)ComponentsContext.CpuRepo.FindAll((Cpu cpu) => cpu.Socket == _motherBoard.Socket && cpu.DdrStandard == _motherBoard.DdrStandard);
+        switch (_motherBoard.Bios.Type)
+        {
+            case nameof(Uefi):
+                _cpus = _cpus?.FindAll((Cpu cpu) => BiosRepoContext.Uefi.ComparableCpus.Contains(cpu));
+                break;
+            case nameof(Intel):
+                _cpus = _cpus?.FindAll((Cpu cpu) => BiosRepoContext.Intel.ComparableCpus.Contains(cpu));
+                break;
+            case nameof(Phoenix):
+                _cpus = _cpus?.FindAll((Cpu cpu) => BiosRepoContext.Phoenix.ComparableCpus.Contains(cpu));
+                break;
+            case nameof(Ami):
+                _cpus = _cpus?.FindAll((Cpu cpu) => BiosRepoContext.Ami.ComparableCpus.Contains(cpu));
+                break;
+        }
+
         return this;
     }
 
@@ -111,17 +129,19 @@ public class Configurator
         return this;
     }
 
-    private int? GetPowerSystem()
+    private int GetPowerSystem()
     {
-        return _ssd?.Power + _cpu?.Power +
-               _ddr?.Power + _hdd?.Power +
-               _videoCard?.Power +
-               _wiFiAdapter?.Power;
+        return _ssd?.Power ?? 0 +
+               _cpu?.Power ?? 0 +
+               _ddr?.Power ?? 0 +
+               _hdd?.Power ?? 0 +
+               _videoCard?.Power ?? 0 +
+               _wiFiAdapter?.Power ?? 0;
     }
 
     private Configurator SelectPowerUnit()
     {
-        _powerUnit = ComponentsContext.PowerUnitRepo.FindAll((PowerUnit powerUnit) => powerUnit.PeakLoad > (GetPowerSystem() ?? 0))?.MinBy(powerUnit => powerUnit.PeakLoad);
+        _powerUnit = ComponentsContext.PowerUnitRepo.FindAll((PowerUnit powerUnit) => powerUnit.PeakLoad > GetPowerSystem())?.MinBy(powerUnit => powerUnit.PeakLoad);
         return this;
     }
 

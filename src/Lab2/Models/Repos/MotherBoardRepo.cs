@@ -4,8 +4,8 @@ using Itmo.ObjectOrientedProgramming.Lab2.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Chipsets;
 using Itmo.ObjectOrientedProgramming.Lab2.Connectors;
 using Itmo.ObjectOrientedProgramming.Lab2.Ddrs;
+using Itmo.ObjectOrientedProgramming.Lab2.Models.Bioss;
 using Itmo.ObjectOrientedProgramming.Lab2.Models.MotherBoards;
-using Itmo.ObjectOrientedProgramming.Lab2.MotherBoards;
 using Itmo.ObjectOrientedProgramming.Lab2.OtherAtributes;
 using Itmo.ObjectOrientedProgramming.Lab2.Sockets;
 
