@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
@@ -5,7 +6,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
 using Itmo.ObjectOrientedProgramming.Lab1.Services;
 using Xunit;
 
-namespace Lab1.Tests;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Tests;
 
 public class Test1
 {
