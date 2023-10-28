@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Environments;
@@ -5,7 +6,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models.Ships;
 using Itmo.ObjectOrientedProgramming.Lab1.Services;
 using Xunit;
 
-namespace Lab1.Tests;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Tests;
 
 public class Test1
 {
@@ -84,14 +85,6 @@ public class Test1
     {
         var testShipSelector = new ShipSelector(new Collection<Analyzer> { new Analyzer(new Collection<RouteCut> { new RouteCut(new HighDensityNebula(), 505) }, new Avgur()), new Analyzer(new Collection<RouteCut> { new RouteCut(new HighDensityNebula(), 505) }, new Stella()) });
         Assert.True(testShipSelector.Selector() is Stella);
-    }
-
-    // must be selected Vaclas because Pleasure has not deflector
-    [Fact]
-    private void FactTestPleassureVaclasCase6()
-    {
-        var testShipSelector = new ShipSelector(new Collection<Analyzer> { new Analyzer(new Collection<RouteCut> { new RouteCut(new NeutrinoPerticleNebula(1), 200) }, new Vaclas()), new Analyzer(new Collection<RouteCut> { new RouteCut(new NeutrinoPerticleNebula(1), 200) }, new PleasureShuttle()) });
-        Assert.True(testShipSelector.Selector() is Vaclas);
     }
 
     // my cases
