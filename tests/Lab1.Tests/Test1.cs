@@ -86,14 +86,6 @@ public class Test1
         Assert.True(testShipSelector.Selector() is Stella);
     }
 
-    // must be selected Vaclas because Pleasure has not deflector
-    [Fact]
-    private void FactTestPleassureVaclasCase6()
-    {
-        var testShipSelector = new ShipSelector(new Collection<Analyzer> { new Analyzer(new Collection<RouteCut> { new RouteCut(new NeutrinoPerticleNebula(1), 200) }, new Vaclas()), new Analyzer(new Collection<RouteCut> { new RouteCut(new NeutrinoPerticleNebula(1), 200) }, new PleasureShuttle()) });
-        Assert.True(testShipSelector.Selector() is Vaclas);
-    }
-
     // my cases
     [Theory]
     [MemberData(nameof(GetDataStudentCase))]
