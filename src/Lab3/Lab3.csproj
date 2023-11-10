@@ -4,4 +4,12 @@
         <RootNamespace>Itmo.ObjectOrientedProgramming.Lab3</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Lab1\Lab1.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Crayon" />
+    </ItemGroup>
+
 </Project>
