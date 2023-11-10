@@ -1,4 +1,6 @@
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
+
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessenger;
 
 public class MessengerDestination : ISender
 {

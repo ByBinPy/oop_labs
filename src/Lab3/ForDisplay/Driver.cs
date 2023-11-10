@@ -2,13 +2,13 @@ using System;
 using System.IO;
 using Crayon;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForDisplay;
 
-public class Driver
+public class Driver : IDriver
 {
     public string? Text { get; private set; }
     private Color Color { get;  set; } = new Color(255, 255, 255);
-    public static void Clear()
+    public void Clear()
     {
         // clearing file
         FileStream fileStream = File.Open(Display.FilePath, FileMode.Open);

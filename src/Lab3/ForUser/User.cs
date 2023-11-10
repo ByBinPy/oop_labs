@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
+
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class User

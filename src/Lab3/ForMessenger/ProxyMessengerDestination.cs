@@ -1,15 +1,16 @@
 using System;
+using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessenger;
 
-public class ProxyGroupDestination : ISender
+public class ProxyMessengerDestination : ISender
 {
     private const string IncorrectValue = "Incorrect value";
-    private readonly GroupDestination _groupDestination;
+    private readonly MessengerDestination _messengerDestination;
 
-    public ProxyGroupDestination(GroupDestination groupDestination)
+    public ProxyMessengerDestination(MessengerDestination messengerDestination)
     {
-        _groupDestination = groupDestination;
+        _messengerDestination = messengerDestination;
     }
 
     public void Logging(string action, IMessage message)
@@ -25,7 +26,7 @@ public class ProxyGroupDestination : ISender
 
     public void SendMessage(IMessage message)
     {
-        Logging(nameof(GroupDestination), message);
-        _groupDestination.SendMessage(message);
+        Logging(nameof(MessengerDestination), message);
+        _messengerDestination.SendMessage(message);
     }
 }

@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 public interface IMessage
  {

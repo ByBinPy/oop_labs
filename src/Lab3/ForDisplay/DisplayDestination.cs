@@ -1,8 +1,10 @@
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
+
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForDisplay;
 
 public class DisplayDestination : ISender
 {
-    private Display _display;
+    private readonly Display _display;
 
     public DisplayDestination(Display display)
     {

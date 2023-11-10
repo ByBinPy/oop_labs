@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessenger;
 
 public class Messenger
 {
