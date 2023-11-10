@@ -1,8 +1,8 @@
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class MessengerDestination : IDestination
+public class MessengerDestination : ISender
 {
-    private Messenger _messenger;
+    private readonly Messenger _messenger;
 
     public MessengerDestination(Messenger messenger)
     {
@@ -11,7 +11,6 @@ public class MessengerDestination : IDestination
 
     public void SendMessage(IMessage message)
     {
-        if (message != null)
-            _messenger.AcceptMessage(message);
+        _messenger.AcceptMessage(message);
     }
 }

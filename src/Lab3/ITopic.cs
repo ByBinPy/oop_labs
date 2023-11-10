@@ -1,8 +1,8 @@
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public interface ITopic
+public interface ITopic : ISender
 {
     string Name { get; }
-    IDestination Destination { get; }
+    ISender Destination { get; }
     IMessage Message { get; }
 }

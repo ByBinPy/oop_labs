@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class DisplayDestination : IDestination
+public class DisplayDestination : ISender
 {
     private Display _display;
 
@@ -11,7 +11,6 @@ public class DisplayDestination : IDestination
 
     public void SendMessage(IMessage message)
     {
-        if (message != null)
-            _display.WriteMessage(message);
+        _display.WriteMessage(message);
     }
 }

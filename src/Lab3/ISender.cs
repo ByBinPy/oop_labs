@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public interface IDestination
+public interface ISender
 {
     void SendMessage(IMessage message);
 }

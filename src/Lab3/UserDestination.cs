@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class UserDestination : IDestination
+public class UserDestination : ISender
 {
     public UserDestination(User user)
     {

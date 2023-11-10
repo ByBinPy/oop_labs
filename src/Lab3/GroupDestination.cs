@@ -2,20 +2,20 @@ using System.Collections.Generic;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class GroupDestination : IDestination
+public class GroupDestination : ISender
 {
-    private readonly List<IDestination> _destinations;
+    private readonly List<ISender> _destinations;
 
-    public GroupDestination(IEnumerable<IDestination> destinations)
+    public GroupDestination(IEnumerable<ISender> destinations)
     {
-        _destinations = new List<IDestination>(destinations);
+        _destinations = new List<ISender>(destinations);
     }
 
     public void SendMessage(IMessage message)
     {
         if (message == null)
             return;
-        foreach (IDestination destination in _destinations)
+        foreach (ISender destination in _destinations)
         {
             if (destination is UserDestination)
             {

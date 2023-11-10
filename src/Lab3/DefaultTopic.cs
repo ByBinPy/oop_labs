@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class DefaultTopic : ITopic
 {
-    public DefaultTopic(string name, IDestination destination, IMessage message)
+    public DefaultTopic(string name, ISender destination, IMessage message)
     {
         Name = name;
         Destination = destination;
@@ -12,6 +12,10 @@ public class DefaultTopic : ITopic
     }
 
     public string Name { get; }
-    public IDestination Destination { get; }
+    public ISender Destination { get; }
     public IMessage Message { get; }
+    public void SendMessage(IMessage message)
+    {
+        Destination.SendMessage(message);
+    }
 }
