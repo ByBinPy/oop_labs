@@ -4,5 +4,5 @@ public interface IMessage
  {
      string Head { get; }
      string Body { get; }
-     int Priority { get; }
+     uint Priority { get; }
  }

@@ -9,7 +9,7 @@ public class DefaultMessage : IMessage
         Priority = 0;
     }
 
-    public DefaultMessage(string head, string body, int priority)
+    public DefaultMessage(string head, string body, uint priority)
     {
         Head = head;
         Body = body;
@@ -18,5 +18,5 @@ public class DefaultMessage : IMessage
 
     public string Head { get; }
     public string Body { get; }
-    public int Priority { get; }
+    public uint Priority { get; }
 }

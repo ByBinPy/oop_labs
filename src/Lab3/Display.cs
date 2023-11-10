@@ -5,7 +5,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class Display
 {
-    public Display(DefaultMessage message/*, Color color*/)
+    public Display(IMessage message/*, Color color*/)
     {
         Message = message;
         /*Color = color;*/
@@ -15,8 +15,8 @@ public class Display
     public static string FilePath { get; } = @"C:\LabaFile\Display\LabaFile";
     public Driver DisplayDriver { get; } = new Driver();
     /*public Color Color { get; }*/
-    private DefaultMessage Message { get; set; }
-    public bool WriteMessage(DefaultMessage message)
+    private IMessage Message { get; set; }
+    public bool WriteMessage(IMessage message)
     {
         if (message is
             {

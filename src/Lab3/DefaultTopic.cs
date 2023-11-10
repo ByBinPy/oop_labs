@@ -1,12 +1,14 @@
+using System;
+
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class DefaultTopic : ITopic
 {
-    public DefaultTopic(string name, IDestination destination, DefaultMessage message)
+    public DefaultTopic(string name, IDestination destination, IMessage message)
     {
         Name = name;
         Destination = destination;
-        Message = message;
+        Message = message ?? throw new ArgumentNullException(nameof(message));
     }
 
     public string Name { get; }

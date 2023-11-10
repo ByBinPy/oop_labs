@@ -6,17 +6,22 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 public class Messenger
 {
     private const string Title = "Messanger";
-    private readonly List<DefaultMessage> _messages = new List<DefaultMessage>();
+    private readonly List<IMessage> _messages = new List<IMessage>();
 
-    public void AddMessage(DefaultMessage message)
+    public void AcceptMessage(IMessage message)
     {
-        _messages.Add(message);
+        if (message is
+            {
+                Head: not null,
+                Body: not null
+            })
+            _messages.Add(message);
     }
 
     public void ShowMessages()
     {
         Console.WriteLine(Title);
-        foreach (DefaultMessage i in _messages)
+        foreach (IMessage i in _messages)
             Console.WriteLine(i.Head + "\n" + i.Body + "\n");
     }
 }

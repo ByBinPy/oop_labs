@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class UserMessage : IMessage
 {
-    public UserMessage(DefaultMessage message)
+    public UserMessage(IMessage message)
     {
         if (message == null) throw new ArgumentNullException(nameof(message));
         Head = message.Head;
@@ -14,7 +14,17 @@ public class UserMessage : IMessage
     }
 
     public string Head { get; }
+
     public string Body { get; }
-    public int Priority { get; }
+
+    public uint Priority { get; }
+
     public bool Status { get; private set; }
+
+    public void ChangeStatus()
+    {
+        if (Status) throw new ArgumentException("Not valid change <status message is already viewed>");
+
+        Status = true;
+    }
 }
