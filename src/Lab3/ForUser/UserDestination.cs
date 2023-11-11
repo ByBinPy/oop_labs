@@ -5,15 +5,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 
 public class UserDestination : IDestination
 {
+    private readonly User _user;
     public UserDestination(User user)
     {
-        User = user;
+        _user = user;
     }
-
-    public User User { get; }
 
     public void SendMessage(IMessage message)
     {
-        User.AcceptMessage(message);
+        _user.AcceptMessage(message);
     }
 }

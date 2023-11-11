@@ -12,11 +12,11 @@ public static class Tests
     [Fact]
     public static void TrySimpleSendMessage()
     {
-        var user = new User(1, 10);
+        var user = new User(10);
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new UserDestination(user))
+            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user))))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -26,11 +26,11 @@ public static class Tests
     [Fact]
     public static void TryChangeStatusNotViewedMessage()
     {
-        var user = new User(1, 10);
+        var user = new User(10);
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new UserDestination(user))
+            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user))))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -41,11 +41,11 @@ public static class Tests
     [Fact]
     public static void TryChangeStatusViewedMessage()
     {
-        var user = new User(1, 10);
+        var user = new User(10);
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new UserDestination(user))
+            .WithDestination(new DestinationFilter(12, new DestinationLogging(new UserDestination(user))))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -57,11 +57,11 @@ public static class Tests
     public static void TrySendMessageToUserWithInappropriateStatus()
     {
         IMessage defaultMessage = new DefaultMessage("Head", "Bla-Bla-Bla", 10);
-        UserDestination? moq = Substitute.For<UserDestination>(new User(1, 9));
+        UserDestination? moq = Substitute.For<UserDestination>(new User(1));
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("Name")
             .WithMessage(defaultMessage)
-            .WithDestination(new ProxyUserDestination(moq))
+            .WithDestination(new DestinationFilter(10, new DestinationLogging(moq)))
             .Build();
         topic.SendMessage();
         Assert.DoesNotContain(moq.ReceivedCalls(), call => call.GetMethodInfo().Name == "SendMessage");
@@ -71,10 +71,10 @@ public static class Tests
     public static void TryLoggingWhenMessageWasSendToDestination()
     {
         IMessage defaultMessage = new DefaultMessage("Head", "Bla-Bla-Bla", 11);
-        var userDestination = new UserDestination(new User(1, 9));
+        var userDestination = new UserDestination(new User(1));
         ILogger moq = Substitute.For<ILogger>();
-        var proxyUserDestination = new ProxyUserDestination(userDestination, moq);
-        proxyUserDestination.SendMessage(defaultMessage);
+        var destinationFilter = new DestinationFilter(11, new DestinationLogging(userDestination, moq));
+        destinationFilter.SendMessage(defaultMessage);
         IEnumerable enumerable = moq.ReceivedCalls();
         Assert.Single(moq.ReceivedCalls().Where(call => call.GetMethodInfo().Name == "Logging"));
     }
@@ -84,8 +84,8 @@ public static class Tests
     {
         IMessage defaultMessage = new DefaultMessage("Head", "Bla-Bla-Bla", 11);
         IMessenger moq = Substitute.For<IMessenger>();
-        var proxyMessangerDestination = new ProxyMessengerDestination(new MessengerDestination(moq));
-        proxyMessangerDestination.SendMessage(defaultMessage);
+        var destinationFilter = new DestinationFilter(11, new DestinationLogging(new MessengerDestination(moq)));
+        destinationFilter.SendMessage(defaultMessage);
         IEnumerable enumerable = moq.ReceivedCalls();
         Assert.Single(moq.ReceivedCalls().Where(call => call.GetMethodInfo().Name == "AcceptMessage"));
     }

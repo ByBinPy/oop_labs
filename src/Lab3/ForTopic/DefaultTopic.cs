@@ -14,8 +14,8 @@ public class DefaultTopic
 
     public static DefaultTopicBuilder Builder => new DefaultTopicBuilder();
     public string Name { get; }
-    public IDestination Destination { get; private set; }
-    public IMessage Message { get; private set; }
+    public IDestination Destination { get; }
+    public IMessage Message { get; }
 
     public void SendMessage()
     {
@@ -25,7 +25,7 @@ public class DefaultTopic
     public class DefaultTopicBuilder
     {
         private string? _name;
-        private IDestination? _destination;
+        private DestinationFilter? _destination;
         private IMessage? _message;
         public DefaultTopicBuilder WithName(string name)
         {
@@ -33,7 +33,7 @@ public class DefaultTopic
             return this;
         }
 
-        public DefaultTopicBuilder WithDestination(IDestination destination)
+        public DefaultTopicBuilder WithDestination(DestinationFilter destination)
         {
             _destination = destination;
             return this;

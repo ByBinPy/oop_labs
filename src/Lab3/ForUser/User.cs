@@ -7,15 +7,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.ForUser;
 public class User
 {
     private readonly List<UserMessage> _userMessages;
-    public User(int id, int priority)
+    public User(int id)
     {
         Id = id;
-        Priority = priority;
         _userMessages = new List<UserMessage>();
     }
 
     public int Id { get; }
-    public int Priority { get; }
     public bool AcceptMessage(IMessage message)
     {
         if (message is
