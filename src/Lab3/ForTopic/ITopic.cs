@@ -2,9 +2,9 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForTopic;
 
-public interface ITopic : ISender
+public interface ITopic
 {
     string Name { get; }
-    ISender Destination { get; }
+    IDestination Destination { get; }
     IMessage Message { get; }
 }

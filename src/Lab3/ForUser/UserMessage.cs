@@ -22,10 +22,11 @@ public class UserMessage : IMessage
 
     public bool Status { get; private set; }
 
-    public void ChangeStatus()
+    public bool ChangeStatus()
     {
-        if (Status) throw new ArgumentException("Not valid change <status message is already viewed>");
+        if (Status) return false;
 
         Status = true;
+        return true;
     }
 }

@@ -3,26 +3,20 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForGroup;
 
-public class GroupDestination : ISender
+public class GroupDestination : IDestination
 {
-    private readonly List<ISender> _destinations;
-
-    public GroupDestination()
+    private readonly IList<IDestination> _destinations;
+    public GroupDestination(IEnumerable<IDestination> destinations)
     {
-        _destinations = new List<ISender>();
+        _destinations = new List<IDestination>(destinations);
     }
 
-    public GroupDestination(IEnumerable<ISender> destinations)
-    {
-        _destinations = new List<ISender>(destinations);
-    }
-
-    public void AddDestination(ISender destination)
+    public void AddDestination(IDestination destination)
     {
         _destinations.Add(destination);
     }
 
-    public void RemoveDestination(ISender destination)
+    public void RemoveDestination(IDestination destination)
     {
         _destinations.Remove(destination);
     }
@@ -31,7 +25,7 @@ public class GroupDestination : ISender
     {
         if (message == null)
             return;
-        foreach (ISender destination in _destinations)
+        foreach (IDestination destination in _destinations)
         {
             if (destination is UserDestination)
             {

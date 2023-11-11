@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3;
+namespace Itmo.ObjectOrientedProgramming.Lab3.ForUser;
 
 public class User
 {
@@ -31,6 +31,17 @@ public class User
         return false;
     }
 
+    public bool GetStatusMessage(string head)
+    {
+        foreach (UserMessage userMessage in _userMessages)
+        {
+            if (head == userMessage.Head)
+                return userMessage.Status;
+        }
+
+        return false;
+    }
+
     public void ShowMessages()
     {
         foreach (UserMessage message in _userMessages)
@@ -42,15 +53,16 @@ public class User
         }
     }
 
-    public void ChangeStatus(string head)
+    public bool ChangeStatus(string head)
     {
         foreach (UserMessage message in _userMessages)
         {
             if (message.Head == head)
             {
-                message.ChangeStatus();
-                return;
+               return message.ChangeStatus();
             }
         }
+
+        return false;
     }
 }

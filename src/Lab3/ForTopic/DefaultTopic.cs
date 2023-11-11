@@ -3,30 +3,29 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForTopic;
 
-public class DefaultTopic : ITopic
+public class DefaultTopic
 {
-    private DefaultTopic(string name, ISender destination, IMessage message)
+    private DefaultTopic(string name, IDestination destination, IMessage message)
     {
         Name = name;
         Destination = destination;
         Message = message ?? throw new ArgumentNullException(nameof(message));
     }
 
+    public static DefaultTopicBuilder Builder => new DefaultTopicBuilder();
     public string Name { get; }
-
-    public ISender Destination { get; private set; }
-
+    public IDestination Destination { get; private set; }
     public IMessage Message { get; private set; }
 
-    public void SendMessage(IMessage message)
+    public void SendMessage()
     {
-        Destination.SendMessage(message);
+        Destination.SendMessage(Message);
     }
 
     public class DefaultTopicBuilder
     {
         private string? _name;
-        private ISender? _destination;
+        private IDestination? _destination;
         private IMessage? _message;
         public DefaultTopicBuilder WithName(string name)
         {
@@ -34,7 +33,7 @@ public class DefaultTopic : ITopic
             return this;
         }
 
-        public DefaultTopicBuilder WithDestination(ISender destination)
+        public DefaultTopicBuilder WithDestination(IDestination destination)
         {
             _destination = destination;
             return this;
@@ -44,6 +43,14 @@ public class DefaultTopic : ITopic
         {
             _message = message;
             return this;
+        }
+
+        public DefaultTopic Build()
+        {
+            return new DefaultTopic(
+                _name ?? throw new ArgumentNullException(nameof(_name)),
+                _destination ?? throw new ArgumentNullException(nameof(_destination)),
+                _message ?? throw new ArgumentNullException(nameof(_message)));
         }
     }
 }

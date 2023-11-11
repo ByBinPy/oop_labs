@@ -3,32 +3,28 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class ProxyUserDestination : ISender
+public class ProxyUserDestination : IDestination
 {
-    private const string IncorrectValue = "Incorrect value";
     private readonly UserDestination _destination;
+    private readonly ILogger _logger;
 
     public ProxyUserDestination(UserDestination destination)
     {
+        _logger = new Logger();
         _destination = destination;
+    }
+
+    public ProxyUserDestination(UserDestination destination, ILogger logger)
+    {
+        _destination = destination;
+        _logger = logger;
     }
 
     public void SendMessage(IMessage message)
     {
-        Logging(message, nameof(message.Priority));
+        _logger.Logging(message, nameof(message.Priority));
         if (message == null) throw new ArgumentNullException(nameof(message));
         if (_destination.User.Priority < message.Priority)
             _destination.SendMessage(message);
-    }
-
-    private static void Logging(IMessage message, string action)
-    {
-        if (message is
-            {
-                Head: not null,
-                Body: not null,
-            })
-            Console.WriteLine(nameof(UserDestination) + " " + action);
-        Console.WriteLine(nameof(UserDestination) + " " + action + " " + IncorrectValue + " " + nameof(Nullable));
     }
 }

@@ -3,17 +3,25 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessenger;
 
-public class ProxyMessengerDestination : ISender
+public class ProxyMessengerDestination : IDestination
 {
     private const string IncorrectValue = "Incorrect value";
     private readonly MessengerDestination _messengerDestination;
+    private readonly ILogger _logger;
 
-    public ProxyMessengerDestination(MessengerDestination messengerDestination)
+    public ProxyMessengerDestination(MessengerDestination destination)
     {
-        _messengerDestination = messengerDestination;
+        _logger = new Logger();
+        _messengerDestination = destination;
     }
 
-    public void Logging(string action, IMessage message)
+    public ProxyMessengerDestination(MessengerDestination destination, ILogger logger)
+    {
+        _messengerDestination = destination;
+        _logger = logger;
+    }
+
+    public void Logging(IMessage message, string action)
     {
         if (message is
             {
@@ -26,7 +34,7 @@ public class ProxyMessengerDestination : ISender
 
     public void SendMessage(IMessage message)
     {
-        Logging(nameof(MessengerDestination), message);
+        Logging(message, nameof(MessengerDestination));
         _messengerDestination.SendMessage(message);
     }
 }

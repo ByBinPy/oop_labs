@@ -4,7 +4,7 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForMessenger;
 
-public class Messenger
+public class Messenger : IMessenger
 {
     private const string Title = "Messanger";
     private readonly List<IMessage> _messages = new List<IMessage>();

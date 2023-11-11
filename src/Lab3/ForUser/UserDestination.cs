@@ -1,8 +1,9 @@
 using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
+using Itmo.ObjectOrientedProgramming.Lab3.ForUser;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3;
 
-public class UserDestination : ISender
+public class UserDestination : IDestination
 {
     public UserDestination(User user)
     {

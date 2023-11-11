@@ -3,22 +3,31 @@ using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.ForDisplay;
 
-public class ProxyDisplayDestination : ISender
+public class ProxyDisplayDestination : IDestination
 {
     private const string IncorrectValue = "Incorrect value";
     private readonly DisplayDestination _displayDestination;
-    public ProxyDisplayDestination(DisplayDestination displayDestination)
+    private readonly ILogger _logger;
+
+    public ProxyDisplayDestination(DisplayDestination destination)
     {
-        _displayDestination = displayDestination;
+        _logger = new Logger();
+        _displayDestination = destination;
+    }
+
+    public ProxyDisplayDestination(DisplayDestination destination, ILogger logger)
+    {
+        _displayDestination = destination;
+        _logger = logger;
     }
 
     public void SendMessage(IMessage message)
     {
-        Logging(nameof(SendMessage), message);
+        Logging(message, nameof(SendMessage));
         _displayDestination.SendMessage(message);
     }
 
-    private void Logging(string action, IMessage message)
+    public void Logging(IMessage message, string action)
     {
         if (message is
             {
