@@ -11,7 +11,6 @@ public class DisplayDestination : IDestination
         _display = display;
     }
 
-    public Display Display => _display;
     public void SendMessage(IMessage message)
     {
         _display.WriteMessage(message);

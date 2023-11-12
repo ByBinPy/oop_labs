@@ -1,4 +1,3 @@
-using System;
 using Itmo.ObjectOrientedProgramming.Lab3.ForMessage;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3;
@@ -7,7 +6,6 @@ public class UserMessage : IMessage
 {
     public UserMessage(IMessage message)
     {
-        if (message == null) throw new ArgumentNullException(nameof(message));
         Head = message.Head;
         Body = message.Body;
         Priority = message.Priority;
