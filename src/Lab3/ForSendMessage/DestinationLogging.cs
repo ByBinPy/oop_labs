@@ -5,13 +5,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 public class DestinationLogging : IDestination
 {
     private readonly IDestination _destination;
-    private readonly ILogger _logger = new Logger();
-
-    public DestinationLogging(IDestination destination)
-    {
-        _destination = destination;
-    }
-
+    private readonly ILogger _logger;
     public DestinationLogging(IDestination destination, ILogger logger)
     {
         _destination = destination;

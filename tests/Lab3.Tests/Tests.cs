@@ -16,7 +16,7 @@ public static class Tests
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user))))
+            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user), new Logger())))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -30,7 +30,7 @@ public static class Tests
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user))))
+            .WithDestination(new DestinationFilter(11, new DestinationLogging(new UserDestination(user), new Logger())))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -45,7 +45,7 @@ public static class Tests
         var message = new DefaultMessage("First message", "Bla-Bla-Bla...", 11);
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("simple")
-            .WithDestination(new DestinationFilter(12, new DestinationLogging(new UserDestination(user))))
+            .WithDestination(new DestinationFilter(12, new DestinationLogging(new UserDestination(user), new Logger())))
             .WithMessage(message)
             .Build();
         topic.SendMessage();
@@ -61,7 +61,7 @@ public static class Tests
         DefaultTopic topic = DefaultTopic.Builder
             .WithName("Name")
             .WithMessage(defaultMessage)
-            .WithDestination(new DestinationFilter(10, new DestinationLogging(moq)))
+            .WithDestination(new DestinationFilter(10, new DestinationLogging(moq, new Logger())))
             .Build();
         topic.SendMessage();
         Assert.DoesNotContain(moq.ReceivedCalls(), call => call.GetMethodInfo().Name == "SendMessage");
@@ -84,7 +84,7 @@ public static class Tests
     {
         IMessage defaultMessage = new DefaultMessage("Head", "Bla-Bla-Bla", 11);
         IMessenger moq = Substitute.For<IMessenger>();
-        var destinationFilter = new DestinationFilter(11, new DestinationLogging(new MessengerDestination(moq)));
+        var destinationFilter = new DestinationFilter(11, new DestinationLogging(new MessengerDestination(moq), new Logger()));
         destinationFilter.SendMessage(defaultMessage);
         IEnumerable enumerable = moq.ReceivedCalls();
         Assert.Single(moq.ReceivedCalls().Where(call => call.GetMethodInfo().Name == "AcceptMessage"));
