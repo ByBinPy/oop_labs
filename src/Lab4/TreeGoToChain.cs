@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4;
 
-public class TreeGoToChane : BaseChain
+public class TreeGoToChain : BaseChain
 {
     public override void Handle(Context context)
     {

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4;
 
-public class ConnectChane : BaseChain
+public class ConnectChain : BaseChain
 {
     public override void Handle(Context context)
     {
