@@ -34,4 +34,32 @@ public class Parser
     {
         _connectChain.Handle(context);
     }
+
+    public void Deconstruct(
+        out ConnectChain connectChain,
+        out ModeConnectFlagChain modeConnectFlagChain,
+        out DisconnectChain disconnectChain,
+        out TreeGoToChain treeGoToChain,
+        out TreeListChain treeListChain,
+        out DepthFlagChain depthFlagChain,
+        out FileShowChain fileShowChain,
+        out ModeShowFlagChain modeShowFlagChain,
+        out FileMoveChain fileMoveChain,
+        out FileCopyChain fileCopyChain,
+        out FileDeleteChain fileDeleteChain,
+        out FileRenameChain fileRenameChain)
+    {
+        connectChain = _connectChain;
+        modeConnectFlagChain = _modeConnectFlagChain;
+        disconnectChain = _disconnectChain;
+        treeGoToChain = _treeGoToChain;
+        treeListChain = _treeListChain;
+        depthFlagChain = _depthFlagChain;
+        fileShowChain = _fileShowChain;
+        modeShowFlagChain = _modeShowFlagChain;
+        fileMoveChain = _fileMoveChain;
+        fileCopyChain = _fileCopyChain;
+        fileDeleteChain = _fileDeleteChain;
+        fileRenameChain = _fileRenameChain;
+    }
 }

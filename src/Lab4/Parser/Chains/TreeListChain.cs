@@ -9,7 +9,7 @@ public class TreeListChain : BaseChain
     {
         if (context.Command.Contains("tree") && context.Command.Contains("list"))
         {
-            PullFiles.ShowEntries(FileSystem.Path + NavigationStackTree.TopDirectory()?.Path ?? string.Empty);
+            PullFiles.ShowEntries(FileSystem.Path + (NavigationStackTree.TopDirectory()?.Path ?? string.Empty));
         }
 
         Next?.Handle(context);

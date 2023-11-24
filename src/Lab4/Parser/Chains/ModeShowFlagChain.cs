@@ -11,9 +11,13 @@ public class ModeShowFlagChain : BaseChain
     {
         if (context.Command.Contains("file") && context.Command.Contains("show"))
         {
+            var dataShow = new DataShow();
             byte[] buffer = File.ReadAllBytes(FileSystem.Path + PathSelector.SelectPath(context.Command.ElementAt(2)));
             if (context.Command.Count() == 4)
-                Console.WriteLine($"Data from this file + \n + {Encoding.Default.GetString(buffer)}");
+            {
+                dataShow.DisplayWithMode(context.Command.ElementAt(4));
+                dataShow.Show($"Data from this file + \n + {Encoding.Default.GetString(buffer)}");
+            }
         }
         else
         {
