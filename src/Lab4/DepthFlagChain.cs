@@ -8,9 +8,18 @@ public class DepthFlagChain : BaseChain
 {
     public override void Handle(Context context)
     {
-        if (context.Command.Contains("-d"))
+        if (context.Command.Contains("tree") && context.Command.Contains("list"))
         {
-            ShowWithDepth(NavigationStackTree.TopDirectory().Path, int.Parse(context.Command.ElementAt(3), CultureInfo.InvariantCulture));
+            if (context.Command.Contains("-d"))
+            {
+                ShowWithDepth(
+                    NavigationStackTree.TopDirectory().Path,
+                    int.Parse(context.Command.ElementAt(3), CultureInfo.InvariantCulture));
+            }
+        }
+        else
+        {
+            Next?.Handle(context);
         }
     }
 

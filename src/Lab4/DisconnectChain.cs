@@ -10,5 +10,9 @@ public class DisconnectChain : BaseChain
         {
             FileSystemPath.ChangeSystemPath(context.Command.ElementAt(0));
         }
+        else
+        {
+            Next?.Handle(context);
+        }
     }
 }

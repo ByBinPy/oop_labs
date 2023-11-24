@@ -10,7 +10,8 @@ public class TreeListChain : BaseChain
         if (context.Command.Contains("file") && context.Command.Contains("show"))
         {
             PullFiles.ShowFiles(NavigationStackTree.TopDirectory().Path);
-            Next?.Handle(context);
         }
+
+        Next?.Handle(context);
     }
 }
