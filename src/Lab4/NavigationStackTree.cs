@@ -14,5 +14,5 @@ public static class NavigationStackTree
 
     public static Directory PopDirectory() => Stack.Pop();
 
-    public static Directory TopDirectory() => Stack.Peek();
+    public static Directory? TopDirectory() => Stack.Count == 0 ? null : Stack.Peek();
 }

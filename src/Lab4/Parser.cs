@@ -18,13 +18,13 @@ public class Parser
     public Parser()
     {
         _connectChain.AddNext(_modeConnectFlagChain);
-        _modeConnectFlagChain.AddNext(_modeConnectFlagChain);
+        _modeConnectFlagChain.AddNext(_disconnectChain);
         _disconnectChain.AddNext(_treeGoToChain);
         _treeGoToChain.AddNext(_treeListChain);
         _treeListChain.AddNext(_depthFlagChain);
         _depthFlagChain.AddNext(_fileShowChain);
         _fileShowChain.AddNext(_modeShowFlagChain);
-        _modeConnectFlagChain.AddNext(_fileMoveChain);
+        _modeShowFlagChain.AddNext(_fileMoveChain);
         _fileMoveChain.AddNext(_fileCopyChain);
         _fileCopyChain.AddNext(_fileDeleteChain);
         _fileRenameChain.AddNext(_fileRenameChain);

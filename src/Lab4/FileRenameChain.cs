@@ -9,9 +9,9 @@ public class FileRenameChain : BaseChain
     {
         if (context.Command.Contains("file") && context.Command.Contains("rename") && context.Command.Count() == 4)
         {
-            var file = new FileInfo(FileSystemPath.SystemPath + PathSelector.SelectPath(context.Command.ElementAt(2)));
+            var file = new FileInfo(FileSystem.Path + PathSelector.SelectPath(context.Command.ElementAt(2)));
             if (file.Exists)
-                File.Move(file.Directory + file.Name, file.Directory + context.Command.ElementAt(3));
+                File.Move(file.FullName ?? string.Empty, file.FullName?[..^file.Name.Length] + context.Command.ElementAt(3) ?? string.Empty);
         }
 
         Next?.Handle(context);

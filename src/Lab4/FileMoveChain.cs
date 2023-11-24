@@ -9,10 +9,10 @@ public class FileMoveChain : BaseChain
     {
         if (context.Command.Contains("file") && context.Command.Contains("move") && context.Command.Count() == 4)
         {
-            var file = new FileInfo(FileSystemPath.SystemPath + PathSelector.SelectPath(context.Command.ElementAt(2)));
+            var file = new FileInfo(FileSystem.Path + PathSelector.SelectPath(context.Command.ElementAt(2)));
             if (file.Exists)
             {
-                file.MoveTo(FileSystemPath.SystemPath + PathSelector.SelectPath(context.Command.ElementAt(3)));
+                file.MoveTo(FileSystem.Path + PathSelector.SelectPath(context.Command.ElementAt(3)));
             }
         }
 

@@ -8,7 +8,7 @@ public class ConnectChain : BaseChain
     public override void Handle(Context context)
     {
         if (context.Command.Contains("connect"))
-            FileSystemPath.ChangeSystemPath(context.Command.ElementAt(1));
+            FileSystem.ChangePath(context.Command.ElementAt(1));
 
         Next?.Handle(context);
     }

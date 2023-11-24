@@ -8,7 +8,7 @@ public class DisconnectChain : BaseChain
     {
         if (context.Command.Contains("disconnect"))
         {
-            FileSystemPath.ChangeSystemPath(context.Command.ElementAt(0));
+            FileSystem.ChangePath(context.Command.ElementAt(0));
         }
         else
         {

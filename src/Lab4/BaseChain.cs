@@ -2,7 +2,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab4;
 
 public abstract class BaseChain : IChane
 {
-    protected IChane? Next { get; set; }
+    protected IChane? Next { get; private set; }
 
     public IChane AddNext(IChane link)
     {

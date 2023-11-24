@@ -7,9 +7,9 @@ public class TreeListChain : BaseChain
 {
     public override void Handle(Context context)
     {
-        if (context.Command.Contains("file") && context.Command.Contains("show"))
+        if (context.Command.Contains("tree") && context.Command.Contains("list"))
         {
-            PullFiles.ShowFiles(NavigationStackTree.TopDirectory().Path);
+            PullFiles.ShowEntries(FileSystem.Path + NavigationStackTree.TopDirectory()?.Path ?? string.Empty);
         }
 
         Next?.Handle(context);

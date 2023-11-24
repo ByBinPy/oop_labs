@@ -13,7 +13,7 @@ public class DepthFlagChain : BaseChain
             if (context.Command.Contains("-d"))
             {
                 ShowWithDepth(
-                    NavigationStackTree.TopDirectory().Path,
+                    FileSystem.Path + NavigationStackTree.TopDirectory()?.Path ?? string.Empty,
                     int.Parse(context.Command.ElementAt(3), CultureInfo.InvariantCulture));
             }
         }
@@ -23,14 +23,14 @@ public class DepthFlagChain : BaseChain
         }
     }
 
-    private static void ShowWithDepth(string directoryPath, int depth)
+    private static void ShowWithDepth(string subPath, int depth, int index = 1)
     {
-        if (depth > 1)
+        if (index < depth)
         {
-            foreach (string i in System.IO.Directory.GetDirectories(FileSystemPath.SystemPath + directoryPath))
+            foreach (string i in System.IO.Directory.GetDirectories(subPath))
             {
-                ShowWithDepth(i, depth - 1);
-                PullFiles.ShowFiles(directoryPath);
+                PullFiles.ShowEntries(i, index + 1);
+                ShowWithDepth(i, depth, index + 1);
             }
         }
     }
