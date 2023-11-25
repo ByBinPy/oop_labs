@@ -1,3 +1,4 @@
+using Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Tests;

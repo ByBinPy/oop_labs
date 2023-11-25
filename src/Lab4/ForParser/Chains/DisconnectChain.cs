@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace Itmo.ObjectOrientedProgramming.Lab4;
+namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class DisconnectChain : BaseChain
 {

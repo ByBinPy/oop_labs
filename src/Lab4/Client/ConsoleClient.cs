@@ -1,5 +1,7 @@
 using System;
-namespace Itmo.ObjectOrientedProgramming.Lab4;
+using Itmo.ObjectOrientedProgramming.Lab4.ForParser;
+
+namespace Itmo.ObjectOrientedProgramming.Lab4.Client;
 
 public static class ConsoleClient
 {

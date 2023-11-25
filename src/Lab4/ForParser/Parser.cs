@@ -1,4 +1,6 @@
-namespace Itmo.ObjectOrientedProgramming.Lab4;
+using Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
+
+namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 
 public class Parser
 {

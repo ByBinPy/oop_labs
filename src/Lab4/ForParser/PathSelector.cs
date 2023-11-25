@@ -1,6 +1,6 @@
 using System;
 
-namespace Itmo.ObjectOrientedProgramming.Lab4;
+namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 
 public static class PathSelector
 {

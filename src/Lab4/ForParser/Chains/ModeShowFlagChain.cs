@@ -1,9 +1,8 @@
-using System;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Itmo.ObjectOrientedProgramming.Lab4;
+namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class ModeShowFlagChain : BaseChain
 {
