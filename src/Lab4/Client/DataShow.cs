@@ -1,6 +1,8 @@
+using Itmo.ObjectOrientedProgramming.Lab4.Client;
+
 namespace Itmo.ObjectOrientedProgramming.Lab4;
 
-public class DataShow
+public class DataShow : IDataShow
 {
     private IDataDisplay _dataDisplay = new DisplayOnConsole();
 
