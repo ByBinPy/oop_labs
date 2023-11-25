@@ -14,19 +14,9 @@ public class User
     }
 
     public int Id { get; }
-    public bool AcceptMessage(IMessage message)
+    public void AcceptMessage(IMessage message)
     {
-        if (message is
-            {
-                Body: not null,
-                Head: not null,
-            })
-        {
-            _userMessages.Add(new UserMessage(message));
-            return true;
-        }
-
-        return false;
+        _userMessages.Add(new UserMessage(message));
     }
 
     public bool GetStatusMessage(string head)

@@ -11,12 +11,7 @@ public class Messenger : IMessenger
 
     public void AcceptMessage(IMessage message)
     {
-        if (message is
-            {
-                Head: not null,
-                Body: not null
-            })
-            _messages.Add(message);
+        _messages.Add(message);
     }
 
     public void ShowMessages()

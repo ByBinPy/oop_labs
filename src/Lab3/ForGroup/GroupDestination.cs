@@ -5,18 +5,18 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.ForGroup;
 
 public class GroupDestination : IDestination
 {
-    private readonly IList<DestinationFilter> _destinations;
-    public GroupDestination(IEnumerable<DestinationFilter> destinations)
+    private readonly IList<IDestination> _destinations;
+    public GroupDestination(IEnumerable<IDestination> destinations)
     {
-        _destinations = new List<DestinationFilter>(destinations);
+        _destinations = new List<IDestination>(destinations);
     }
 
-    public void AddDestination(DestinationFilter destination)
+    public void AddDestination(IDestination destination)
     {
         _destinations.Add(destination);
     }
 
-    public void RemoveDestination(DestinationFilter destination)
+    public void RemoveDestination(IDestination destination)
     {
         _destinations.Remove(destination);
     }
