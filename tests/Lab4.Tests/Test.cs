@@ -30,13 +30,18 @@ public static class Test
     [Fact]
     public static void Test3()
     {
-        string request1 = @"connect C:\";
-        string request2 = @"file show -m console";
+        while (NavigationStackTree.TopDirectory() != null)
+        {
+            NavigationStackTree.PopDirectory();
+        }
+
+        string request1 = @"connect C:\Users\User\RiderProjects\ByBinPy\testfilesystem -m local";
+        string request2 = @"tree list";
         IDataShow mok = Substitute.For<IDataShow>();
         var parser = new Parser();
         PullFiles.SetDataShow(mok);
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
-        int i = mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "Show");
+        Assert.Equal(3, mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "Show"));
     }
 }

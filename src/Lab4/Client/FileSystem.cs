@@ -14,7 +14,7 @@ public static class FileSystem
 
     public static void ChangeMode(string systemMode)
     {
-        if (systemMode != Path)
-            Path = systemMode;
+        if (systemMode != Mode)
+            Mode = systemMode;
     }
 }
