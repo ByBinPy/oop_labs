@@ -16,7 +16,7 @@ public class ConnectChain : BaseChain
         }
         else
         {
-            throw new ConnectException(nameof(ConnectChain));
+            throw new ConnectException(nameof(ConnectChain) + FileSystem.Path);
         }
     }
 
