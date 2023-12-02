@@ -11,7 +11,7 @@ public static class Test
     public static void Test1()
     {
         string request = "connect C:\\ -m local";
-        var parser = new Parser();
+        var parser = new Parser(new Invoker());
         parser.Parse(new Context(request.Split(" ")));
         Assert.Equal("C:\\", FileSystem.Path);
     }
@@ -21,7 +21,7 @@ public static class Test
     {
         string request1 = @"connect C:\Users\User\RiderProjects\ByBinPy -m local";
         string request2 = @"tree goto \testfilesystem";
-        var parser = new Parser();
+        var parser = new Parser(new Invoker());
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
         Assert.Equal(@"\testfilesystem", NavigationStackTree.TopDirectory()?.Path);
@@ -38,7 +38,7 @@ public static class Test
         string request1 = @"connect C:\Users\User\RiderProjects\ByBinPy\testfilesystem -m local";
         string request2 = @"tree list";
         IDataShow mok = Substitute.For<IDataShow>();
-        var parser = new Parser();
+        var parser = new Parser(new Invoker());
         PullFiles.SetDataShow(mok);
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));

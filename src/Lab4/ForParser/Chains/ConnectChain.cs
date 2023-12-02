@@ -4,11 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class ConnectChain : BaseChain
 {
-    public override void Handle(Context context)
+    public override void Handle(Context context, Invoker invoker)
     {
         if (context.Command.Contains("connect"))
-            FileSystem.ChangePath(context.Command.ElementAt(1));
+            invoker.SetCommand(new ConnectFileSystemCommand(context));
 
-        Next?.Handle(context);
+        Next?.Handle(context, invoker);
     }
+
+    // edit
 }

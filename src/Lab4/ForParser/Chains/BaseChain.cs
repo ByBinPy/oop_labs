@@ -9,5 +9,5 @@ public abstract class BaseChain : IChane
         return Next == null ? Next = link : Next.AddNext(link);
     }
 
-    public abstract void Handle(Context context);
+    public abstract void Handle(Context context, Invoker invoker);
 }

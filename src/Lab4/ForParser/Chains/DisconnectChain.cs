@@ -4,15 +4,15 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class DisconnectChain : BaseChain
 {
-    public override void Handle(Context context)
+    public override void Handle(Context context, Invoker invoker)
     {
         if (context.Command.Contains("disconnect"))
         {
-            FileSystem.ChangePath(context.Command.ElementAt(0));
+            invoker.SetCommand(new DisconnectCommand());
         }
         else
         {
-            Next?.Handle(context);
+            Next?.Handle(context, invoker);
         }
     }
 }

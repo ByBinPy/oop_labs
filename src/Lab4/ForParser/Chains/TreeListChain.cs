@@ -4,13 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class TreeListChain : BaseChain
 {
-    public override void Handle(Context context)
+    public override void Handle(Context context, Invoker invoker)
     {
         if (context.Command.Contains("tree") && context.Command.Contains("list"))
         {
-            PullFiles.ShowEntries(FileSystem.Path + (NavigationStackTree.TopDirectory()?.Path ?? string.Empty));
+            invoker.SetCommand(new TreeListCommand());
         }
 
-        Next?.Handle(context);
+        Next?.Handle(context, invoker);
     }
 }

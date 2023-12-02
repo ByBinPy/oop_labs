@@ -4,15 +4,17 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class ModeConnectFlagChain : BaseChain
 {
-    public override void Handle(Context context)
+    public override void Handle(Context context, Invoker invoker)
     {
         if (context.Command.Contains("-m") && context.Command.Contains("connect"))
         {
-            FileSystem.ChangeMode(context.Command.ElementAt(3));
+            invoker.SetCommand(new ConnectModeCommand(context));
         }
         else if (!context.Command.Contains("connect"))
         {
-            Next?.Handle(context);
+            Next?.Handle(context, invoker);
         }
     }
+
+    // edit
 }

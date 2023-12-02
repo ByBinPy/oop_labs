@@ -4,6 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 
 public class Parser
 {
+    private readonly Invoker _invoker;
     private ConnectChain _connectChain = new ConnectChain();
     private ModeConnectFlagChain _modeConnectFlagChain = new ModeConnectFlagChain();
     private DisconnectChain _disconnectChain = new DisconnectChain();
@@ -17,8 +18,9 @@ public class Parser
     private FileDeleteChain _fileDeleteChain = new FileDeleteChain();
     private FileRenameChain _fileRenameChain = new FileRenameChain();
 
-    public Parser()
+    public Parser(Invoker invoker)
     {
+        _invoker = invoker;
         _connectChain.AddNext(_modeConnectFlagChain);
         _modeConnectFlagChain.AddNext(_disconnectChain);
         _disconnectChain.AddNext(_treeGoToChain);
@@ -32,36 +34,10 @@ public class Parser
         _fileRenameChain.AddNext(_fileRenameChain);
     }
 
+    public Invoker Invoker => _invoker;
+
     public void Parse(Context context)
     {
-        _connectChain.Handle(context);
-    }
-
-    public void Deconstruct(
-        out ConnectChain connectChain,
-        out ModeConnectFlagChain modeConnectFlagChain,
-        out DisconnectChain disconnectChain,
-        out TreeGoToChain treeGoToChain,
-        out TreeListChain treeListChain,
-        out DepthFlagChain depthFlagChain,
-        out FileShowChain fileShowChain,
-        out ModeShowFlagChain modeShowFlagChain,
-        out FileMoveChain fileMoveChain,
-        out FileCopyChain fileCopyChain,
-        out FileDeleteChain fileDeleteChain,
-        out FileRenameChain fileRenameChain)
-    {
-        connectChain = _connectChain;
-        modeConnectFlagChain = _modeConnectFlagChain;
-        disconnectChain = _disconnectChain;
-        treeGoToChain = _treeGoToChain;
-        treeListChain = _treeListChain;
-        depthFlagChain = _depthFlagChain;
-        fileShowChain = _fileShowChain;
-        modeShowFlagChain = _modeShowFlagChain;
-        fileMoveChain = _fileMoveChain;
-        fileCopyChain = _fileCopyChain;
-        fileDeleteChain = _fileDeleteChain;
-        fileRenameChain = _fileRenameChain;
+        _connectChain.Handle(context, _invoker);
     }
 }

@@ -4,15 +4,15 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class TreeGoToChain : BaseChain
 {
-    public override void Handle(Context context)
+    public override void Handle(Context context, Invoker invoker)
     {
         if (context.Command.Contains("tree") && context.Command.Contains("goto") && context.Command.Count() == 3)
         {
-            NavigationStackTree.PushDirectory(new Directory(PathSelector.SelectPath(context.Command.ElementAt(2))));
+            invoker.SetCommand(new TreeGoToCommand(context));
         }
         else
         {
-            Next?.Handle(context);
+            Next?.Handle(context, invoker);
         }
     }
 }
