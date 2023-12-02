@@ -5,7 +5,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser.Chains;
 
 public class DepthFlagChain : BaseChain
 {
-    public override void Handle(Context context, Invoker invoker)
+    public override void Handle(Context context, IInvoker invoker)
     {
         if (FileSystem.Path.Length == 0)
             throw new ConnectException(nameof(DepthFlagChain));

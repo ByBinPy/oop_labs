@@ -4,7 +4,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 
 public class Parser
 {
-    private readonly Invoker _invoker;
+    private readonly IInvoker _invoker;
     private ConnectChain _connectChain = new ConnectChain();
     private ModeConnectFlagChain _modeConnectFlagChain = new ModeConnectFlagChain();
     private DisconnectChain _disconnectChain = new DisconnectChain();
@@ -18,7 +18,7 @@ public class Parser
     private FileDeleteChain _fileDeleteChain = new FileDeleteChain();
     private FileRenameChain _fileRenameChain = new FileRenameChain();
 
-    public Parser(Invoker invoker)
+    public Parser(IInvoker invoker)
     {
         _invoker = invoker;
         _connectChain.AddNext(_modeConnectFlagChain);
@@ -34,7 +34,7 @@ public class Parser
         _fileRenameChain.AddNext(_fileRenameChain);
     }
 
-    public Invoker Invoker => _invoker;
+    public IInvoker Invoker => _invoker;
 
     public void Parse(Context context)
     {

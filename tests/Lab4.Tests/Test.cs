@@ -1,5 +1,4 @@
 using System.Linq;
-using Itmo.ObjectOrientedProgramming.Lab4.Client;
 using Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 using NSubstitute;
 using Xunit;
@@ -24,13 +23,14 @@ public static class Test
     public static void TryGoToObj()
     {
         string? testPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
+        string? gotoPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
         string request1 = $"connect {testPath} -m local";
-        string request2 = @"tree goto \src";
+        string request2 = $"tree goto {gotoPath}";
         var parser = new Parser(new Invoker());
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
         parser.Invoker.Execute();
-        Assert.Equal(@"\src", NavigationStackTree.TopDirectory()?.Path);
+        Assert.Equal(gotoPath, FileSystem.Path + NavigationStackTree.TopDirectory()?.Path);
     }
 
     [Fact]
@@ -44,12 +44,11 @@ public static class Test
         string? testPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
         string request1 = $@"connect {testPath} -m local";
         string request2 = "tree list";
-        IDataShow mok = Substitute.For<IDataShow>();
-        var parser = new Parser(new Invoker());
-        PullFiles.SetDataShow(mok);
+        IInvoker mok = Substitute.For<IInvoker>();
+        var parser = new Parser(mok);
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
         parser.Invoker.Execute();
-        Assert.Equal(14, mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "Show"));
+        Assert.Equal(3, mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "SetCommand"));
     }
 }

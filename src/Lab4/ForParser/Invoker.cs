@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab4.ForParser;
 
-public class Invoker
+public class Invoker : IInvoker
 {
     private ICommand? _command;
 
