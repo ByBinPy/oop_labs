@@ -10,24 +10,27 @@ public static class Test
     [Fact]
     public static void TryConnectToSrc()
     {
-        string testPath = System.IO.Path.GetFullPath("\\src");
+        string? testPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
+
+        // Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
         string request = $"connect {testPath} -m local";
         var parser = new Parser(new Invoker());
         parser.Parse(new Context(request.Split(" ")));
-        Assert.Equal("C:\\", FileSystem.Path);
+        parser.Invoker.Execute();
+        Assert.Equal(testPath, FileSystem.Path);
     }
 
     [Fact]
     public static void TryGoToObj()
     {
-        string testPath = System.IO.Path.GetFullPath(@"\src\Lab1");
+        string? testPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
         string request1 = $"connect {testPath} -m local";
-        string request2 = @"tree goto \obj";
+        string request2 = @"tree goto \src";
         var parser = new Parser(new Invoker());
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
         parser.Invoker.Execute();
-        Assert.Equal(@"\obj", NavigationStackTree.TopDirectory()?.Path);
+        Assert.Equal(@"\src", NavigationStackTree.TopDirectory()?.Path);
     }
 
     [Fact]
@@ -38,7 +41,7 @@ public static class Test
             NavigationStackTree.PopDirectory();
         }
 
-        string testPath = System.IO.Path.GetFullPath(@"\src\Lab1");
+        string? testPath = System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName ?? string.Empty)?.FullName;
         string request1 = $@"connect {testPath} -m local";
         string request2 = "tree list";
         IDataShow mok = Substitute.For<IDataShow>();
@@ -47,6 +50,6 @@ public static class Test
         parser.Parse(new Context(request1.Split(" ")));
         parser.Parse(new Context(request2.Split(" ")));
         parser.Invoker.Execute();
-        Assert.Equal(3, mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "Show"));
+        Assert.Equal(14, mok.ReceivedCalls().Count(call => call.GetMethodInfo().Name == "Show"));
     }
 }
