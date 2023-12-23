@@ -1,7 +1,9 @@
+using Port.Ports;
+
 namespace Application;
 
 public interface IInvoker
 {
-    void SetCommand(AdminLogin command);
+    void SetCommand(ICommand command);
     Task ExecuteAsync();
 }

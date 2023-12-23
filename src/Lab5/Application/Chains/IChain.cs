@@ -1,7 +1,6 @@
-using Application;
 using Port.Ports;
 
-namespace CLI.Chains;
+namespace Application.Chains;
 
 public interface IChain
 {

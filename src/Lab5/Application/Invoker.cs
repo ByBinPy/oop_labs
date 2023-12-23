@@ -11,7 +11,7 @@ public class Invoker : IInvoker
         _command = command;
     }
 
-    public void SetCommand(AdminLogin command)
+    public void SetCommand(ICommand command)
     {
         _command = command;
     }

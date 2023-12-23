@@ -2,7 +2,7 @@ using Application.Exceptions;
 using Models;
 using Port.Ports;
 
-namespace Application;
+namespace Application.Chains;
 
 public class UserShow : ICommand
 {
