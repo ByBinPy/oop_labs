@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Application.Exceptions;
+using Models;
 using Ports;
 
 namespace Application;
@@ -26,29 +27,29 @@ public class UserRefill : ICommand
             IBankAccount bankAccount = await _accountRepository.FindByAccountAsync(_account).ConfigureAwait(false);
             if (bankAccount.Pin != _pin)
             {
-                throw new NotImplementedException();
+                throw new WrongPasswordException();
             }
 
             if (bankAccount.Balance + _diffBalance < 0)
             {
-                throw new NotImplementedException();
+                throw new IncorrectAmount();
             }
 
             await _accountRepository.UpdateAsync(_account, _diffBalance).ConfigureAwait(false);
         }
         else
         {
-            throw new NotImplementedException();
+            throw new NullRepoException();
         }
 
         if (_operationRepository != null)
         {
-            await _operationRepository.AddAsync(new Operation(_account, DateTime.Now, TypeOperation.Refill))
+            await _operationRepository.AddAsync(new Operation(_account, TypeOperation.Refill))
                 .ConfigureAwait(false);
         }
         else
         {
-            throw new NotImplementedException();
+            throw new NullRepoException();
         }
     }
 }

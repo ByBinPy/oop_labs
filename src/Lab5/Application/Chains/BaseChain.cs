@@ -1,3 +1,5 @@
+#pragma warning disable CA1822
+using Application.Exceptions;
 using CLI.Chains;
 
 namespace CLI;
@@ -13,7 +15,7 @@ public abstract class BaseChain : IChain
 
     public void Handle(IInvoker invoker)
     {
-        throw new NotImplementedException();
+        throw new InvalidInputException();
     }
 
     public abstract void Handle(Context context, IInvoker invoker);

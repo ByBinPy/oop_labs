@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Models;
 using Ports;
 
@@ -26,7 +27,7 @@ public class AdminLogin : ICommand
             IAdmin result = await _adminRepository.GetByUsernameAsync(_username).ConfigureAwait(false);
             if (result.Password != _password)
             {
-                throw new NotImplementedException();
+                throw new WrongPasswordException();
             }
         }
     }

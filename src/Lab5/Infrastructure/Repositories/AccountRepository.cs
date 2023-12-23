@@ -9,40 +9,26 @@ namespace Infrastructure.Repositories;
 public class AccountRepository : IAccountRepository
 {
     private readonly IPostgresConnectionProvider _postgresConnectionProvider;
-    private readonly NpgsqlConnection _npgsqlConnection;
     public AccountRepository(IPostgresConnectionProvider postgresConnectionProvider)
     {
         _postgresConnectionProvider = postgresConnectionProvider;
-#pragma warning disable CA2012
-        _npgsqlConnection = postgresConnectionProvider.GetConnectionAsync(default).GetAwaiter().GetResult();
-#pragma warning restore CA2012
     }
 
     public async Task<IBankAccount> FindByAccountAsync(int accountNumber)
     {
         const string sql = """
                             select account_id, balance
-                            from bank_account
+                            from bank_accounts
                             where account_id = :accountNumber
                             """;
-
-        const string sqlLogging = """
-                                     insert into operations (operation_time,account_id,type_operation)
-                                     values (:time, :account, :type)
-                                  """;
-        using var command = new NpgsqlCommand(sql, _npgsqlConnection);
+        NpgsqlConnection npgsqlConnection =
+            await _postgresConnectionProvider.GetConnectionAsync(default).ConfigureAwait(false);
+        using var command = new NpgsqlCommand(sql, npgsqlConnection);
         command.AddParameter("accountNumber", accountNumber);
         using (NpgsqlDataReader reader = await command.ExecuteReaderAsync().ConfigureAwait(false))
         {
             if (!await reader.ReadAsync().ConfigureAwait(false)) return new BankAccount(-1, -1, -1);
 
-            using var commandLog = new NpgsqlCommand(sqlLogging, _npgsqlConnection);
-            await commandLog
-                .AddParameter("time", DateTime.Now)
-                .AddParameter("account", accountNumber)
-                .AddParameter("type", TypeOperation.Find)
-                .ExecuteNonQueryAsync()
-                .ConfigureAwait(false);
             return new BankAccount(accountNumber, reader.GetInt32(2), reader.GetInt32(3));
         }
     }
@@ -50,10 +36,12 @@ public class AccountRepository : IAccountRepository
     public async Task AddAsync(IBankAccount bankAccount)
     {
         const string sql = """
-                           insert into bank_account (bank_account, balance)
+                           insert into bank_accounts (bank_account, balance)
                            values (:account, :balance)
                            """;
-        using var command = new NpgsqlCommand(sql, _npgsqlConnection);
+        NpgsqlConnection npgsqlConnection =
+            await _postgresConnectionProvider.GetConnectionAsync(default).ConfigureAwait(false);
+        using var command = new NpgsqlCommand(sql, npgsqlConnection);
         command
             .AddParameter("account", bankAccount.Account)
             .AddParameter("balance", bankAccount.Balance);
@@ -64,16 +52,34 @@ public class AccountRepository : IAccountRepository
     public async Task UpdateAsync(int account, int diffBalance)
     {
         const string sql = """
-                           insert into bank_account (bank_account, balance)
-                           values (:account, :balance)
+                           update bank_accounts
+                           set balance = balance + :diffBalance
+                           where bank_account = :account
                            """;
 
-        using NpgsqlConnection connection = await _postgresConnectionProvider.GetConnectionAsync(default).ConfigureAwait(false);
-        using var command = new NpgsqlCommand(sql, connection);
+        NpgsqlConnection npgsqlConnection =
+            await _postgresConnectionProvider.GetConnectionAsync(default).ConfigureAwait(false);
+        using var command = new NpgsqlCommand(sql, npgsqlConnection);
+        command
+            .AddParameter("account", account)
+            .AddParameter("diffBalance", diffBalance);
+        await command.ExecuteNonQueryAsync()
+            .ConfigureAwait(false);
     }
 
     public async Task DeleteAsync(int account)
     {
-        await Task.Delay(100).ConfigureAwait(false);
+        const string sql = """
+                           delete from  bank_accounts
+                           where bank_account = :account
+                           """;
+
+        NpgsqlConnection npgsqlConnection =
+            await _postgresConnectionProvider.GetConnectionAsync(default).ConfigureAwait(false);
+        using var command = new NpgsqlCommand(sql, npgsqlConnection);
+        command
+            .AddParameter("account", account);
+        await command.ExecuteNonQueryAsync()
+            .ConfigureAwait(false);
     }
 }

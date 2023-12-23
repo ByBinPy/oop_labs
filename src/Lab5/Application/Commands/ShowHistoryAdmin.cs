@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Models;
 using Ports;
 
@@ -18,12 +19,11 @@ public class ShowHistoryAdmin : ICommand
     {
         if (_operationRepository != null)
         {
-            await _operationRepository.GetOperationHistoryByAccountAsync(_account).ConfigureAwait(false);
-            await _operationRepository.AddAsync(new Operation(_account, DateTime.Now, TypeOperation.History)).ConfigureAwait(false);
+            await _operationRepository.AddAsync(new Operation(_account, TypeOperation.History)).ConfigureAwait(false);
         }
         else
         {
-            throw new NotImplementedException();
+            throw new NullRepoException();
         }
     }
 }

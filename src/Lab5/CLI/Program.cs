@@ -29,7 +29,4 @@ using IServiceScope scope = provider.CreateScope();
 scope.UseInfrastructureDataAccess();
 IAccountRepository? accountRepository = provider.GetService<IAccountRepository>();
 await accountRepository.AddAsync(new BankAccount(100, 200, 123)).ConfigureAwait(false);
-await accountRepository.AddAsync(new BankAccount(100, 201, 122)).ConfigureAwait(false);
-await accountRepository.AddAsync(new BankAccount(100, 202, 123)).ConfigureAwait(false);
-await accountRepository.AddAsync(new BankAccount(100, 203, 123)).ConfigureAwait(false);
 Console.WriteLine((await accountRepository.FindByAccountAsync(201).ConfigureAwait(false)).Account);

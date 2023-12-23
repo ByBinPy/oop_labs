@@ -1,3 +1,4 @@
+using Application.Exceptions;
 using Models;
 using Ports;
 
@@ -27,19 +28,23 @@ public class UserShow : ICommand
             {
                 Console.WriteLine($"balance :={result.Balance}");
             }
+            else
+            {
+                throw new WrongPasswordException();
+            }
         }
         else
         {
-            throw new NotImplementedException();
+            throw new NullRepoException();
         }
 
         if (_operationRepository != null)
         {
-            await _operationRepository.AddAsync(new Operation(_account, DateTime.Now, TypeOperation.Find)).ConfigureAwait(false);
+            await _operationRepository.AddAsync(new Operation(_account, TypeOperation.Find)).ConfigureAwait(false);
         }
         else
         {
-            throw new NotImplementedException();
+            throw new NullRepoException();
         }
     }
 }

@@ -15,7 +15,7 @@ public class Migrations : SqlMigration
             'Find',
             'History'
             );
-            create table bank_account
+            create table bank_accounts
             (
                 account_id bigint primary key generated always as identity,
                 bank_account bigint,
@@ -24,14 +24,14 @@ public class Migrations : SqlMigration
             create table operations
             (
                 operation_id bigint primary key generated always as identity,
-                operation_time timestamp not null,
                 account_id bigint not null,
                 type_operation type_operation not null
             );
             create table admins
             (
                 admin_id bigint primary key generated always as identity,
-                username varchar(10)
+                username varchar(10),
+                password varchar(10)
             )
             """;
 
