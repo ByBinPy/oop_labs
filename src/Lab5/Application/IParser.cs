@@ -1,4 +1,4 @@
-namespace CLI;
+namespace Application;
 
 public interface IParser
 {

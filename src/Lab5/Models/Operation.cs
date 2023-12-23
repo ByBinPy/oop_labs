@@ -2,7 +2,7 @@ namespace Models;
 
 public class Operation : IOperation
 {
-    public Operation(IBankAccount bankAccount, DateTime timeOperation, TypeOperation typeOperation)
+    public Operation(int bankAccount, DateTime timeOperation, TypeOperation typeOperation)
     {
         BankAccount = bankAccount;
         TimeOperation = timeOperation;
@@ -10,6 +10,6 @@ public class Operation : IOperation
     }
 
     public DateTime TimeOperation { get; }
-    public IBankAccount BankAccount { get; }
+    public int BankAccount { get; }
     public TypeOperation TypeOperation { get; }
 }

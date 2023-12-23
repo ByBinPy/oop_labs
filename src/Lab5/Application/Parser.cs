@@ -1,4 +1,4 @@
-namespace CLI;
+namespace Application;
 
 public class Parser : IParser
 {

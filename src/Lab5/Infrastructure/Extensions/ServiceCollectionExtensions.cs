@@ -23,4 +23,11 @@ public static class ServiceCollectionExtensions
 
         return collection;
     }
+
+    public static IServiceCollection AddExtensions(this IServiceCollection collection)
+    {
+        collection.AddScoped<IAccountRepository, AccountRepository>();
+        collection.AddScoped<IOperationRepository, OperationRepository>();
+        return collection;
+    }
 }

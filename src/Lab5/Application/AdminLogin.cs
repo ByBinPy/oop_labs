@@ -5,8 +5,21 @@ namespace Application;
 
 public class AdminLogin : ICommand
 {
-    public async Task ExecuteAsync(Context context)
+    private readonly string _username;
+    private readonly string _password;
+    private readonly IOperationRepository _operationRepository;
+    private readonly IAccountRepository _accountRepository;
+
+    public AdminLogin(string username, string password, IOperationRepository operationRepository, IAccountRepository accountRepository)
     {
-        await Task.Delay(100).ConfigureAwait(false);
+        _username = username;
+        _password = password;
+        _operationRepository = operationRepository;
+        _accountRepository = accountRepository;
+    }
+
+    public async Task ExecuteAsync()
+    {
+        _
     }
 }

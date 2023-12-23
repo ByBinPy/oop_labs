@@ -10,8 +10,8 @@ public class OperationRepository : IOperationRepository
         await Task.Delay(100).ConfigureAwait(false);
     }
 
-    public async Task AddAsync(IOperation operation)
+    public Task AddAsync(IOperation operation)
     {
-        await Task.Delay(100).ConfigureAwait(false);
+        throw new NotImplementedException();
     }
 }

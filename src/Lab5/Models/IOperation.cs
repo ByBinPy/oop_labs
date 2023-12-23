@@ -3,6 +3,6 @@ namespace Models;
 public interface IOperation
 {
      DateTime TimeOperation { get; }
-     IBankAccount BankAccount { get; }
+     int BankAccount { get; }
      TypeOperation TypeOperation { get; }
 }
