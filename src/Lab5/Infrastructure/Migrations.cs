@@ -8,8 +8,7 @@ public class Migrations : SqlMigration
             """
             create type type_operation as enum
             (
-            'Refill',
-            'Withdrawal',
+            'UpdateBalance',
             'Add',
             'Delete',
             'Find',

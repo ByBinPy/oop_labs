@@ -1,8 +1,9 @@
 using Application.Exceptions;
 using Models;
+using Port.Ports;
 using Ports;
 
-namespace Application;
+namespace Application.Chains.Commands;
 
 public class ShowHistoryAdmin : ICommand
 {

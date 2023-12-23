@@ -1,4 +1,4 @@
-namespace Ports;
+namespace Port.Ports;
 
 public interface ICommand
 {

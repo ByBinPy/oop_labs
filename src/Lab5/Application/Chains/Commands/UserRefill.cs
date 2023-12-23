@@ -1,5 +1,6 @@
 ﻿using Application.Exceptions;
 using Models;
+using Port.Ports;
 using Ports;
 
 namespace Application;
@@ -44,7 +45,7 @@ public class UserRefill : ICommand
 
         if (_operationRepository != null)
         {
-            await _operationRepository.AddAsync(new Operation(_account, TypeOperation.Refill))
+            await _operationRepository.AddAsync(new Operation(_account, TypeOperation.UpdateBalance))
                 .ConfigureAwait(false);
         }
         else

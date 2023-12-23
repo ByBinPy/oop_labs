@@ -2,8 +2,7 @@ using Itmo.Dev.Platform.Postgres.Connection;
 using Itmo.Dev.Platform.Postgres.Extensions;
 using Models;
 using Npgsql;
-using Ports;
-
+using Port.Ports;
 namespace Infrastructure.Repositories;
 
 public class AccountRepository : IAccountRepository

@@ -2,8 +2,7 @@ namespace Models;
 
 public enum TypeOperation
 {
-    Refill,
-    Withdrawal,
+    UpdateBalance,
     Add,
     Delete,
     Find,

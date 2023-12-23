@@ -4,7 +4,7 @@ using Itmo.Dev.Platform.Postgres.Extensions;
 using Itmo.Dev.Platform.Postgres.Models;
 using Itmo.Dev.Platform.Postgres.Plugins;
 using Microsoft.Extensions.DependencyInjection;
-using Ports;
+using Port.Ports;
 
 namespace Infrastructure.Extensions;
 

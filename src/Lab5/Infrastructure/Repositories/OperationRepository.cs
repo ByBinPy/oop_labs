@@ -2,7 +2,7 @@ using Itmo.Dev.Platform.Postgres.Connection;
 using Itmo.Dev.Platform.Postgres.Extensions;
 using Models;
 using Npgsql;
-using Ports;
+using Port.Ports;
 
 namespace Infrastructure.Repositories;
 
@@ -36,7 +36,12 @@ public class OperationRepository : IOperationRepository
         }
     }
 
-    public async Task AddAsync(IOperation operation)
+    public Task AddAsync(IOperation operation)
+    {
+        throw new NotImplementedException();
+    }
+
+    async Task IOperationRepository.AddAsync(IOperation operation)
     {
         const string sqlLogging = """
                                      insert into operations (account_id,type_operation)

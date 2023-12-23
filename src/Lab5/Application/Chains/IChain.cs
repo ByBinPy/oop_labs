@@ -1,3 +1,6 @@
+using Application;
+using Port.Ports;
+
 namespace CLI.Chains;
 
 public interface IChain

@@ -1,8 +1,7 @@
 using CLI;
 using Infrastructure.Extensions;
-using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
-using Ports;
+using Port.Ports;
 
 namespace Application.Chains;
 
@@ -19,9 +18,9 @@ public class ChangeStateChain : BaseChain
             {
                 invoker.SetCommand(new AdminLogin(
                     context.Input.ElementAt(1),
-                    context.Input.ElementAt(1),
+                    context.Input.ElementAt(2),
                     provider.GetService<IAdminRepository>(),
-                    provider.GetService<OperationRepository>()));
+                    provider.GetService<IOperationRepository>()));
                 Parser.ChangeState();
             }
 

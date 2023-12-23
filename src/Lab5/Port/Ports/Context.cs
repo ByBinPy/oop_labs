@@ -1,4 +1,4 @@
-namespace CLI;
+namespace Port.Ports;
 
 public class Context
 {

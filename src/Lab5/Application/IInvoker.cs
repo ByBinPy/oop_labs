@@ -1,9 +1,7 @@
-using Ports;
-
-namespace CLI;
+namespace Application;
 
 public interface IInvoker
 {
-    void SetCommand(ICommand command);
+    void SetCommand(AdminLogin command);
     Task ExecuteAsync();
 }

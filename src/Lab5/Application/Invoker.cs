@@ -1,5 +1,4 @@
-using CLI;
-using Ports;
+using Port.Ports;
 
 namespace Application;
 
@@ -12,7 +11,7 @@ public class Invoker : IInvoker
         _command = command;
     }
 
-    public void SetCommand(ICommand command)
+    public void SetCommand(AdminLogin command)
     {
         _command = command;
     }

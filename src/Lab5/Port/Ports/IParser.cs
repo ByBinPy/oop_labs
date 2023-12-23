@@ -1,6 +1,4 @@
-using CLI;
-
-namespace Application;
+namespace Port.Ports;
 
 public interface IParser
 {

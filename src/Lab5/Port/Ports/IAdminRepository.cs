@@ -1,6 +1,6 @@
 using Models;
 
-namespace Ports;
+namespace Port.Ports;
 
 public interface IAdminRepository
 {

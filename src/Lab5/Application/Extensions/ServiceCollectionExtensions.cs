@@ -1,6 +1,9 @@
+using Application;
 using Microsoft.Extensions.DependencyInjection;
+using Models;
+using Port.Ports;
 
-namespace Models.Extensions;
+namespace Ports.Extensions;
 
 public static class ServiceCollectionExtensions
 {
@@ -9,6 +12,7 @@ public static class ServiceCollectionExtensions
         collection.AddScoped<IBankAccount, BankAccount>();
         collection.AddScoped<IOperation, Operation>();
         collection.AddScoped<IAdmin, Admin>();
+        collection.AddScoped<IParser, Parser>();
         return collection;
     }
 }
