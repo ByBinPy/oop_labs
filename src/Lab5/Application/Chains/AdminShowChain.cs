@@ -2,7 +2,7 @@ using System.Globalization;
 using CLI;
 using Infrastructure.Extensions;
 using Microsoft.Extensions.DependencyInjection;
-using Port.Ports; 
+using Port.Ports;
 
 namespace Application.Chains;
 

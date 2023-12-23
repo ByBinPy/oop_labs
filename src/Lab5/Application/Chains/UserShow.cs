@@ -1,19 +1,20 @@
 using Application.Exceptions;
 using Models;
 using Port.Ports;
-using Ports;
 
 namespace Application;
 
-public class AdminShow : ICommand
+public class UserShow : ICommand
 {
     private readonly int _account;
+    private readonly int _pin;
     private readonly IAccountRepository? _accountRepository;
     private readonly IOperationRepository? _operationRepository;
 
-    public AdminShow(int account, IAccountRepository? accountRepository, IOperationRepository? operationRepository)
+    public UserShow(int account, int pin, IAccountRepository? accountRepository, IOperationRepository? operationRepository)
     {
         _account = account;
+        _pin = pin;
         _accountRepository = accountRepository;
         _operationRepository = operationRepository;
     }
@@ -22,8 +23,15 @@ public class AdminShow : ICommand
     {
         if (_accountRepository != null)
         {
-            IBankAccount account = await _accountRepository.FindByAccountAsync(_account).ConfigureAwait(false);
-            Console.WriteLine($"balance :={account.Balance}");
+            IBankAccount result = await _accountRepository.FindByAccountAsync(_account).ConfigureAwait(false);
+            if (result.Pin == _pin)
+            {
+                Console.WriteLine($"balance :={result.Balance}");
+            }
+            else
+            {
+                throw new WrongPasswordException();
+            }
         }
         else
         {

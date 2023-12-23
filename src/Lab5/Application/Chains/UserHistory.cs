@@ -1,7 +1,6 @@
 using Application.Exceptions;
 using Models;
 using Port.Ports;
-using Ports;
 
 namespace Application;
 
