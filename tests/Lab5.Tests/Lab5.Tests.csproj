@@ -7,6 +7,10 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\src\Lab5\Application\Application.csproj" />
+        <ProjectReference Include="..\..\src\Lab5\Infrastructure\Infrastructure.csproj" />
+        <ProjectReference Include="..\..\src\Lab5\Models\Models.csproj" />
+        <ProjectReference Include="..\..\src\Lab5\Port\Port.csproj" />
         <PackageReference Include="Microsoft.NET.Test.Sdk"/>
         <PackageReference Include="NSubstitute" />
         <PackageReference Include="xunit"/>

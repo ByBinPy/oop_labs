@@ -44,7 +44,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Lab5\App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Lab5\Infrastructure\Infrastructure.csproj", "{955911A1-0C22-4EF1-A0F7-995B6828086E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLI", "src\Lab5\CLI\CLI.csproj", "{014B7C9D-CAAE-417D-92CE-29D30704E39E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "src\Lab5\Client\Client.csproj", "{014B7C9D-CAAE-417D-92CE-29D30704E39E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Port", "src\Lab5\Port\Port.csproj", "{56028E88-58F1-4E1E-AB16-B5CA73899D45}"
 EndProject

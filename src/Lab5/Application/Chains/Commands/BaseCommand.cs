@@ -1,6 +1,6 @@
 using Port.Ports;
 
-namespace Application.Chains;
+namespace Application.Chains.Commands;
 
 public class BaseCommand : ICommand
 {
