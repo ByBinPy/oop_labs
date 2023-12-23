@@ -22,7 +22,7 @@ public static class Test
         IParser parser = new Parser();
         try
         {
-            parser.ParseAsync(new Context("ululululu ulululu".Split(" ")));
+            parser.ParseAsync(new Context("uululululu ulululu".Split(" ")));
         }
         catch (InvalidInputException)
         {
