@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     {
         collection.AddScoped<IBankAccount, BankAccount>();
         collection.AddScoped<IOperation, Operation>();
-        collection.AddScoped(IAdmin, Admin);
+        collection.AddScoped<IAdmin, Admin>();
         return collection;
     }
 }

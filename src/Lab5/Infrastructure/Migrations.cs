@@ -8,11 +8,12 @@ public class Migrations : SqlMigration
             """
             create type type_operation as enum
             (
-                'Refill',
-                'Withdrawal',
-                'Add',
-                'Delete',
-                'Find'
+            'Refill',
+            'Withdrawal',
+            'Add',
+            'Delete',
+            'Find',
+            'History'
             );
             create table bank_account
             (

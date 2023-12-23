@@ -1,6 +1,8 @@
+using CLI;
+
 namespace Application;
 
 public interface IParser
 {
-    Task ParseAsync();
+    Task ParseAsync(Context context);
 }

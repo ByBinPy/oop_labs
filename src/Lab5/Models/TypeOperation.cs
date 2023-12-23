@@ -7,4 +7,5 @@ public enum TypeOperation
     Add,
     Delete,
     Find,
+    History,
 }

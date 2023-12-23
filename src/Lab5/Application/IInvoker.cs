@@ -4,6 +4,6 @@ namespace CLI;
 
 public interface IInvoker
 {
-    void SetCommand(ICommand? command);
-    void Execute();
+    void SetCommand(ICommand command);
+    Task ExecuteAsync();
 }

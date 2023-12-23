@@ -12,7 +12,7 @@ public class UserRefillChain : BaseChain
 {
     public override void Handle(Context context, IInvoker invoker)
     {
-        if (context.Input.ElementAt(0) == "Refill")
+        if (context.Input.ElementAt(0) == "refill")
         {
             IServiceCollection serviceCollectionExtensions = new ServiceCollection().AddExtensions();
             ServiceProvider provider = serviceCollectionExtensions.BuildServiceProvider();

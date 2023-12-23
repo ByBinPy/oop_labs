@@ -28,10 +28,12 @@ public class UserRefill : ICommand
             {
                 throw new NotImplementedException();
             }
-        }
 
-        if (_accountRepository != null)
-        {
+            if (bankAccount.Balance + _diffBalance < 0)
+            {
+                throw new NotImplementedException();
+            }
+
             await _accountRepository.UpdateAsync(_account, _diffBalance).ConfigureAwait(false);
         }
         else

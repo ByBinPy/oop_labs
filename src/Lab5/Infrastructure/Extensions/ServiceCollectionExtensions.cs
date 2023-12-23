@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
         collection.AddSingleton<IDataSourcePlugin, MappingPlugin>();
         collection.AddScoped<IAccountRepository, AccountRepository>();
         collection.AddScoped<IOperationRepository, OperationRepository>();
+        collection.AddScoped<IAdminRepository, AdminRepository>();
 
         return collection;
     }
@@ -28,6 +29,7 @@ public static class ServiceCollectionExtensions
     {
         collection.AddScoped<IAccountRepository, AccountRepository>();
         collection.AddScoped<IOperationRepository, OperationRepository>();
+        collection.AddScoped<IAdminRepository, AdminRepository>();
         return collection;
     }
 }
