@@ -4,21 +4,15 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.ForDisplay;
 
 public class Display
 {
-    public Driver DisplayDriver { get; } = new Driver();
-
-    public bool WriteMessage(IMessage message)
+    public Display(IDriver displayDriver)
     {
-        if (message is
-            {
-                Head: not null,
-                Body: not null,
-                Priority: > 0,
-            })
-        {
-            DisplayDriver.Write(message.Head + "\n" + message.Body + "\n");
-            return true;
-        }
+        DisplayDriver = displayDriver;
+    }
 
-        return false;
+    public IDriver DisplayDriver { get; }
+
+    public void WriteMessage(IMessage message)
+    {
+        DisplayDriver.Write(message.Head + "\n" + message.Body + "\n");
     }
 }

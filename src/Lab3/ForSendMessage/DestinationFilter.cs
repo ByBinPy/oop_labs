@@ -5,16 +5,16 @@ namespace Itmo.ObjectOrientedProgramming.Lab3;
 public class DestinationFilter : IDestination
 {
     private readonly int _recipientPriority;
-    private readonly DestinationLogging _destinationLogging;
+    private readonly IDestination _destination;
     public DestinationFilter(int recipientPriority, DestinationLogging destinationLogging)
     {
         _recipientPriority = recipientPriority;
-        _destinationLogging = destinationLogging;
+        _destination = destinationLogging;
     }
 
     public void SendMessage(IMessage message)
     {
         if (_recipientPriority >= message.Priority)
-            _destinationLogging.SendMessage(message);
+            _destination.SendMessage(message);
     }
 }
